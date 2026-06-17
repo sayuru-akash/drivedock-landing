@@ -1,10 +1,11 @@
-/* App Store Style Landing — Section order (from design system query):
+/* App Store Style Landing — Section order:
    1. Hero with device mockup
    2. Features with icons
-   3. Privacy / trust (problem → solution)
+   3. Privacy / trust
    4. Social proof / community
    5. Technical specs
-   6. Download CTA (repeated per App Store pattern)
+   6. FAQ
+   7. Download CTA (repeated per App Store pattern)
 
    Performance rules applied:
    - All sections are RSC-friendly (no "use client" at page level)
@@ -20,6 +21,7 @@ import { Features } from "@/components/sections/features"
 import { PrivacyHighlight } from "@/components/sections/privacy-highlight"
 import { SocialProof } from "@/components/sections/social-proof"
 import { Technical } from "@/components/sections/technical"
+import { FAQ } from "@/components/sections/faq"
 import { Download } from "@/components/sections/download"
 
 export default function HomePage() {
@@ -42,7 +44,10 @@ export default function HomePage() {
         {/* 5. Technical details */}
         <Technical />
 
-        {/* 6. Download CTA — repeated per App Store pattern */}
+        {/* 6. FAQ — answers common questions */}
+        <FAQ />
+
+        {/* 7. Download CTA — repeated per App Store pattern */}
         <Download />
       </main>
       <Footer />

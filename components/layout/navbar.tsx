@@ -12,6 +12,7 @@ const navLinks = [
   { label: "Features", href: "#features" },
   { label: "Privacy", href: "#privacy" },
   { label: "Technical", href: "#technical" },
+  { label: "FAQ", href: "#faq" },
   { label: "Download", href: "#download" },
 ]
 
