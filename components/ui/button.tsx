@@ -26,19 +26,19 @@ type ButtonProps = ButtonAsButton | ButtonAsLink
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-accent text-white hover:bg-accent-hover shadow-lg hover:shadow-[0_0_24px_rgba(66,133,244,0.4)] transition-all duration-200",
+    "bg-[#4285F4] text-white hover:bg-[#5B96FF] shadow-lg hover:shadow-[0_0_24px_rgba(66,133,244,0.4)] transition-all duration-200",
   secondary:
-    "bg-transparent border border-border-strong text-fg-primary hover:bg-bg-elevated hover:border-white/20 transition-all duration-200",
+    "bg-transparent border border-[rgba(255,255,255,0.16)] text-[var(--color-fg-primary)] hover:bg-[var(--color-bg-elevated)] hover:border-[rgba(255,255,255,0.24)] transition-all duration-200",
   ghost:
-    "bg-transparent text-fg-secondary hover:text-fg-primary hover:bg-bg-elevated transition-all duration-200",
+    "bg-transparent text-[var(--color-fg-secondary)] hover:text-[var(--color-fg-primary)] hover:bg-[var(--color-bg-elevated)] transition-all duration-200",
   outline:
-    "bg-transparent border border-accent/50 text-accent hover:bg-accent/10 hover:border-accent transition-all duration-200",
+    "bg-transparent border border-[rgba(66,133,244,0.5)] text-[#4285F4] hover:bg-[rgba(66,133,244,0.1)] hover:border-[#4285F4] transition-all duration-200",
 }
 
 const sizeStyles: Record<ButtonSize, string> = {
-  sm: "px-4 py-2 text-sm rounded-lg gap-1.5",
-  md: "px-5 py-2.5 text-sm rounded-lg gap-2",
-  lg: "px-7 py-3.5 text-base rounded-xl gap-2.5",
+  sm: "px-4 py-2.5 text-sm rounded-lg gap-2",
+  md: "px-6 py-3 text-sm rounded-xl gap-2.5",
+  lg: "px-8 py-4 text-base rounded-xl gap-3 font-semibold",
 }
 
 export function Button({

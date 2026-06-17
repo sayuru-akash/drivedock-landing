@@ -1,11 +1,5 @@
 "use client"
 
-/* App Store Style Landing — Section 3: Features with icons
-   Feature-Rich Showcase pattern: Hero → Features grid → benefits → CTA
-   Rules: Lucide icons (no emojis), card glass surface, stagger 40ms,
-          hover scale 1.02, shadow transition, a11y heading hierarchy
-*/
-
 import {
   Upload,
   FolderOpen,
@@ -31,69 +25,61 @@ interface FeatureData {
 const features: FeatureData[] = [
   {
     id: "drag-drop",
-    icon: <Upload size={20} aria-hidden="true" />,
+    icon: <Upload size={22} />,
     title: "Drag & Drop Uploads",
-    description:
-      "Drop files or folders onto the window, menu bar, or Dock icon. Upload starts instantly — no clicks required.",
+    description: "Drop files or folders onto the window, menu bar, or Dock icon. Upload starts instantly—no clicks required.",
     highlighted: true,
   },
   {
     id: "folder-structure",
-    icon: <FolderOpen size={20} aria-hidden="true" />,
+    icon: <FolderOpen size={22} />,
     title: "Folder Preservation",
-    description:
-      "DriveDock recreates your exact folder hierarchy in Google Drive, including deeply nested subfolders.",
+    description: "DriveDock recreates your exact folder hierarchy in Google Drive, including deeply nested subfolders.",
   },
   {
     id: "parallel-uploads",
-    icon: <Zap size={20} aria-hidden="true" />,
+    icon: <Zap size={22} />,
     title: "Parallel Uploads",
-    description:
-      "Upload multiple files simultaneously. Adaptive concurrency adjusts automatically to your network.",
+    description: "Upload multiple files simultaneously. Adaptive concurrency adjusts automatically to your network.",
     highlighted: true,
   },
   {
     id: "resumable",
-    icon: <RefreshCw size={20} aria-hidden="true" />,
+    icon: <RefreshCw size={22} />,
     title: "Resumable Uploads",
-    description:
-      "Uses Google Drive's resumable protocol. Drop in connection? Uploads resume exactly where they left off.",
+    description: "Uses Google Drive's resumable protocol. Drop in connection? Uploads resume exactly where they left off.",
   },
   {
     id: "multi-account",
-    icon: <Users size={20} aria-hidden="true" />,
+    icon: <Users size={22} />,
     title: "Multi-Account",
-    description:
-      "Connect personal, work, and Shared Drive accounts. Switch between them without friction.",
+    description: "Connect personal, work, and Shared Drive accounts. Switch between them without friction.",
   },
   {
     id: "shared-drive",
-    icon: <Share2 size={20} aria-hidden="true" />,
+    icon: <Share2 size={22} />,
     title: "Shared Drive Support",
-    description:
-      "Browse and upload to any Google Shared Drive you have access to, with full permission awareness.",
+    description: "Browse and upload to any Google Shared Drive you have access to, with full permission awareness.",
     highlighted: true,
   },
   {
     id: "menu-bar",
-    icon: <LayoutGrid size={20} aria-hidden="true" />,
+    icon: <LayoutGrid size={22} />,
     title: "Menu Bar Helper",
-    description:
-      "Persistent menu bar icon shows active upload count, progress, a quick drop zone, and account switcher.",
+    description: "Persistent menu bar icon shows active upload count, progress, a quick drop zone, and account switcher.",
   },
   {
     id: "history",
-    icon: <Clock size={20} aria-hidden="true" />,
+    icon: <Clock size={22} />,
     title: "Upload History",
-    description:
-      "Every upload logged with timestamp, size, duration, speed, destination, status, and Drive link.",
+    description: "Every upload logged with timestamp, size, duration, speed, destination, status, and Drive link.",
   },
 ]
 
 function FeatureCard({ icon, title, description, highlighted }: Omit<FeatureData, "id">) {
   return (
     <article
-      className="group relative rounded-2xl p-6 h-full flex flex-col transition-all duration-200 hover:scale-[1.025]"
+      className="group relative rounded-2xl p-7 h-full transition-all duration-300 hover:scale-[1.02]"
       style={{
         background: highlighted
           ? "linear-gradient(135deg, rgba(66,133,244,0.1) 0%, rgba(27,35,54,0.95) 100%)"
@@ -102,38 +88,24 @@ function FeatureCard({ icon, title, description, highlighted }: Omit<FeatureData
           ? "1px solid rgba(66,133,244,0.28)"
           : "1px solid rgba(255,255,255,0.07)",
         backdropFilter: "blur(12px)",
-        boxShadow: highlighted
-          ? "0 0 0 0 transparent"
-          : undefined,
-      }}
-      onMouseEnter={(e) => {
-        if (highlighted) return
-        e.currentTarget.style.boxShadow = "0 8px 32px rgba(66,133,244,0.08)"
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.boxShadow = "none"
+        boxShadow: "0 4px 8px -2px rgba(0, 0, 0, 0.3)",
       }}
     >
       <div
-        className="w-11 h-11 rounded-xl flex items-center justify-center mb-4 shrink-0"
+        className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 shrink-0"
         style={{
-          background: highlighted
-            ? "rgba(66,133,244,0.18)"
-            : "rgba(255,255,255,0.05)",
-          border: highlighted
-            ? "1px solid rgba(66,133,244,0.3)"
-            : "1px solid rgba(255,255,255,0.08)",
+          background: highlighted ? "rgba(66,133,244,0.18)" : "rgba(255,255,255,0.05)",
+          border: highlighted ? "1px solid rgba(66,133,244,0.3)" : "1px solid rgba(255,255,255,0.08)",
         }}
-        aria-hidden="true"
       >
-        <span className={highlighted ? "text-accent" : "text-fg-secondary"}>
+        <span className={highlighted ? "text-[#4285F4]" : "text-[var(--color-fg-secondary)]"}>
           {icon}
         </span>
       </div>
-      <h3 className="text-sm font-semibold text-fg-primary mb-2 leading-snug">
+      <h3 className="text-base font-semibold text-[var(--color-fg-primary)] mb-3 leading-snug">
         {title}
       </h3>
-      <p className="text-sm text-fg-secondary leading-relaxed flex-1">
+      <p className="text-sm text-[var(--color-fg-secondary)] leading-relaxed">
         {description}
       </p>
     </article>
@@ -142,39 +114,30 @@ function FeatureCard({ icon, title, description, highlighted }: Omit<FeatureData
 
 export function Features() {
   return (
-    <section
-      id="features"
-      aria-labelledby="features-heading"
-      className="py-28 relative"
-    >
+    <section id="features" className="py-32 relative">
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background:
-            "radial-gradient(ellipse 60% 40% at 50% 100%, rgba(66,133,244,0.05) 0%, transparent 65%)",
+          background: "radial-gradient(ellipse 60% 40% at 50% 100%, rgba(66,133,244,0.05) 0%, transparent 65%)",
         }}
         aria-hidden="true"
       />
 
       <Container>
-        <FadeIn className="text-center mb-16">
-          <span className="text-sm font-medium text-accent tracking-widest uppercase mb-4 block">
+        <FadeIn className="text-center mb-20">
+          <span className="text-sm font-medium text-[#4285F4] tracking-widest uppercase mb-5 block">
             Features
           </span>
-          <h2
-            id="features-heading"
-            className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-[-0.03em] text-fg-primary mb-5"
-          >
+          <h2 className="mb-6">
             Everything you need,{" "}
-            <span className="gradient-text-blue">nothing you don&apos;t</span>
+            <span className="gradient-text-blue">nothing you don't</span>
           </h2>
-          <p className="text-lg text-fg-secondary max-w-2xl mx-auto leading-relaxed">
-            DriveDock is purpose-built for one job: getting your files from your
-            Mac into Google Drive as fast and reliably as possible.
+          <p className="text-lg text-[var(--color-fg-secondary)] max-w-2xl mx-auto leading-relaxed">
+            DriveDock is purpose-built for one job: getting your files from your Mac into Google Drive as fast and reliably as possible.
           </p>
         </FadeIn>
 
-        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {features.map((f) => (
             <StaggerItem key={f.id}>
               <FeatureCard
