@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, Download as DownloadIcon, Github } from "lucide-react"
 import { Container } from "@/components/ui/container"
 import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
 
 const navLinks = [
   { label: "Features", href: "#features" },
@@ -25,7 +24,6 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handler)
   }, [])
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (mobileOpen) {
       document.body.style.overflow = "hidden"
@@ -37,58 +35,44 @@ export function Navbar() {
 
   return (
     <header
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        scrolled
-          ? "bg-bg-base/80 backdrop-blur-xl border-b border-border shadow-lg"
-          : "bg-transparent"
-      )}
-      role="banner"
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      style={{
+        background: scrolled ? "rgba(11, 15, 26, 0.8)" : "transparent",
+        backdropFilter: scrolled ? "blur(20px)" : "none",
+        borderBottom: scrolled ? "1px solid rgba(255, 255, 255, 0.08)" : "none",
+        boxShadow: scrolled ? "0 4px 6px -1px rgba(0, 0, 0, 0.4)" : "none",
+      }}
     >
       <Container>
-        <nav
-          className="flex items-center justify-between h-16"
-          aria-label="Main navigation"
-        >
+        <nav className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link
-            href="/"
-            className="flex items-center gap-2.5 focus-ring rounded-lg"
-            aria-label="DriveDock home"
-          >
+          <Link href="/" className="flex items-center gap-3 focus-ring rounded-lg">
             <div
-              className="w-8 h-8 rounded-lg flex items-center justify-center"
+              className="w-10 h-10 rounded-xl flex items-center justify-center"
               style={{
-                background:
-                  "linear-gradient(135deg, #4285F4 0%, #22C55E 100%)",
+                background: "linear-gradient(135deg, #4285F4 0%, #10B981 100%)",
               }}
-              aria-hidden="true"
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path
-                  d="M3 15L12 3L21 15H3Z"
-                  fill="white"
-                  fillOpacity="0.9"
-                />
-                <path
-                  d="M3 15H21L18 21H6L3 15Z"
-                  fill="white"
-                  fillOpacity="0.6"
-                />
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M3 15L12 3L21 15H3Z" fill="white" fillOpacity="0.95" />
+                <path d="M3 15H21L18 21H6L3 15Z" fill="white" fillOpacity="0.65" />
               </svg>
             </div>
-            <span className="font-semibold text-fg-primary tracking-tight">
+            <span className="font-semibold text-lg" style={{ color: "var(--color-fg-primary)" }}>
               DriveDock
             </span>
           </Link>
 
-          {/* Desktop nav links */}
-          <ul className="hidden md:flex items-center gap-1" role="list">
+          {/* Desktop nav */}
+          <ul className="hidden md:flex items-center gap-2">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="px-3 py-2 text-sm text-fg-secondary hover:text-fg-primary rounded-md transition-colors duration-150 focus-ring"
+                  className="px-4 py-2 text-sm rounded-lg transition-colors duration-200 focus-ring"
+                  style={{ color: "var(--color-fg-secondary)" }}
+                  onMouseEnter={(e) => e.currentTarget.style.color = "var(--color-fg-primary)"}
+                  onMouseLeave={(e) => e.currentTarget.style.color = "var(--color-fg-secondary)"}
                 >
                   {link.label}
                 </a>
@@ -102,15 +86,17 @@ export function Navbar() {
               href="https://github.com/sayuru-akash/drivedock"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 text-fg-secondary hover:text-fg-primary rounded-md transition-colors duration-150 focus-ring"
-              aria-label="View DriveDock on GitHub"
+              className="p-2 rounded-lg transition-colors focus-ring"
+              style={{ color: "var(--color-fg-secondary)" }}
+              onMouseEnter={(e) => e.currentTarget.style.color = "var(--color-fg-primary)"}
+              onMouseLeave={(e) => e.currentTarget.style.color = "var(--color-fg-secondary)"}
             >
-              <Github size={18} aria-hidden="true" />
+              <Github size={20} />
             </a>
             <Button
               href="https://github.com/sayuru-akash/drivedock/releases"
               size="sm"
-              icon={<DownloadIcon size={14} />}
+              icon={<DownloadIcon size={16} />}
             >
               Download
             </Button>
@@ -119,12 +105,12 @@ export function Navbar() {
           {/* Mobile hamburger */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden p-2 rounded-md text-fg-secondary hover:text-fg-primary transition-colors focus-ring"
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            aria-expanded={mobileOpen}
-            aria-controls="mobile-menu"
+            className="md:hidden p-2 rounded-lg transition-colors focus-ring"
+            style={{ color: "var(--color-fg-secondary)" }}
+            onMouseEnter={(e) => e.currentTarget.style.color = "var(--color-fg-primary)"}
+            onMouseLeave={(e) => e.currentTarget.style.color = "var(--color-fg-secondary)"}
           >
-            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </nav>
       </Container>
@@ -133,37 +119,48 @@ export function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            id="mobile-menu"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2, ease: "easeInOut" }}
-            className="md:hidden overflow-hidden bg-bg-surface border-b border-border"
+            transition={{ duration: 0.2 }}
+            className="md:hidden overflow-hidden"
+            style={{
+              background: "var(--color-bg-surface)",
+              borderBottom: "1px solid var(--color-border)",
+            }}
           >
             <Container>
-              <nav className="py-4 flex flex-col gap-1" aria-label="Mobile navigation">
+              <nav className="py-4 flex flex-col gap-2">
                 {navLinks.map((link) => (
                   <a
                     key={link.href}
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
-                    className="px-3 py-3 text-fg-secondary hover:text-fg-primary hover:bg-bg-elevated rounded-lg transition-colors duration-150"
+                    className="px-4 py-3 rounded-lg transition-colors"
+                    style={{ color: "var(--color-fg-secondary)" }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.color = "var(--color-fg-primary)"
+                      e.currentTarget.style.background = "var(--color-bg-elevated)"
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.color = "var(--color-fg-secondary)"
+                      e.currentTarget.style.background = "transparent"
+                    }}
                   >
                     {link.label}
                   </a>
                 ))}
-                <div className="pt-3 pb-1 flex flex-col gap-2 border-t border-border mt-2">
+                <div className="pt-4 pb-2 flex flex-col gap-3 mt-2" style={{ borderTop: "1px solid var(--color-border)" }}>
                   <Button
                     href="https://github.com/sayuru-akash/drivedock/releases"
-                    variant="primary"
-                    icon={<DownloadIcon size={14} />}
+                    icon={<DownloadIcon size={16} />}
                   >
                     Download for macOS
                   </Button>
                   <Button
                     href="https://github.com/sayuru-akash/drivedock"
                     variant="secondary"
-                    icon={<Github size={14} />}
+                    icon={<Github size={16} />}
                   >
                     View on GitHub
                   </Button>
