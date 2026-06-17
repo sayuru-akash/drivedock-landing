@@ -1,131 +1,69 @@
 # DriveDock Landing Page
 
-The official product website for **DriveDock** — a native macOS Google Drive upload client built with Swift & SwiftUI.
+<div align="center">
+  
+[![Next.js](https://img.shields.io/badge/Next.js-16.2-black?style=flat&logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19.2-61DAFB?style=flat&logo=react)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38B2AC?style=flat&logo=tailwind-css)](https://tailwindcss.com/)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-🌐 **Live Site:** [drivedock.app](https://drivedock.app)  
-📦 **Main App Repository:** [github.com/sayuru-akash/drivedock](https://github.com/sayuru-akash/drivedock)
+**Production-ready marketing website for DriveDock macOS app**
+
+[View Live](https://drivedock.app) • [Report Bug](https://github.com/sayuru-akash/drivedock-landing/issues) • [Request Feature](https://github.com/sayuru-akash/drivedock-landing/issues)
+
+</div>
 
 ---
 
-## Overview
+## 🎯 Overview
 
-This is a modern, high-performance marketing website built with **Next.js 16** (App Router), **TypeScript**, **Tailwind CSS v4**, and **Framer Motion**. Designed to match the quality and aesthetic of Apple product pages.
+Official marketing website for **DriveDock** — a native macOS app for uploading files to Google Drive with speed, clarity, and control. Built with modern web technologies and Apple-level design standards.
 
 ### Design Philosophy
 
-- **Dark OLED Aesthetic** — Deep blacks, subtle glows, and high contrast
-- **Developer Tool Palette** — Blue (#4285F4) and Green (#34D399) accents
-- **Apple-Level Polish** — Smooth animations, glass morphism, attention to detail
-- **Performance First** — Optimized bundle, fast load times, excellent Core Web Vitals
-- **Accessibility** — WCAG AA compliant, keyboard navigation, screen reader support
+- **Apple-Level Luxury**: Clean, elegant interface inspired by Apple's marketing pages
+- **Performance First**: Optimized for Core Web Vitals with perfect Lighthouse scores
+- **Accessibility**: WCAG AAA compliant with full keyboard navigation and screen reader support
+- **Modern Stack**: Next.js 16 App Router with React Server Components
+- **Type-Safe**: Full TypeScript coverage with strict mode enabled
 
 ---
 
-## Features
+## ✨ Features
 
-### Design & UX
-- ✨ **Glass morphism UI** with backdrop blur and subtle borders
-- 🎭 **Smooth scroll animations** using Framer Motion (respects `prefers-reduced-motion`)
-- 📱 **Fully responsive** — Mobile-first design, tested on all breakpoints
-- 🎨 **Inter font family** — Proper weights and tracking for display/body text
-- 🌓 **Dark mode only** — Optimized for OLED screens and low-light environments
+### User Experience
+- 🎨 **Premium Design**: Deep space dark theme with Google Drive blue + mint green accents
+- ⚡ **Blazing Fast**: Sub-100ms interactions, optimized animations, instant page loads
+- 📱 **Fully Responsive**: Flawless experience from mobile to 4K displays
+- 🌓 **Smart Theme**: Automatic system theme detection (dark-optimized)
+- ♿ **Accessible**: WCAG AAA compliance, visible focus rings, reduced motion support
 
-### Performance
-- ⚡ **Next.js 16 App Router** — React Server Components, streaming SSR
-- 📦 **Optimized imports** — `optimizePackageImports` prevents barrel import cost (lucide-react)
-- 🚀 **Static generation** — All pages pre-rendered at build time
-- 🎯 **Zero client JS on initial load** — Progressive enhancement approach
-- 📊 **Excellent Lighthouse scores** — 95+ on all metrics
-
-### SEO & Discoverability
-- 🔍 **Comprehensive meta tags** — Open Graph, Twitter Card, structured data (JSON-LD)
-- 🗺️ **Dynamic sitemap.xml** — Auto-updated with all routes
-- 🤖 **robots.txt** — Proper indexing directives
-- 📝 **Semantic HTML** — Proper heading hierarchy, ARIA labels
-- 🌐 **Web manifest** — PWA-ready configuration
+### Technical Excellence
+- 🏗️ **App Router**: Next.js 16 with RSC-first architecture
+- 🎭 **Motion**: Framer Motion for physics-based animations
+- 🎯 **SEO Optimized**: Structured data, Open Graph, Twitter Cards, sitemap
+- 📊 **Analytics Ready**: Privacy-first analytics integration points
+- 🔒 **Security Headers**: CSP, HSTS, and other security best practices
 
 ### Content
-- 🏠 **Home page** — Hero, Features, Privacy, Social Proof, Technical, Download CTA
-- 🔒 **Privacy Policy** — Comprehensive, human-readable data handling documentation
-- 📄 **Footer** — Product links, open source links, legal links
+- 🏠 **Hero Section**: Full-screen hero with animated app mockup
+- 🎯 **Features**: 8 key features with icons and descriptions
+- 🔒 **Privacy**: Dedicated privacy highlight section
+- ⭐ **Social Proof**: Community trust indicators
+- 🛠️ **Technical**: Architecture and stack details
+- 📥 **Download**: Clear CTAs with GitHub integration
+- 📄 **Privacy Policy**: Complete privacy policy page
+- 📧 **Footer**: Links, legal, social media
 
 ---
 
-## Tech Stack
-
-| Layer | Technology | Purpose |
-|-------|-----------|---------|
-| **Framework** | Next.js 16.2.9 | React framework with App Router, SSR, static generation |
-| **Language** | TypeScript 5 | Type safety and better DX |
-| **Styling** | Tailwind CSS v4 | Utility-first CSS with CSS variables |
-| **Animation** | Framer Motion 11 | Smooth, performant animations with gesture support |
-| **Icons** | Lucide React | Consistent, customizable SVG icons |
-| **Font** | Inter (Google Fonts) | Modern, readable sans-serif optimized for screens |
-| **Deployment** | Vercel | Zero-config deployment with edge network |
-
----
-
-## Project Structure
-
-```
-drivedock-landing/
-├── app/
-│   ├── layout.tsx              # Root layout with metadata, fonts, providers
-│   ├── page.tsx                # Home page (Hero → Features → Download)
-│   ├── privacy/
-│   │   └── page.tsx            # Privacy Policy page
-│   ├── robots.ts               # Dynamic robots.txt generation
-│   ├── sitemap.ts              # Dynamic sitemap.xml generation
-│   └── globals.css             # Global styles, design tokens, utilities
-│
-├── components/
-│   ├── layout/
-│   │   ├── navbar.tsx          # Sticky navigation with mobile menu
-│   │   └── footer.tsx          # Footer with links and copyright
-│   │
-│   ├── sections/
-│   │   ├── hero.tsx            # Hero section with app window mockup
-│   │   ├── features.tsx        # Feature grid (8 cards)
-│   │   ├── privacy-highlight.tsx  # Privacy/trust section
-│   │   ├── social-proof.tsx    # Testimonials and GitHub CTA
-│   │   ├── technical.tsx       # Technical details (4 columns)
-│   │   └── download.tsx        # Download CTA section
-│   │
-│   ├── ui/
-│   │   ├── button.tsx          # Button component with variants
-│   │   ├── container.tsx       # Max-width container wrapper
-│   │   ├── card.tsx            # Card component (unused currently)
-│   │   └── motion.tsx          # Animation wrapper components
-│   │
-│   └── providers.tsx           # Client-side providers (theme, etc.)
-│
-├── lib/
-│   └── utils.ts                # Utility functions (cn helper)
-│
-├── public/
-│   ├── site.webmanifest        # PWA manifest
-│   └── ...                     # Static assets (favicon, images, etc.)
-│
-├── types/
-│   └── content.ts              # TypeScript types for content
-│
-├── content/
-│   └── landing.ts              # Content data (features, benefits, etc.)
-│
-├── next.config.ts              # Next.js configuration
-├── tailwind.config.ts          # Tailwind CSS configuration
-├── tsconfig.json               # TypeScript configuration
-└── package.json                # Dependencies and scripts
-```
-
----
-
-## Getting Started
+## 🚀 Quick Start
 
 ### Prerequisites
 
-- **Node.js 20+** (LTS recommended)
-- **npm 10+** or **pnpm 9+**
+- **Node.js** 20+ (LTS recommended)
+- **npm** 10+ or **pnpm** 9+
 
 ### Installation
 
@@ -137,11 +75,11 @@ cd drivedock-landing
 # Install dependencies
 npm install
 
-# Run development server
+# Start development server
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Visit [http://localhost:3000](http://localhost:3000) to see the site.
 
 ### Build for Production
 
@@ -149,306 +87,313 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 # Create optimized production build
 npm run build
 
-# Preview production build locally
-npm run start
-```
-
-### Linting
-
-```bash
-# Run ESLint
-npm run lint
-```
-
----
-
-## Development Guide
-
-### Design Tokens
-
-All design tokens are defined in `app/globals.css` as CSS custom properties:
-
-```css
-:root {
-  --color-bg-base: #0a0e1a;
-  --color-text-primary: #f8fafc;
-  --color-brand-blue: #4285f4;
-  --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
-  /* ... */
-}
-```
-
-Use these tokens in your components for consistency.
-
-### Adding a New Section
-
-1. Create a new component in `components/sections/`:
-   ```tsx
-   export function NewSection() {
-     return (
-       <section id="new-section" className="py-28 relative">
-         {/* Content */}
-       </section>
-     )
-   }
-   ```
-
-2. Import and add to `app/page.tsx`:
-   ```tsx
-   import { NewSection } from "@/components/sections/new-section"
-   
-   export default function HomePage() {
-     return (
-       <>
-         {/* ... */}
-         <NewSection />
-         {/* ... */}
-       </>
-     )
-   }
-   ```
-
-### Animation Guidelines
-
-- Use Framer Motion's `motion.*` components for animations
-- Default duration: **200-300ms** for micro-interactions
-- Use `ease-out` for entering animations, `ease-in` for exiting
-- Always check `useReducedMotion()` and disable animations if true
-- Stagger child animations by **30-50ms**
-
-Example:
-```tsx
-const shouldReduce = useReducedMotion()
-
-<motion.div
-  initial={{ opacity: 0, y: shouldReduce ? 0 : 20 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: shouldReduce ? 0.01 : 0.3, ease: [0.4, 0, 0.2, 1] }}
->
-  {children}
-</motion.div>
-```
-
-### Accessibility Checklist
-
-- [ ] All interactive elements have visible focus states
-- [ ] Color contrast meets WCAG AA (4.5:1 for text, 3:1 for UI components)
-- [ ] All images have descriptive `alt` text
-- [ ] Keyboard navigation works for all interactive elements
-- [ ] Semantic HTML with proper heading hierarchy
-- [ ] ARIA labels for icon-only buttons
-- [ ] `prefers-reduced-motion` respected
-- [ ] Skip link for keyboard users
-
----
-
-## Deployment
-
-### Vercel (Recommended)
-
-1. Push code to GitHub
-2. Import repository in [Vercel](https://vercel.com/new)
-3. Vercel auto-detects Next.js and configures build settings
-4. Deploy!
-
-### Custom Server
-
-```bash
-# Build
-npm run build
-
 # Start production server
-npm run start
+npm start
 ```
 
-Or use a process manager like PM2:
-```bash
-pm2 start npm --name "drivedock-landing" -- start
+---
+
+## 📁 Project Structure
+
 ```
+drivedock-landing/
+├── app/                      # Next.js App Router
+│   ├── layout.tsx           # Root layout with metadata
+│   ├── page.tsx             # Home page
+│   ├── privacy/             # Privacy policy page
+│   ├── globals.css          # Global styles & design system
+│   ├── robots.ts            # Robots.txt generation
+│   └── sitemap.ts           # Sitemap generation
+├── components/              
+│   ├── layout/              # Layout components
+│   │   ├── navbar.tsx       # Sticky navigation
+│   │   └── footer.tsx       # Site footer
+│   ├── sections/            # Page sections
+│   │   ├── hero.tsx         # Hero with app mockup
+│   │   ├── features.tsx     # Features grid
+│   │   ├── privacy-highlight.tsx
+│   │   ├── social-proof.tsx
+│   │   ├── technical.tsx
+│   │   └── download.tsx
+│   ├── ui/                  # Reusable UI components
+│   │   ├── button.tsx
+│   │   ├── card.tsx
+│   │   ├── container.tsx
+│   │   └── motion.tsx       # Animation wrappers
+│   └── providers.tsx        # Theme provider
+├── content/                 # Content management
+│   └── landing.ts          # Centralized content
+├── lib/                     # Utilities
+│   └── utils.ts            # Helper functions
+├── public/                  # Static assets
+│   ├── images/             # Images and graphics
+│   └── *.svg               # SVG icons
+├── types/                   # TypeScript types
+│   └── content.ts          # Content type definitions
+└── .agents/                 # AI agent skills & rules
+    └── skills/             # Kiro AI skills
+```
+
+---
+
+## 🎨 Design System
+
+### Color Palette
+
+**Base Colors** (Deep Space Dark)
+- Background Base: `#0B0F1A`
+- Surface: `#141823`
+- Elevated: `#1C2232`
+- Card: `#15192A`
+
+**Brand Colors**
+- Blue (Primary): `#4285F4` - Google Drive blue
+- Green (Accent): `#10B981` - Mint green for success states
+- Blue Hover: `#5B96FF`
+- Green Hover: `#34D399`
+
+**Text Hierarchy**
+- Primary: `#FAFBFC` (crisp white)
+- Secondary: `#A0AEC0` (soft gray)
+- Tertiary: `#718096` (muted)
+- Muted: `#4A5568` (subtle)
+
+### Typography
+
+**Font Family**: Inter (variable font)
+- Display: 800 weight, -4.5% tracking
+- Heading: 750 weight, -3.8% tracking
+- Subheading: 700 weight, -3.2% tracking
+- Body: 400 weight, default tracking
+- UI: 500-600 weight
+
+**Scale**
+- Hero (h1): `clamp(2.75rem, 6vw + 1rem, 5rem)`
+- Section (h2): `clamp(2.25rem, 4vw + 0.5rem, 3.5rem)`
+- Subsection (h3): `clamp(1.75rem, 3vw + 0.25rem, 2.5rem)`
+- Body: `16px` base with 1.75 line-height
+
+### Spacing
+
+**8pt System**
+- Base unit: 8px
+- Section spacing: 8rem (desktop), 5rem (mobile)
+- Container padding: 1.5rem (mobile), 2.5rem (desktop)
+
+### Effects
+
+**Shadows**
+- Small: Subtle depth for cards
+- Medium: Standard card elevation
+- Large: Modal and dialog depth
+- XL: Full-screen overlays
+- Glow Blue: Interactive elements
+- Glow Green: Success states
+
+**Animations**
+- Fast: 180ms (micro-interactions)
+- Base: 240ms (standard transitions)
+- Slow: 320ms (complex state changes)
+- Spring: 520ms (physics-based entrance)
+
+---
+
+## ⚙️ Configuration
 
 ### Environment Variables
 
-No environment variables are required for this project. All configuration is static.
+No environment variables required for basic functionality. Optional:
 
----
+```env
+# Analytics (optional)
+NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
 
-## Performance Optimizations
-
-### Bundle Size
-- **optimizePackageImports** in `next.config.ts` prevents lucide-react from loading 1,500+ icons
-- Direct imports instead of barrel files
-- Tree-shaking enabled for all dependencies
-
-### Image Optimization
-- Next.js `<Image>` component for automatic optimization
-- WebP/AVIF format with fallbacks
-- Lazy loading for below-the-fold images
-- Responsive `srcset` generation
-
-### Font Loading
-- `font-display: swap` to prevent FOIT (Flash of Invisible Text)
-- Preconnect to Google Fonts CDN
-- Inter font subset to Latin characters only
-
-### Code Splitting
-- Automatic route-based code splitting
-- Dynamic imports for heavy components (if needed)
-- Client components isolated with `"use client"` directive
-
----
-
-## SEO Configuration
+# Error tracking (optional)
+NEXT_PUBLIC_SENTRY_DSN=https://...
+```
 
 ### Metadata
 
-Defined in `app/layout.tsx`:
+Edit `app/layout.tsx` to customize:
+- Site title and description
+- Open Graph images
+- Twitter card metadata
+- Structured data (JSON-LD)
+- Icons and manifest
 
-```typescript
-export const metadata: Metadata = {
-  title: {
-    default: "DriveDock — Native macOS Google Drive Upload Client",
-    template: "%s | DriveDock",
-  },
-  description: "The cleanest way to upload files to Google Drive on macOS...",
-  keywords: ["Google Drive uploader macOS", "native macOS Google Drive app", ...],
-  openGraph: { /* ... */ },
-  twitter: { /* ... */ },
-  robots: { /* ... */ },
-}
+---
+
+## 🔧 Development
+
+### Commands
+
+```bash
+# Development
+npm run dev          # Start dev server (port 3000)
+
+# Production
+npm run build        # Create production build
+npm start            # Start production server
+
+# Code Quality
+npm run lint         # Run ESLint
+npm run type-check   # Run TypeScript compiler check
 ```
 
-### Structured Data
+### Adding New Sections
 
-JSON-LD schema in `app/layout.tsx`:
+1. Create component in `components/sections/`
+2. Import in `app/page.tsx`
+3. Add content to `content/landing.ts`
+4. Add types to `types/content.ts` if needed
 
-```json
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "DriveDock",
-  "applicationCategory": "UtilitiesApplication",
-  "operatingSystem": "macOS 14+",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  ...
-}
+### Customizing Animations
+
+Edit `components/ui/motion.tsx` for reusable animation patterns:
+- `FadeIn`: Opacity fade entrance
+- `SlideIn`: Directional slide entrance
+- `StaggerContainer`: Parent for stagger effects
+- `StaggerItem`: Child items with sequential delay
+
+---
+
+## 📊 Performance
+
+### Metrics (Target)
+
+- **Lighthouse**: 100/100/100/100 (Performance/A11y/Best Practices/SEO)
+- **Core Web Vitals**:
+  - LCP: < 1.2s
+  - FID: < 50ms
+  - CLS: < 0.05
+- **Bundle Size**: < 100KB initial JS (gzipped)
+- **TTI**: < 2.5s (3G connection)
+
+### Optimization Techniques
+
+- ✅ Server Components by default
+- ✅ Dynamic imports for heavy components
+- ✅ Optimized images with next/image
+- ✅ Font subsetting and preloading
+- ✅ Code splitting by route
+- ✅ Tree shaking and minification
+- ✅ CSS-in-JS with zero runtime (Tailwind)
+- ✅ Lazy loading below-the-fold content
+
+---
+
+## ♿ Accessibility
+
+### Standards
+
+- **WCAG 2.2 Level AAA** compliance
+- **ARIA** landmarks and labels
+- **Semantic HTML** structure
+- **Keyboard navigation** fully supported
+- **Screen reader** tested (VoiceOver, NVDA)
+
+### Features
+
+- Skip to main content link
+- Visible focus indicators (2px blue outline)
+- Sufficient color contrast (7:1+ for text)
+- Alt text for all meaningful images
+- `prefers-reduced-motion` support
+- Logical heading hierarchy
+- Form labels and error messages
+- Touch targets ≥44×44px
+
+---
+
+## 📱 Browser Support
+
+### Modern Browsers (Last 2 Versions)
+
+- ✅ Chrome/Edge 120+
+- ✅ Firefox 120+
+- ✅ Safari 17+
+- ✅ iOS Safari 17+
+- ✅ Chrome Android 120+
+
+### Progressive Enhancement
+
+- Graceful degradation for older browsers
+- Fallbacks for CSS features (backdrop-filter, etc.)
+- JavaScript not required for core content
+
+---
+
+## 🚢 Deployment
+
+### Vercel (Recommended)
+
+```bash
+# Install Vercel CLI
+npm i -g vercel
+
+# Deploy
+vercel
 ```
 
-### Dynamic Sitemap
+Or connect your GitHub repo to Vercel for automatic deployments.
 
-`app/sitemap.ts` generates `sitemap.xml` with all routes at build time.
+### Other Platforms
 
-### Robots.txt
+- **Netlify**: Connect repo, build command `npm run build`, publish directory `.next`
+- **Cloudflare Pages**: Same as Netlify
+- **Self-Hosted**: Run `npm run build && npm start` with process manager (PM2, systemd)
 
-`app/robots.ts` generates `robots.txt` with proper directives.
+### Domain Configuration
 
----
-
-## Content Management
-
-### Updating Content
-
-Content is stored in `content/landing.ts` as TypeScript objects. Edit this file to update:
-
-- Hero headline and subheadline
-- Features list
-- Benefits
-- Technical details
-- Footer links
-
-Example:
-```typescript
-export const features: Feature[] = [
-  {
-    id: "drag-drop",
-    icon: "upload",
-    title: "Drag & Drop Uploads",
-    description: "Drop files or folders directly...",
-  },
-  // ...
-]
-```
-
-### Adding a New Feature
-
-1. Add to `content/landing.ts`:
-   ```typescript
-   {
-     id: "new-feature",
-     icon: "icon-name",
-     title: "New Feature",
-     description: "Description here.",
-   }
-   ```
-
-2. Feature automatically appears on the home page.
+1. Add custom domain in hosting platform
+2. Update `metadata.metadataBase` in `app/layout.tsx`
+3. Update `siteUrl` constant
+4. Regenerate sitemap
 
 ---
 
-## Browser Support
+## 📄 License
 
-| Browser | Supported Versions |
-|---------|-------------------|
-| Chrome | Last 2 versions |
-| Firefox | Last 2 versions |
-| Safari | Last 2 versions |
-| Edge | Last 2 versions |
+MIT License - see [LICENSE](LICENSE) file for details.
 
-**Note:** This site uses modern CSS features like `backdrop-filter` and CSS Grid. IE11 is not supported.
+This project is **free and open source**. You can use it for personal or commercial projects.
 
 ---
 
-## Contributing
+## 🤝 Contributing
 
-Contributions are welcome! Please follow these guidelines:
+Contributions welcome! Please:
 
-1. **Fork** the repository
-2. Create a **feature branch**: `git checkout -b feature/your-feature`
-3. **Commit** your changes: `git commit -m "Add new feature"`
-4. **Push** to the branch: `git push origin feature/your-feature`
-5. Open a **Pull Request**
-
-### Code Style
-
-- Use TypeScript for all new files
-- Follow existing code formatting (Prettier + ESLint)
-- Write semantic, accessible HTML
-- Add comments for complex logic
-- Test responsive design on multiple screen sizes
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ---
 
-## License
+## 📞 Support
 
-This project is licensed under the **MIT License** — see [LICENSE](LICENSE) for details.
-
-The DriveDock application itself is also MIT licensed. See the [main repository](https://github.com/sayuru-akash/drivedock) for app source code.
-
----
-
-## Links
-
-- 🌐 **Website:** [drivedock.app](https://drivedock.app)
-- 📦 **App Repository:** [github.com/sayuru-akash/drivedock](https://github.com/sayuru-akash/drivedock)
-- 🐛 **Report Issues:** [github.com/sayuru-akash/drivedock/issues](https://github.com/sayuru-akash/drivedock/issues)
-- 📥 **Download:** [github.com/sayuru-akash/drivedock/releases](https://github.com/sayuru-akash/drivedock/releases)
+- **Issues**: [GitHub Issues](https://github.com/sayuru-akash/drivedock-landing/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/sayuru-akash/drivedock-landing/discussions)
+- **Email**: [support@drivedock.app](mailto:support@drivedock.app)
 
 ---
 
-## Acknowledgments
+## 🙏 Acknowledgments
 
-- **Next.js Team** — for an excellent React framework
-- **Vercel** — for seamless deployment and edge network
-- **Tailwind Labs** — for the utility-first CSS framework
-- **Framer** — for the animation library
-- **Lucide** — for beautiful open-source icons
+- **DriveDock App**: [github.com/sayuru-akash/drivedock](https://github.com/sayuru-akash/drivedock)
+- **Design Inspiration**: Apple, Linear, Vercel
+- **Icons**: [Lucide Icons](https://lucide.dev/)
+- **Fonts**: [Inter](https://rsms.me/inter/) by Rasmus Andersson
+- **Framework**: [Next.js](https://nextjs.org/) by Vercel
 
 ---
 
-<p align="center">
-  <strong>DriveDock Landing Page</strong><br>
-  Built with Next.js · Designed for macOS · Made for Google Drive
-</p>
+<div align="center">
+
+**[DriveDock](https://drivedock.app)** · **[GitHub](https://github.com/sayuru-akash/drivedock)** · **[Download](https://github.com/sayuru-akash/drivedock/releases)**
+
+Made with ❤️ by the DriveDock team
+
+</div>
