@@ -1,165 +1,187 @@
 "use client"
 
+/* App Store Style Landing — Section 3: Features with icons
+   Feature-Rich Showcase pattern: Hero → Features grid → benefits → CTA
+   Rules: Lucide icons (no emojis), card glass surface, stagger 40ms,
+          hover scale 1.02, shadow transition, a11y heading hierarchy
+*/
+
 import {
-  Upload, FolderOpen, Zap, RefreshCw, Users, Share2, Menu, Clock
+  Upload,
+  FolderOpen,
+  Zap,
+  RefreshCw,
+  Users,
+  Share2,
+  LayoutGrid,
+  Clock,
 } from "lucide-react"
 import { Container } from "@/components/ui/container"
 import { StaggerContainer, StaggerItem, FadeIn } from "@/components/ui/motion"
 import type { ReactNode } from "react"
 
-interface FeatureCardProps {
+interface FeatureData {
+  id: string
   icon: ReactNode
   title: string
   description: string
-  accent?: boolean
+  highlighted?: boolean
 }
 
-function FeatureCard({ icon, title, description, accent }: FeatureCardProps) {
+const features: FeatureData[] = [
+  {
+    id: "drag-drop",
+    icon: <Upload size={20} aria-hidden="true" />,
+    title: "Drag & Drop Uploads",
+    description:
+      "Drop files or folders onto the window, menu bar, or Dock icon. Upload starts instantly — no clicks required.",
+    highlighted: true,
+  },
+  {
+    id: "folder-structure",
+    icon: <FolderOpen size={20} aria-hidden="true" />,
+    title: "Folder Preservation",
+    description:
+      "DriveDock recreates your exact folder hierarchy in Google Drive, including deeply nested subfolders.",
+  },
+  {
+    id: "parallel-uploads",
+    icon: <Zap size={20} aria-hidden="true" />,
+    title: "Parallel Uploads",
+    description:
+      "Upload multiple files simultaneously. Adaptive concurrency adjusts automatically to your network.",
+    highlighted: true,
+  },
+  {
+    id: "resumable",
+    icon: <RefreshCw size={20} aria-hidden="true" />,
+    title: "Resumable Uploads",
+    description:
+      "Uses Google Drive's resumable protocol. Drop in connection? Uploads resume exactly where they left off.",
+  },
+  {
+    id: "multi-account",
+    icon: <Users size={20} aria-hidden="true" />,
+    title: "Multi-Account",
+    description:
+      "Connect personal, work, and Shared Drive accounts. Switch between them without friction.",
+  },
+  {
+    id: "shared-drive",
+    icon: <Share2 size={20} aria-hidden="true" />,
+    title: "Shared Drive Support",
+    description:
+      "Browse and upload to any Google Shared Drive you have access to, with full permission awareness.",
+    highlighted: true,
+  },
+  {
+    id: "menu-bar",
+    icon: <LayoutGrid size={20} aria-hidden="true" />,
+    title: "Menu Bar Helper",
+    description:
+      "Persistent menu bar icon shows active upload count, progress, a quick drop zone, and account switcher.",
+  },
+  {
+    id: "history",
+    icon: <Clock size={20} aria-hidden="true" />,
+    title: "Upload History",
+    description:
+      "Every upload logged with timestamp, size, duration, speed, destination, status, and Drive link.",
+  },
+]
+
+function FeatureCard({ icon, title, description, highlighted }: Omit<FeatureData, "id">) {
   return (
-    <div
-      className="group relative rounded-2xl p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_8px_32px_rgba(66,133,244,0.12)]"
+    <article
+      className="group relative rounded-2xl p-6 h-full flex flex-col transition-all duration-200 hover:scale-[1.025]"
       style={{
-        background: accent
-          ? "linear-gradient(135deg, rgba(66,133,244,0.08) 0%, rgba(21,29,46,0.9) 100%)"
-          : "rgba(21, 29, 46, 0.7)",
-        border: accent
-          ? "1px solid rgba(66,133,244,0.25)"
-          : "1px solid rgba(255,255,255,0.06)",
+        background: highlighted
+          ? "linear-gradient(135deg, rgba(66,133,244,0.1) 0%, rgba(27,35,54,0.95) 100%)"
+          : "rgba(27, 35, 54, 0.7)",
+        border: highlighted
+          ? "1px solid rgba(66,133,244,0.28)"
+          : "1px solid rgba(255,255,255,0.07)",
         backdropFilter: "blur(12px)",
+        boxShadow: highlighted
+          ? "0 0 0 0 transparent"
+          : undefined,
+      }}
+      onMouseEnter={(e) => {
+        if (highlighted) return
+        e.currentTarget.style.boxShadow = "0 8px 32px rgba(66,133,244,0.08)"
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.boxShadow = "none"
       }}
     >
       <div
-        className="w-11 h-11 rounded-xl flex items-center justify-center mb-4"
+        className="w-11 h-11 rounded-xl flex items-center justify-center mb-4 shrink-0"
         style={{
-          background: accent
-            ? "rgba(66,133,244,0.15)"
+          background: highlighted
+            ? "rgba(66,133,244,0.18)"
             : "rgba(255,255,255,0.05)",
-          border: accent
+          border: highlighted
             ? "1px solid rgba(66,133,244,0.3)"
             : "1px solid rgba(255,255,255,0.08)",
         }}
         aria-hidden="true"
       >
-        <span className={accent ? "text-accent" : "text-fg-secondary"}>
+        <span className={highlighted ? "text-accent" : "text-fg-secondary"}>
           {icon}
         </span>
       </div>
-      <h3 className="text-base font-semibold text-fg-primary mb-2 leading-snug">
+      <h3 className="text-sm font-semibold text-fg-primary mb-2 leading-snug">
         {title}
       </h3>
-      <p className="text-sm text-fg-secondary leading-relaxed">
+      <p className="text-sm text-fg-secondary leading-relaxed flex-1">
         {description}
       </p>
-    </div>
+    </article>
   )
 }
 
-const featureData: (FeatureCardProps & { id: string })[] = [
-  {
-    id: "drag-drop",
-    icon: <Upload size={20} />,
-    title: "Drag & Drop Uploads",
-    description:
-      "Drop files or folders directly onto the window, menu bar, or Dock icon to start uploading instantly. Zero friction.",
-    accent: true,
-  },
-  {
-    id: "folder-structure",
-    icon: <FolderOpen size={20} />,
-    title: "Folder Structure Preservation",
-    description:
-      "Upload entire folder hierarchies and DriveDock recreates the exact structure in Google Drive — including nested subfolders.",
-    accent: false,
-  },
-  {
-    id: "parallel-uploads",
-    icon: <Zap size={20} />,
-    title: "Parallel Uploads",
-    description:
-      "Upload multiple files simultaneously with adaptive concurrency that automatically adjusts to your network conditions.",
-    accent: true,
-  },
-  {
-    id: "resumable",
-    icon: <RefreshCw size={20} />,
-    title: "Resumable Uploads",
-    description:
-      "Large files use Google Drive's resumable upload protocol. If your connection drops, uploads pick up right where they left off.",
-    accent: false,
-  },
-  {
-    id: "multi-account",
-    icon: <Users size={20} />,
-    title: "Multi-Account Support",
-    description:
-      "Connect multiple Google accounts and switch between personal, work, and Shared Drive accounts without any friction.",
-    accent: false,
-  },
-  {
-    id: "shared-drive",
-    icon: <Share2 size={20} />,
-    title: "Shared Drive Support",
-    description:
-      "Browse and upload to Google Shared Drives you have access to, with full permission awareness baked in.",
-    accent: false,
-  },
-  {
-    id: "menu-bar",
-    icon: <Menu size={20} />,
-    title: "Menu Bar Helper",
-    description:
-      "A persistent menu bar icon shows upload progress, active uploads count, a quick drop zone, and account switching.",
-    accent: true,
-  },
-  {
-    id: "history",
-    icon: <Clock size={20} />,
-    title: "Upload History",
-    description:
-      "Track every upload with timestamps, file size, duration, average speed, destination, account, status, and Drive links.",
-    accent: false,
-  },
-]
-
 export function Features() {
   return (
-    <section id="features" aria-labelledby="features-heading" className="py-28 relative">
-      {/* Subtle separator */}
+    <section
+      id="features"
+      aria-labelledby="features-heading"
+      className="py-28 relative"
+    >
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 60% 40% at 50% 100%, rgba(66,133,244,0.06) 0%, transparent 70%)",
+            "radial-gradient(ellipse 60% 40% at 50% 100%, rgba(66,133,244,0.05) 0%, transparent 65%)",
         }}
         aria-hidden="true"
       />
 
       <Container>
         <FadeIn className="text-center mb-16">
-          <span className="text-sm font-medium text-accent tracking-wider uppercase mb-4 block">
+          <span className="text-sm font-medium text-accent tracking-widest uppercase mb-4 block">
             Features
           </span>
           <h2
             id="features-heading"
-            className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-fg-primary mb-5"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-[-0.03em] text-fg-primary mb-5"
           >
             Everything you need,{" "}
             <span className="gradient-text-blue">nothing you don&apos;t</span>
           </h2>
           <p className="text-lg text-fg-secondary max-w-2xl mx-auto leading-relaxed">
-            DriveDock is purpose-built for uploading. No reading, no editing,
-            no bloat — just a fast, reliable path from your Mac to Google Drive.
+            DriveDock is purpose-built for one job: getting your files from your
+            Mac into Google Drive as fast and reliably as possible.
           </p>
         </FadeIn>
 
         <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {featureData.map((feature) => (
-            <StaggerItem key={feature.id}>
+          {features.map((f) => (
+            <StaggerItem key={f.id}>
               <FeatureCard
-                icon={feature.icon}
-                title={feature.title}
-                description={feature.description}
-                accent={feature.accent}
+                icon={f.icon}
+                title={f.title}
+                description={f.description}
+                highlighted={f.highlighted}
               />
             </StaggerItem>
           ))}

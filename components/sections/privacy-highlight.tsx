@@ -1,33 +1,47 @@
 "use client"
 
-import { Shield, Lock, Eye, Code } from "lucide-react"
+/* Section: Privacy / "Problem → Solution" narrative
+   Design system: green accent for privacy/open-source signal
+   Rules: a11y list semantics, heading hierarchy h2→h3, card-glass surfaces,
+          contrast green on dark bg, stagger 40ms
+*/
+
+import { Shield, Lock, Eye, Code2 } from "lucide-react"
+import Link from "next/link"
 import { Container } from "@/components/ui/container"
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/motion"
+import type { ReactNode } from "react"
 
-const privacyPoints = [
+interface PrivacyPoint {
+  icon: ReactNode
+  title: string
+  description: string
+}
+
+const privacyPoints: PrivacyPoint[] = [
   {
-    icon: <Lock size={22} />,
+    icon: <Lock size={20} aria-hidden="true" />,
     title: "Keychain-only credentials",
     description:
-      "OAuth tokens are stored exclusively in the macOS Keychain — the same place Safari stores your passwords. DriveDock never touches a file on disk for credentials.",
+      "OAuth tokens live exclusively in the macOS Keychain — the same secure store Safari uses. DriveDock never writes credentials to disk.",
   },
   {
-    icon: <Eye size={22} />,
-    title: "Zero telemetry",
+    icon: <Eye size={20} aria-hidden="true" />,
+    title: "Absolute zero telemetry",
     description:
-      "No analytics, no crash reporting sent to third-party servers, no usage tracking. What you upload stays between you and Google Drive.",
+      "No analytics, no crash reports to third parties, no usage tracking — not even anonymous data. Your file activity is yours alone.",
   },
   {
-    icon: <Shield size={22} />,
-    title: "Minimal OAuth scopes",
+    icon: <Shield size={20} aria-hidden="true" />,
+    title: "Minimal OAuth scope",
     description:
-      "DriveDock requests only drive.file — it can only see and access files it uploads. It cannot read, modify, or delete anything else in your Drive.",
+      "Only the drive.file scope is requested, meaning DriveDock can only access files it personally uploads. Your existing Drive content is untouchable.",
   },
   {
-    icon: <Code size={22} />,
-    title: "Fully auditable",
+    icon: <Code2 size={20} aria-hidden="true" />,
+    title: "Fully auditable source",
     description:
-      "Every line of code is public on GitHub under the MIT license. Anyone can verify exactly what DriveDock does — and exactly what it doesn't.",
+      "Every line is public on GitHub under the MIT license. Verify exactly what runs on your machine — no trust required.",
   },
 ]
 
@@ -38,61 +52,59 @@ export function PrivacyHighlight() {
       aria-labelledby="privacy-heading"
       className="py-28 relative overflow-hidden"
     >
-      {/* Background accent */}
+      {/* Green radial glow — left */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 50% 60% at 0% 50%, rgba(34,197,94,0.06) 0%, transparent 60%)",
+            "radial-gradient(ellipse 50% 65% at -5% 50%, rgba(34,197,94,0.07) 0%, transparent 55%)",
         }}
         aria-hidden="true"
       />
 
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left: Text */}
-          <FadeIn direction="right">
-            <span className="text-sm font-medium text-green tracking-wider uppercase mb-4 block">
+          {/* Left: Narrative copy */}
+          <FadeIn direction="right" className="order-2 lg:order-1">
+            <span className="text-sm font-medium text-green tracking-widest uppercase mb-4 block">
               Privacy First
             </span>
             <h2
               id="privacy-heading"
-              className="text-3xl sm:text-4xl font-bold tracking-tight text-fg-primary mb-5 leading-tight"
+              className="text-3xl sm:text-4xl font-bold tracking-[-0.03em] text-fg-primary mb-5 leading-tight"
             >
               Your files never leave{" "}
-              <span style={{
-                background: "linear-gradient(135deg, #22C55E 0%, #16A34A 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}>
-                your hands
-              </span>
+              <span className="gradient-text-green">your hands</span>
             </h2>
-            <p className="text-lg text-fg-secondary leading-relaxed mb-8">
-              DriveDock was designed from the ground up with privacy as a
-              constraint, not an afterthought. OAuth tokens live in your
-              Keychain, the code is open for anyone to audit, and there is
-              no telemetry of any kind — period.
+            <p className="text-lg text-fg-secondary leading-relaxed mb-6">
+              DriveDock was designed with privacy as a hard constraint. Credentials
+              stay in your Keychain, OAuth access is minimal by design, and
+              there is no telemetry infrastructure — because there shouldn&apos;t be.
             </p>
-            <a
+            <p className="text-base text-fg-secondary leading-relaxed mb-8">
+              Every aspect of how DriveDock handles your data is documented in the
+              Privacy Policy and verifiable in the open-source code.
+            </p>
+            <Link
               href="/privacy"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-green hover:text-green/80 transition-colors"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-green hover:opacity-80 transition-opacity focus-ring rounded"
               style={{ textDecoration: "underline", textUnderlineOffset: "4px" }}
             >
               Read the full Privacy Policy →
-            </a>
+            </Link>
           </FadeIn>
 
-          {/* Right: Cards */}
-          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {/* Right: Privacy point cards */}
+          <StaggerContainer
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4 order-1 lg:order-2"
+          >
             {privacyPoints.map((point, i) => (
               <StaggerItem key={i}>
-                <div
+                <article
                   className="rounded-2xl p-5 h-full"
                   style={{
-                    background: "rgba(21, 29, 46, 0.7)",
-                    border: "1px solid rgba(34,197,94,0.12)",
+                    background: "rgba(27, 35, 54, 0.75)",
+                    border: "1px solid rgba(34,197,94,0.14)",
                     backdropFilter: "blur(12px)",
                   }}
                 >
@@ -100,7 +112,7 @@ export function PrivacyHighlight() {
                     className="w-10 h-10 rounded-xl flex items-center justify-center mb-3"
                     style={{
                       background: "rgba(34,197,94,0.1)",
-                      border: "1px solid rgba(34,197,94,0.2)",
+                      border: "1px solid rgba(34,197,94,0.22)",
                     }}
                     aria-hidden="true"
                   >
@@ -112,7 +124,7 @@ export function PrivacyHighlight() {
                   <p className="text-xs text-fg-secondary leading-relaxed">
                     {point.description}
                   </p>
-                </div>
+                </article>
               </StaggerItem>
             ))}
           </StaggerContainer>

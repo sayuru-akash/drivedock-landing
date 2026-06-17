@@ -1,7 +1,21 @@
 "use client"
 
+/* Animation rules applied (from ui-ux-pro-max + vercel best practices):
+   - Duration 150–300ms for micro, ≤400ms for complex  (duration-timing rule)
+   - ease-out for entering, ease-in for exiting         (easing rule)
+   - Respect prefers-reduced-motion                     (reduced-motion rule)
+   - Stagger 30–50ms per item                          (stagger-sequence rule)
+   - transform/opacity only — never width/height        (transform-performance rule)
+   - Components defined outside parent (rerender-no-inline-components rule)
+*/
+
 import { motion, useInView, useReducedMotion } from "framer-motion"
 import { useRef, type ReactNode } from "react"
+
+// Easing: ease-out for entering (cubic approximation)
+const EASE_ENTER: [number, number, number, number] = [0.0, 0.0, 0.2, 1.0]
+// Easing: ease-in-out for combined moves
+const EASE_SMOOTH: [number, number, number, number] = [0.4, 0.0, 0.2, 1.0]
 
 interface FadeInProps {
   children: ReactNode
@@ -10,45 +24,41 @@ interface FadeInProps {
   direction?: "up" | "down" | "left" | "right" | "none"
   className?: string
   once?: boolean
+  amount?: number
 }
 
 export function FadeIn({
   children,
   delay = 0,
-  duration = 0.5,
+  duration = 0.45,
   direction = "up",
   className,
   once = true,
+  amount = 0.1,
 }: FadeInProps) {
-  const ref = useRef(null)
-  const prefersReduced = useReducedMotion()
-  const isInView = useInView(ref, { once, margin: "-60px" })
+  const ref = useRef<HTMLDivElement>(null)
+  const shouldReduce = useReducedMotion()
+  const isInView = useInView(ref, { once, margin: "-40px", amount })
 
-  const directions = {
-    up:    { y: 24, x: 0 },
-    down:  { y: -24, x: 0 },
-    left:  { y: 0, x: 24 },
-    right: { y: 0, x: -24 },
+  const offsets: Record<NonNullable<FadeInProps["direction"]>, { x: number; y: number }> = {
+    up:    { y: 22, x: 0 },
+    down:  { y: -22, x: 0 },
+    left:  { y: 0, x: 22 },
+    right: { y: 0, x: -22 },
     none:  { y: 0, x: 0 },
   }
 
-  const initial = prefersReduced
-    ? { opacity: 0 }
-    : { opacity: 0, ...directions[direction] }
-
-  const animate = isInView
-    ? { opacity: 1, y: 0, x: 0 }
-    : initial
+  const offset = shouldReduce ? { x: 0, y: 0 } : offsets[direction]
 
   return (
     <motion.div
       ref={ref}
-      initial={initial}
-      animate={animate}
+      initial={{ opacity: 0, ...offset }}
+      animate={isInView ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, ...offset }}
       transition={{
-        duration: prefersReduced ? 0.01 : duration,
-        delay: prefersReduced ? 0 : delay,
-        ease: [0.21, 0.47, 0.32, 0.98],
+        duration: shouldReduce ? 0.01 : duration,
+        delay: shouldReduce ? 0 : delay,
+        ease: EASE_ENTER,
       }}
       className={className}
     >
@@ -57,6 +67,7 @@ export function FadeIn({
   )
 }
 
+/* StaggerContainer + StaggerItem: stagger 40ms per child */
 interface StaggerContainerProps {
   children: ReactNode
   className?: string
@@ -66,22 +77,18 @@ interface StaggerContainerProps {
 export function StaggerContainer({
   children,
   className,
-  staggerDelay = 0.08,
+  staggerDelay = 0.04,
 }: StaggerContainerProps) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-60px" })
-  const prefersReduced = useReducedMotion()
+  const ref = useRef<HTMLDivElement>(null)
+  const isInView = useInView(ref, { once: true, margin: "-40px" })
+  const shouldReduce = useReducedMotion()
 
   return (
     <motion.div
       ref={ref}
       variants={{
         hidden: {},
-        show: {
-          transition: {
-            staggerChildren: prefersReduced ? 0 : staggerDelay,
-          },
-        },
+        show:   { transition: { staggerChildren: shouldReduce ? 0 : staggerDelay } },
       }}
       initial="hidden"
       animate={isInView ? "show" : "hidden"}
@@ -92,22 +99,51 @@ export function StaggerContainer({
   )
 }
 
-export function StaggerItem({
-  children,
-  className,
-}: {
+interface StaggerItemProps {
   children: ReactNode
   className?: string
-}) {
-  const prefersReduced = useReducedMotion()
+}
+
+// Defined outside StaggerContainer — rule: rerender-no-inline-components
+export function StaggerItem({ children, className }: StaggerItemProps) {
+  const shouldReduce = useReducedMotion()
 
   return (
     <motion.div
       variants={{
-        hidden: { opacity: 0, y: prefersReduced ? 0 : 20 },
+        hidden: { opacity: 0, y: shouldReduce ? 0 : 18 },
         show:   { opacity: 1, y: 0 },
       }}
-      transition={{ duration: prefersReduced ? 0.01 : 0.45, ease: [0.21, 0.47, 0.32, 0.98] }}
+      transition={{ duration: shouldReduce ? 0.01 : 0.4, ease: EASE_ENTER }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  )
+}
+
+/* ScaleIn: for cards that pop in */
+interface ScaleInProps {
+  children: ReactNode
+  delay?: number
+  className?: string
+}
+
+export function ScaleIn({ children, delay = 0, className }: ScaleInProps) {
+  const ref = useRef<HTMLDivElement>(null)
+  const shouldReduce = useReducedMotion()
+  const isInView = useInView(ref, { once: true, margin: "-40px" })
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, scale: shouldReduce ? 1 : 0.95 }}
+      animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: shouldReduce ? 1 : 0.95 }}
+      transition={{
+        duration: shouldReduce ? 0.01 : 0.5,
+        delay: shouldReduce ? 0 : delay,
+        ease: EASE_SMOOTH,
+      }}
       className={className}
     >
       {children}

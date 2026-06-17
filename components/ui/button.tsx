@@ -2,7 +2,6 @@
 
 import { cn } from "@/lib/utils"
 import Link from "next/link"
-import { motion } from "framer-motion"
 import type { ButtonHTMLAttributes, AnchorHTMLAttributes, ReactNode } from "react"
 
 type ButtonVariant = "primary" | "secondary" | "ghost" | "outline"
@@ -84,12 +83,12 @@ export function Button({
   }
 
   return (
-    <motion.button
-      whileTap={{ scale: 0.97 }}
+    <button
       className={combined}
+      style={{ cursor: "pointer" }}
       {...(props as ButtonHTMLAttributes<HTMLButtonElement>)}
     >
       {content}
-    </motion.button>
+    </button>
   )
 }

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X, Download, Github } from "lucide-react"
+import { Menu, X, Download as DownloadIcon, Github } from "lucide-react"
 import { Container } from "@/components/ui/container"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -110,7 +110,7 @@ export function Navbar() {
             <Button
               href="https://github.com/sayuru-akash/drivedock/releases"
               size="sm"
-              icon={<Download size={14} />}
+              icon={<DownloadIcon size={14} />}
             >
               Download
             </Button>
@@ -156,7 +156,7 @@ export function Navbar() {
                   <Button
                     href="https://github.com/sayuru-akash/drivedock/releases"
                     variant="primary"
-                    icon={<Download size={14} />}
+                    icon={<DownloadIcon size={14} />}
                   >
                     Download for macOS
                   </Button>
