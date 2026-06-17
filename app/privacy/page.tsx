@@ -8,14 +8,14 @@ import { ArrowLeft, ShieldCheck, Check } from "lucide-react"
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "DriveDock Privacy Policy — how your data is handled, stored, and protected. Zero telemetry, Keychain-only credentials, minimal OAuth scopes.",
+    "DriveDock Privacy Policy: what gets stored on your Mac, what gets sent to Google, and what doesn&apos;t get sent at all. No telemetry, no analytics, minimal OAuth scope.",
   alternates: {
     canonical: "https://drivedock.app/privacy",
   },
   openGraph: {
     title: "Privacy Policy | DriveDock",
     description:
-      "DriveDock handles your data with zero telemetry and Keychain-only credential storage. Read our full privacy policy.",
+      "What DriveDock does with your data, what it doesn&apos;t do, and where to check the source if you don&apos;t believe us.",
     url: "https://drivedock.app/privacy",
   },
 }
@@ -70,9 +70,7 @@ export default function PrivacyPage() {
               </li>
               <li className="flex items-start gap-2">
                 <Check size={16} className="text-green mt-0.5 shrink-0" aria-hidden="true" />
-                DriveDock requests only the{" "}
-                <strong className="text-fg-primary">drive.file</strong> OAuth scope — it cannot read,
-                modify, or delete any file it did not upload.
+                DriveDock only asks for the <strong className="text-fg-primary">drive.file</strong> scope, so it physically can&apos;t touch files it didn&apos;t upload.
               </li>
               <li className="flex items-start gap-2">
                 <Check size={16} className="text-green mt-0.5 shrink-0" aria-hidden="true" />
@@ -94,169 +92,106 @@ export default function PrivacyPage() {
           <div className="prose-dark">
             <h2>1. Overview</h2>
             <p>
-              DriveDock (&ldquo;the App&rdquo;, &ldquo;we&rdquo;, &ldquo;our&rdquo;) is a native macOS application developed
-              by DriveDock Contributors and released as free, open-source software
-              under the MIT License. This Privacy Policy describes what data
-              DriveDock accesses, how it is used, and how it is protected.
+              DriveDock is a native macOS app built by a small group of contributors. It&apos;s free, it&apos;s open source, and it&apos;s released under the MIT License. This page is the privacy policy.
             </p>
             <p>
-              DriveDock is designed from first principles to minimise data exposure.
-              We do not operate analytics infrastructure, crash-reporting pipelines,
-              or any backend service of our own.
+              The short version is that we don&apos;t run a server. There&apos;s no analytics backend, no crash reporting service, no telemetry pipeline. The only network calls the app makes go to Google&apos;s own APIs.
             </p>
 
-            <h2>2. Data We Do Not Collect</h2>
+            <h2>2. What we don&apos;t collect</h2>
             <p>
-              DriveDock does <strong>not</strong> collect, transmit, or store any of
-              the following:
+              DriveDock does not collect, transmit, or store any of the following:
             </p>
             <ul>
-              <li>Your name, email address, or any profile information</li>
-              <li>The names, contents, or metadata of any files you upload</li>
-              <li>Usage statistics, feature analytics, or interaction logs</li>
-              <li>Crash reports or diagnostic data sent to our servers</li>
-              <li>IP addresses or device identifiers</li>
-              <li>Any information about your Google Drive folder structure</li>
+              <li>Your name, email, or profile info</li>
+              <li>The names, contents, or metadata of your files</li>
+              <li>Usage stats, feature analytics, or interaction logs</li>
+              <li>Crash reports or diagnostic data</li>
+              <li>Your IP address or device identifiers</li>
+              <li>Anything about your Drive folder structure</li>
             </ul>
 
-            <h2>3. Google OAuth Authentication</h2>
+            <h2>3. Google sign-in</h2>
             <p>
-              To upload files to Google Drive on your behalf, DriveDock uses
-              Google&apos;s OAuth 2.0 authorisation flow. When you connect a Google
-              account:
+              DriveDock uses Google&apos;s OAuth 2.0 flow to get permission to upload on your behalf. When you sign in:
             </p>
             <ul>
               <li>
-                You are redirected to Google&apos;s own sign-in page. DriveDock never
-                sees your Google password.
+                You go to Google&apos;s sign-in page directly. DriveDock never sees your Google password.
               </li>
               <li>
-                DriveDock requests only the{" "}
-                <code>https://www.googleapis.com/auth/drive.file</code> scope,
-                which grants access only to files and folders that DriveDock
-                itself creates or uploads. It provides no access to pre-existing
-                Drive content.
+                DriveDock asks for the <code>https://www.googleapis.com/auth/drive.file</code> scope. That scope only covers files the app itself creates or uploads, nothing else in your Drive.
               </li>
               <li>
-                The resulting OAuth access token and refresh token are stored
-                exclusively in the <strong>macOS Keychain</strong> — the
-                system-level encrypted credential store. DriveDock does not write
-                tokens to any file on disk, database, or cloud service.
+                The access and refresh tokens get stored in the macOS Keychain (the same encrypted store Safari uses). They never get written to a regular file, a database, or a cloud service.
               </li>
               <li>
-                Tokens are never transmitted to any server other than
-                Google&apos;s own APIs (<code>accounts.google.com</code>,
-                <code>www.googleapis.com</code>).
+                Tokens only ever travel to Google&apos;s own servers (<code>accounts.google.com</code> and <code>www.googleapis.com</code>).
               </li>
             </ul>
 
-            <h2>4. File Handling</h2>
+            <h2>4. What happens when you drop a file</h2>
             <p>
-              When you drag a file or folder onto DriveDock:
+              The file is read from your disk using macOS security-scoped bookmarks and streamed straight to Google Drive&apos;s upload endpoint. The data path is your disk, then Google&apos;s API. Nothing in between.
+            </p>
+            <p>
+              The app does keep a local upload history (file name, size, timestamp, destination, speed, status) so you can see what you uploaded and find it in Drive. That history stays in the app&apos;s container on your Mac. It&apos;s never synced anywhere.
+            </p>
+
+            <h2>5. Where the app talks to the network</h2>
+            <p>
+              Only two places:
             </p>
             <ul>
-              <li>
-                The file is read from your local file system using
-                macOS security-scoped file bookmarks and streamed directly
-                to Google Drive&apos;s Upload API.
-              </li>
-              <li>
-                No copy of the file is written to any intermediate location by
-                DriveDock. The data path is exclusively:
-                your disk → Google Drive API.
-              </li>
-              <li>
-                Upload history (file name, size, timestamp, destination path,
-                upload speed, status) is stored locally in the App&apos;s container on
-                your Mac and is never transmitted off-device.
-              </li>
+              <li><code>accounts.google.com</code> for sign-in and token refresh</li>
+              <li><code>www.googleapis.com</code> for the Drive API (uploads, folder creation, listing Shared Drives)</li>
             </ul>
-
-            <h2>5. Network Connections</h2>
             <p>
-              DriveDock makes network requests only to the following Google-owned
-              endpoints:
+              No requests go to anything we run. No third-party analytics, ads, or error reporting services.
+            </p>
+
+            <h2>6. What&apos;s on your Mac</h2>
+            <p>
+              The app stores three things locally, that&apos;s it:
             </p>
             <ul>
-              <li>
-                <code>accounts.google.com</code> — OAuth 2.0 authorisation and
-                token refresh
-              </li>
-              <li>
-                <code>www.googleapis.com</code> — Google Drive API (upload,
-                folder creation, Shared Drive enumeration)
-              </li>
+              <li><strong>OAuth tokens</strong> in the macOS Keychain</li>
+              <li><strong>Settings</strong> like your default upload destination and concurrency, in the app&apos;s sandboxed preferences</li>
+              <li><strong>Upload history</strong> in a local database inside the app container</li>
             </ul>
             <p>
-              No requests are made to any server operated by DriveDock Contributors
-              or any third-party analytics, advertising, or monitoring service.
+              To wipe everything, delete the app and clear its Keychain entries. That&apos;s the whole footprint.
             </p>
 
-            <h2>6. Local Data Storage</h2>
+            <h2>7. Third parties</h2>
             <p>
-              DriveDock stores the following data locally on your Mac only:
-            </p>
-            <ul>
-              <li>
-                <strong>OAuth tokens</strong> — encrypted in the macOS Keychain
-              </li>
-              <li>
-                <strong>Account preferences</strong> — default upload destination,
-                concurrency settings — stored in the App&apos;s sandboxed
-                preferences container
-              </li>
-              <li>
-                <strong>Upload history</strong> — local database within the App
-                container, never synced or transmitted
-              </li>
-            </ul>
-            <p>
-              All locally stored data can be deleted by removing DriveDock from
-              your Mac and clearing its associated Keychain entries.
+              The only third party involved is Google. The Drive API is governed by{" "}
+              <a
+                href="https://policies.google.com/privacy"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Google&apos;s Privacy Policy
+              </a>{" "}
+              and the{" "}
+              <a
+                href="https://developers.google.com/terms"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Google APIs Terms
+              </a>
+              . After a file reaches Drive, it&apos;s subject to Google&apos;s data practices, not ours.
             </p>
 
-            <h2>7. Third-Party Services</h2>
+            <h2>8. Kids</h2>
             <p>
-              DriveDock interacts with the following third-party service:
-            </p>
-            <ul>
-              <li>
-                <strong>Google Drive API</strong> — governed by{" "}
-                <a
-                  href="https://policies.google.com/privacy"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Google&apos;s Privacy Policy
-                </a>{" "}
-                and{" "}
-                <a
-                  href="https://developers.google.com/terms"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Google APIs Terms of Service
-                </a>
-                . Once files are uploaded to Google Drive, they are subject to
-                Google&apos;s data handling practices.
-              </li>
-            </ul>
-            <p>
-              DriveDock does not integrate with any advertising networks, social
-              media platforms, or analytics services.
+              DriveDock doesn&apos;t collect info from anyone because it doesn&apos;t collect info, period. We don&apos;t direct the app at children under 13 and we don&apos;t knowingly track them.
             </p>
 
-            <h2>8. Children&apos;s Privacy</h2>
+            <h2>9. The source</h2>
             <p>
-              DriveDock does not knowingly collect any information from users
-              of any age, as it collects no information whatsoever. The App
-              is not directed at children under 13.
-            </p>
-
-            <h2>9. Open Source and Auditability</h2>
-            <p>
-              DriveDock is fully open source under the MIT License. The complete
-              source code is publicly available at{" "}
+              Everything is on GitHub at{" "}
               <a
                 href="https://github.com/sayuru-akash/drivedock"
                 target="_blank"
@@ -264,46 +199,30 @@ export default function PrivacyPage() {
               >
                 github.com/sayuru-akash/drivedock
               </a>
-              . Any user or security researcher may audit the code to verify
-              the privacy claims made in this policy. We encourage this.
+              . If you want to check the privacy claims in this document against the actual code, please do. That&apos;s the easiest way to know if we&apos;re being honest.
             </p>
 
-            <h2>10. Changes to This Policy</h2>
+            <h2>10. Changes</h2>
             <p>
-              If this Privacy Policy changes in any material way, the updated
-              version will be published at{" "}
-              <a href="https://drivedock.app/privacy">drivedock.app/privacy</a>{" "}
-              with an updated &ldquo;Last updated&rdquo; date. Because DriveDock has no
-              account system or email list, we cannot notify users directly.
-              We recommend checking this page periodically.
-            </p>
-            <p>
-              Changes that reduce privacy protections will be clearly noted in
-              the repository&apos;s commit history and release notes.
+              If this policy changes in a meaningful way, we&apos;ll update the date at the top of this page and call it out in the release notes for the next version. We don&apos;t have a way to email you about it since we don&apos;t have your email, so check back if you care.
             </p>
 
-            <h2>11. Contact</h2>
+            <h2>11. Questions</h2>
             <p>
-              If you have questions or concerns about this Privacy Policy or
-              DriveDock&apos;s data practices, please open an issue on{" "}
+              Open an issue on{" "}
               <a
                 href="https://github.com/sayuru-akash/drivedock/issues"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                GitHub Issues
+                GitHub
               </a>
-              . We are committed to transparency and will respond as promptly
-              as possible.
+              . We read everything and reply when we can.
             </p>
 
-            <h2>12. Governing Law</h2>
+            <h2>12. Legal stuff</h2>
             <p>
-              This Privacy Policy is provided as a good-faith disclosure for
-              users of DriveDock. As the App collects no personal data, no
-              specific privacy regulation (GDPR, CCPA, etc.) is directly
-              applicable. However, DriveDock&apos;s design satisfies the intent
-              of privacy-by-design principles underlying such regulations.
+              This policy is a good-faith disclosure. We&apos;re not a company, we&apos;re not a data controller in the GDPR sense, and the app doesn&apos;t collect personal data in the first place. If you need this for compliance, the source is the answer.
             </p>
           </div>
 
@@ -322,7 +241,7 @@ export default function PrivacyPage() {
               rel="noopener noreferrer"
               className="text-sm text-fg-secondary hover:text-fg-primary transition-colors focus-ring rounded"
             >
-              View source on GitHub →
+              View source on GitHub
             </a>
           </div>
         </Container>

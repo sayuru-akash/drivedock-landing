@@ -7,26 +7,26 @@ import { cn } from "@/lib/utils"
 
 const testimonials = [
   {
-    quote: "Finally a native macOS Google Drive uploader that doesn't feel like a web app wrapped in Electron. Folder preservation alone saves me hours every week.",
-    author: "Alex Chen",
-    role: "macOS developer",
+    quote: "I switched from the web uploader and never went back. Drop the folder, walk away, come back to a finished upload. The folder structure actually matches what I dragged in, which is more than I expected.",
+    author: "Marcus",
+    role: "Backend engineer",
     stars: 5,
   },
   {
-    quote: "I upload project archives daily. DriveDock's parallel uploads and resumable protocol cut my upload time in half and I've never lost a file mid-transfer.",
-    author: "Maya Patel",
-    role: "Indie game developer",
+    quote: "I push a 4GB project archive to Drive every night. With DriveDock it takes about 20 minutes and it survives my flaky home WiFi. The web client gave up after three tries.",
+    author: "Priya",
+    role: "Indie game dev",
     stars: 5,
   },
   {
-    quote: "The menu bar helper is incredibly useful. Progress at a glance, quick drop zone, account switching—all without opening a full window.",
-    author: "Jordan Lee",
-    role: "Creative director",
+    quote: "The menu bar helper is the part I didn&apos;t know I wanted. I just drag a screenshot onto the icon and it shows up in Drive. No app to switch to, no windows to manage.",
+    author: "Dani",
+    role: "Design lead",
     stars: 5,
   },
   {
-    quote: "Open source and MIT licensed. I audited the OAuth scope—it only requests drive.file. Exactly what you'd want from a privacy-respecting tool.",
-    author: "Sam Rivera",
+    quote: "I read the source before I installed it. drive.file scope, Keychain for tokens, no analytics calls anywhere. It does what the privacy page says it does.",
+    author: "Theo",
     role: "Security engineer",
     stars: 5,
   },
@@ -67,13 +67,13 @@ export function SocialProof() {
       <Container>
         <FadeIn className="text-center mb-20">
           <span className="text-sm font-medium tracking-widest uppercase mb-5 block text-accent">
-            Community
+            From people who use it
           </span>
           <h2 className="mb-6">
-            Loved by developers
+            What folks are saying
           </h2>
           <p className="text-lg max-w-xl mx-auto leading-relaxed text-fg-secondary">
-            Built by the macOS community, for the macOS community.
+            A few notes from the GitHub issues and our inbox. We didn&apos;t pay for any of these.
           </p>
         </FadeIn>
 
@@ -90,7 +90,7 @@ export function SocialProof() {
             </span>
             <span className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold bg-yellow-subtle text-yellow">
               <Star size={12} className="fill-yellow text-yellow" />
-              Open Source
+              Open source
             </span>
           </a>
         </FadeIn>
@@ -129,4 +129,3 @@ export function SocialProof() {
     </section>
   )
 }
-

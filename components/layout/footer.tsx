@@ -47,7 +47,7 @@ export function Footer() {
               <span className="font-semibold text-lg text-fg-primary">DriveDock</span>
             </Link>
             <p className="text-sm leading-relaxed mb-6 text-fg-secondary">
-              The cleanest way to upload to Google Drive on macOS. Native Swift, zero telemetry.
+              A small macOS app for getting files into Google Drive. Built with Swift, ships with zero telemetry.
             </p>
             <a
               href="https://github.com/sayuru-akash/drivedock"

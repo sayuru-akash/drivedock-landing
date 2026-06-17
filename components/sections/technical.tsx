@@ -10,22 +10,20 @@ const sections = [
     category: "Architecture",
     color: "text-accent",
     borderColor: "border-accent-border",
-    bgColor: "bg-accent-subtle",
     items: [
-      "Built with Swift and SwiftUI",
-      "Native macOS 14+ (Sonoma+)",
+      "Swift and SwiftUI",
+      "macOS 14 Sonoma or later",
       "MVVM with @Observable",
-      "Declarative UI composition",
+      "Declarative UI",
     ],
   },
   {
     category: "Security",
     color: "text-green",
     borderColor: "border-green-border",
-    bgColor: "bg-green-subtle",
     items: [
-      "OAuth 2.0 authentication",
-      "Keychain-only credential store",
+      "OAuth 2.0 sign-in",
+      "Tokens in macOS Keychain",
       "Security-scoped file bookmarks",
       "drive.file scope only",
     ],
@@ -34,21 +32,19 @@ const sections = [
     category: "Reliability",
     color: "text-yellow",
     borderColor: "border-yellow-500/25",
-    bgColor: "bg-yellow-subtle",
     items: [
       "Resumable upload protocol",
-      "Adaptive concurrency",
+      "Adjustable concurrency",
       "Exponential backoff retry",
-      "Real-time network monitoring",
+      "Live network monitoring",
     ],
   },
   {
-    category: "License & Requirements",
+    category: "License",
     color: "text-purple",
     borderColor: "border-purple-400/25",
-    bgColor: "bg-purple-500/10",
     items: [
-      "MIT License—free forever",
+      "MIT, free forever",
       "Open source on GitHub",
       "macOS 14 Sonoma or later",
       "Google account with Drive",
@@ -70,13 +66,13 @@ export function Technical() {
       <Container>
         <FadeIn className="text-center mb-20">
           <span className="text-sm font-medium tracking-widest uppercase mb-5 block text-accent">
-            Technical Details
+            Under the hood
           </span>
           <h2 className="mb-6">
-            Built the right way
+            How it&apos;s built
           </h2>
           <p className="text-lg max-w-2xl mx-auto leading-relaxed text-fg-secondary">
-            No Electron. No web views. Pure Swift, proper macOS APIs, and engineering decisions that respect your trust.
+            Native Swift, real macOS APIs, and the boring engineering choices that keep your files safe. No Electron, no web view, nothing pretending to be a desktop app.
           </p>
         </FadeIn>
 
@@ -111,4 +107,3 @@ export function Technical() {
     </section>
   )
 }
-

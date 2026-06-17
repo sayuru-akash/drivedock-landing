@@ -27,53 +27,53 @@ const features: FeatureData[] = [
   {
     id: "drag-drop",
     icon: <Upload size={22} />,
-    title: "Drag & Drop Uploads",
-    description: "Drop files or folders onto the window, menu bar, or Dock icon. Upload starts instantly—no clicks required.",
+    title: "Drag and drop",
+    description: "Drop a file on the window, the menu bar, or the Dock icon. It starts uploading before you can lift your finger.",
     highlighted: true,
   },
   {
     id: "folder-structure",
     icon: <FolderOpen size={22} />,
-    title: "Folder Preservation",
-    description: "DriveDock recreates your exact folder hierarchy in Google Drive, including deeply nested subfolders.",
+    title: "Keeps your folders",
+    description: "Drop a folder and DriveDock recreates the same structure in Drive, nesting and all.",
   },
   {
     id: "parallel-uploads",
     icon: <Zap size={22} />,
-    title: "Parallel Uploads",
-    description: "Upload multiple files simultaneously. Adaptive concurrency adjusts automatically to your network.",
+    title: "Uploads in parallel",
+    description: "Multiple files at once, with the concurrency adjusted to whatever your network can actually handle.",
     highlighted: true,
   },
   {
     id: "resumable",
     icon: <RefreshCw size={22} />,
-    title: "Resumable Uploads",
-    description: "Uses Google Drive's resumable protocol. Drop in connection? Uploads resume exactly where they left off.",
+    title: "Resumes when it can",
+    description: "If your WiFi drops, the upload pauses. When you&apos;re back online, it picks up exactly where it stopped.",
   },
   {
     id: "multi-account",
     icon: <Users size={22} />,
-    title: "Multi-Account",
-    description: "Connect personal, work, and Shared Drive accounts. Switch between them without friction.",
+    title: "Multiple Google accounts",
+    description: "Sign in to your personal, work, and shared drive accounts. Switch between them from the menu bar.",
   },
   {
     id: "shared-drive",
     icon: <Share2 size={22} />,
-    title: "Shared Drive Support",
-    description: "Browse and upload to any Google Shared Drive you have access to, with full permission awareness.",
+    title: "Works with Shared Drives",
+    description: "Browse and upload to any Shared Drive you have access to, with the right permissions respected.",
     highlighted: true,
   },
   {
     id: "menu-bar",
     icon: <LayoutGrid size={22} />,
-    title: "Menu Bar Helper",
-    description: "Persistent menu bar icon shows active upload count, progress, a quick drop zone, and account switcher.",
+    title: "Lives in your menu bar",
+    description: "A small icon with your active upload count, a quick drop zone, and an account switcher.",
   },
   {
     id: "history",
     icon: <Clock size={22} />,
-    title: "Upload History",
-    description: "Every upload logged with timestamp, size, duration, speed, destination, status, and Drive link.",
+    title: "Upload history",
+    description: "Every upload, with the timestamp, size, duration, speed, and a link back to the file in Drive.",
   },
 ]
 
@@ -124,11 +124,10 @@ export function Features() {
             Features
           </span>
           <h2 className="mb-6">
-            Everything you need,{" "}
-            <span className="gradient-text-blue">nothing you don&apos;t</span>
+            Built to do one thing well
           </h2>
           <p className="text-lg text-fg-secondary max-w-2xl mx-auto leading-relaxed">
-            DriveDock is purpose-built for one job: getting your files from your Mac into Google Drive as fast and reliably as possible.
+            Get files from your Mac into Google Drive. That&apos;s it. Every feature on this page exists to make that faster or less annoying.
           </p>
         </FadeIn>
 
@@ -148,4 +147,3 @@ export function Features() {
     </section>
   )
 }
-

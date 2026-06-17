@@ -8,54 +8,64 @@ import { cn } from "@/lib/utils"
 
 const faqs = [
   {
-    question: "What is DriveDock?",
+    question: "What does DriveDock actually do?",
     answer:
-      "DriveDock is a native macOS app for uploading files and folders to Google Drive with speed, clarity, and control. Built from scratch with Swift and SwiftUI, it provides a focused alternative to web-based upload tools.",
+      "It uploads files and folders from your Mac to Google Drive. You can drop stuff on the app, the menu bar icon, or the Dock. It runs uploads in parallel, keeps your folder structure intact, and picks up where it left off if your connection drops.",
   },
   {
-    question: "Is DriveDock really free?",
+    question: "Is it really free?",
     answer:
-      "Yes. DriveDock is completely free and open source under the MIT License. There are no in-app purchases, no premium tiers, and no upsells. You can use it forever at no cost, and you can read every line of source code.",
+      "Yes. The whole app is MIT licensed. No paid tier, no Pro plan, no upsell. If you want to pay, you can buy us a coffee via the GitHub Sponsors link, but the app is the same for everyone.",
   },
   {
-    question: "What are the system requirements?",
+    question: "What does it cost to run?",
     answer:
-      "DriveDock requires macOS 14 Sonoma or later. It runs natively on both Apple Silicon (M1, M2, M3, M4) and Intel Macs. You'll also need a Google account with Drive access and an internet connection for uploads.",
+      "Nothing to run on our side because we don&apos;t run anything. Your uploads go directly from your Mac to Google&apos;s API. We don&apos;t have a server, we don&apos;t proxy anything, we don&apos;t see your files.",
   },
   {
-    question: "How is my Google account kept secure?",
+    question: "What Mac do I need?",
     answer:
-      "DriveDock uses Google's OAuth 2.0 authentication and stores tokens exclusively in the macOS Keychain—the same encrypted credential store Safari uses. It only requests the drive.file scope, meaning it can only access files it personally uploads. Your existing Drive content is untouchable.",
+      "Anything running macOS 14 Sonoma or later. That includes Apple Silicon (M1 and up) and the last few generations of Intel Macs. You also need a Google account with Drive enabled.",
   },
   {
-    question: "Does DriveDock collect telemetry or analytics?",
+    question: "Can it see my existing Drive files?",
     answer:
-      "No. DriveDock collects zero personal data and sends no telemetry of any kind. There are no analytics services, no crash reporting to third parties, and no usage tracking. We don't operate any backend service at all—only the Google APIs that DriveDock needs to function.",
+      "No. DriveDock asks Google for the drive.file scope, which only grants access to files the app itself creates or uploads. Your existing documents, photos, and folders are completely off limits, and Google&apos;s API enforces this on their end too.",
   },
   {
-    question: "Can I upload folders and preserve the structure?",
+    question: "Where do my login credentials live?",
     answer:
-      "Yes. Drop a folder onto DriveDock and it will recreate the entire folder hierarchy in Google Drive, including deeply nested subfolders. You can also pause, resume, and reorder uploads as needed.",
+      "In the macOS Keychain, which is the same encrypted store Safari uses for your website passwords. DriveDock never writes the token to a file on disk and never sends it anywhere other than accounts.google.com.",
   },
   {
-    question: "What happens if my connection drops mid-upload?",
+    question: "What happens to my upload if my WiFi dies?",
     answer:
-      "DriveDock uses Google Drive's resumable upload protocol. If your connection drops, uploads automatically pause. When your connection returns, uploads pick up exactly where they left off—no restarting from scratch, no corrupted files.",
+      "It pauses. DriveDock uses Google Drive&apos;s resumable upload protocol, so when your connection comes back, the upload continues from the same byte. You won&apos;t end up with half a file in Drive.",
   },
   {
-    question: "Can I contribute to the project?",
+    question: "Do you collect any data at all?",
     answer:
-      "Absolutely. The full source code is on GitHub. You can report bugs, suggest features, submit pull requests, or fork the project to create your own version. All contributions are welcome.",
+      "No. There is no analytics SDK in the app, no crash reporting service, no anonymous usage ping. If you find any, that&apos;s a bug and we want to know about it.",
   },
   {
-    question: "Is DriveDock affiliated with Google?",
+    question: "Can I audit the code?",
     answer:
-      "No. DriveDock is an independent, community-driven project. It is not affiliated with, endorsed by, or sponsored by Google LLC. Google Drive and related trademarks are property of Google LLC.",
+      "Yes, please. The whole project is on GitHub. If something looks off, open an issue. If you want to verify a privacy claim, read the source. That&apos;s the whole point of open source.",
+  },
+  {
+    question: "Does Google endorse this?",
+    answer:
+      "No. DriveDock is an independent project, not affiliated with or sponsored by Google. Google Drive, Google, and related marks are trademarks of Google LLC.",
   },
   {
     question: "How do I report a security issue?",
     answer:
-      "Please open a security advisory on GitHub at github.com/sayuru-akash/drivedock/security. For urgent issues, mark it as a private security disclosure and we'll respond as quickly as possible.",
+      "Open a security advisory on GitHub instead of a regular issue so we can talk privately first. We&apos;ll respond within a couple of days and credit you in the fix if you want.",
+  },
+  {
+    question: "Why did you build this?",
+    answer:
+      "We wanted an uploader that didn&apos;t ask for our whole Drive and didn&apos;t phone home. None of the existing options worked that way, so we wrote our own. The source is on GitHub if you want to take it and make your own version.",
   },
 ]
 
@@ -78,17 +88,17 @@ export function FAQ() {
             FAQ
           </span>
           <h2 className="mb-6">
-            Frequently asked <span className="gradient-text-blue">questions</span>
+            Questions we get a lot
           </h2>
           <p className="text-lg max-w-2xl mx-auto leading-relaxed text-fg-secondary">
-            Everything you need to know about DriveDock. Can&apos;t find your answer?{" "}
+            The stuff people ask in issues and on Twitter. If yours isn&apos;t here,{" "}
             <a
               href="https://github.com/sayuru-akash/drivedock/issues"
               target="_blank"
               rel="noopener noreferrer"
               className="text-accent hover:text-accent-hover underline underline-offset-4 transition-colors"
             >
-              Open an issue on GitHub
+              open an issue
             </a>
             .
           </p>

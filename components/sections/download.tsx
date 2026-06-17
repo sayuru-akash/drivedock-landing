@@ -19,7 +19,6 @@ export function Download() {
       <Container>
         <FadeIn>
           <div className="relative rounded-3xl p-12 md:p-20 text-center overflow-hidden bg-gradient-to-br from-bg-elevated/95 to-bg-surface/98 border border-accent-border shadow-2xl shadow-black/60">
-            {/* Top highlight */}
             <div
               className="absolute top-0 left-0 right-0 h-px"
               style={{
@@ -28,14 +27,12 @@ export function Download() {
               aria-hidden="true"
             />
 
-            {/* Glow */}
             <div
               className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-48 blur-3xl pointer-events-none opacity-25"
               style={{ background: "radial-gradient(circle, var(--color-accent) 0%, transparent 70%)" }}
               aria-hidden="true"
             />
 
-            {/* Icon */}
             <div className="relative w-24 h-24 rounded-3xl mx-auto mb-10 flex items-center justify-center bg-gradient-to-br from-accent to-green shadow-accent/40 shadow-[0_12px_40px] ring-1 ring-white/10">
               <svg width="44" height="44" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M3 15L12 3L21 15H3Z" fill="white" fillOpacity="0.95" />
@@ -44,13 +41,12 @@ export function Download() {
             </div>
 
             <h2 className="relative mb-6">
-              Ready to get started?
+              Grab it and try it
             </h2>
             <p className="relative text-lg max-w-lg mx-auto mb-12 leading-relaxed text-fg-secondary">
-              Download the latest release and start uploading with speed and control. Always free. Always open source.
+              Download the latest build from GitHub, drag it to Applications, and you&apos;re set. It&apos;s a 12 MB binary that does one thing.
             </p>
 
-            {/* CTAs */}
             <div className="relative flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
               <Button
                 href="https://github.com/sayuru-akash/drivedock/releases"
@@ -65,16 +61,14 @@ export function Download() {
                 size="lg"
                 icon={<Github size={20} />}
               >
-                View Source Code
+                Read the code
               </Button>
             </div>
 
-            {/* Requirements */}
             <p className="relative text-sm mb-12 text-fg-muted">
-              Requires macOS 14 Sonoma or later · Apple Silicon & Intel Mac
+              Needs macOS 14 Sonoma or later, works on Apple Silicon and Intel
             </p>
 
-            {/* Social links */}
             <div className="relative flex flex-wrap items-center justify-center gap-8 pt-10 border-t border-border">
               <a
                 href="https://github.com/sayuru-akash/drivedock"
@@ -83,7 +77,7 @@ export function Download() {
                 className="flex items-center gap-2 text-sm text-fg-muted hover:text-fg-secondary transition-colors focus-ring rounded"
               >
                 <Star size={16} />
-                Star on GitHub
+                Star the repo
               </a>
               <span className="text-fg-muted/25">·</span>
               <a
@@ -93,7 +87,7 @@ export function Download() {
                 className="flex items-center gap-2 text-sm text-fg-muted hover:text-fg-secondary transition-colors focus-ring rounded"
               >
                 <GitFork size={16} />
-                Fork & Contribute
+                Fork it
               </a>
               <span className="text-fg-muted/25">·</span>
               <a
@@ -103,7 +97,7 @@ export function Download() {
                 className="flex items-center gap-2 text-sm text-fg-muted hover:text-fg-secondary transition-colors focus-ring rounded"
               >
                 <Bug size={16} />
-                Report Issues
+                Report a bug
               </a>
             </div>
           </div>

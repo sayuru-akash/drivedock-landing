@@ -18,10 +18,8 @@ export function Hero() {
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-32 pb-24">
-      {/* Grid background */}
       <div className="grid-bg" aria-hidden="true" />
 
-      {/* Top radial glow */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -31,7 +29,6 @@ export function Hero() {
       />
 
       <Container className="relative z-10 text-center">
-        {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: shouldReduce ? 0 : -10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -40,32 +37,29 @@ export function Hero() {
         >
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium bg-green-subtle border border-green-border text-green-light">
             <span className="w-1.5 h-1.5 rounded-full bg-green animate-glow-pulse" aria-hidden="true" />
-            Free & Open Source · MIT License
+            Free and open source, MIT licensed
           </span>
         </motion.div>
 
-        {/* Headline */}
         <motion.h1
           initial={{ opacity: 0, y: shouldReduce ? 0 : 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: shouldReduce ? 0.01 : 0.55, delay: shouldReduce ? 0 : 0.1, ease: EASE }}
           className="max-w-4xl mx-auto mb-6"
         >
-          The cleanest way to{" "}
+          A better way to{" "}
           <span className="gradient-text-blue">upload to Google Drive</span>
         </motion.h1>
 
-        {/* Subheadline */}
         <motion.p
           initial={{ opacity: 0, y: shouldReduce ? 0 : 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: shouldReduce ? 0.01 : 0.5, delay: shouldReduce ? 0 : 0.2, ease: EASE }}
           className="text-lg sm:text-xl text-fg-secondary max-w-2xl mx-auto mb-10 leading-relaxed"
         >
-          Native macOS app built with Swift & SwiftUI. Drag-and-drop, parallel uploads, folder preservation, and zero telemetry—in a lightweight, privacy-first package.
+          DriveDock is a native macOS app for getting files into Google Drive. Drag, drop, done. No browser tabs, no upload limits you can&apos;t see, no telemetry.
         </motion.p>
 
-        {/* CTAs */}
         <motion.div
           initial={{ opacity: 0, y: shouldReduce ? 0 : 14 }}
           animate={{ opacity: 1, y: 0 }}
@@ -85,11 +79,10 @@ export function Hero() {
             size="lg"
             icon={<Github size={18} />}
           >
-            View on GitHub
+            See the source
           </Button>
         </motion.div>
 
-        {/* Trust indicators */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -98,7 +91,7 @@ export function Hero() {
         >
           <span className="flex items-center gap-2">
             <Terminal size={14} />
-            macOS 14 Sonoma+
+            macOS 14 Sonoma or later
           </span>
           <span className="flex items-center gap-2">
             <ShieldCheck size={14} />
@@ -106,18 +99,16 @@ export function Hero() {
           </span>
           <span className="flex items-center gap-2">
             <Star size={14} />
-            MIT License
+            MIT license
           </span>
         </motion.div>
 
-        {/* App mockup */}
         <motion.div
           initial={{ opacity: 0, y: shouldReduce ? 0 : 48, scale: shouldReduce ? 1 : 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: shouldReduce ? 0.01 : 0.75, delay: shouldReduce ? 0 : 0.5, ease: EASE }}
           className="relative mx-auto max-w-4xl"
         >
-          {/* Glow */}
           <div
             className="absolute -inset-4 rounded-3xl pointer-events-none opacity-50"
             style={{
@@ -127,9 +118,7 @@ export function Hero() {
             aria-hidden="true"
           />
 
-          {/* Window */}
           <div className="relative glass-card rounded-2xl overflow-hidden text-left">
-            {/* Title bar */}
             <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2 px-5 py-4 border-b border-border">
               <div className="flex gap-2" aria-hidden="true">
                 <div className="w-3 h-3 rounded-full bg-red" />
@@ -141,7 +130,6 @@ export function Hero() {
             </div>
 
             <div className="p-6">
-              {/* Account */}
               <div className="glass-card rounded-xl px-5 py-4 mb-5 flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center text-sm font-semibold text-accent-light">
@@ -149,7 +137,7 @@ export function Hero() {
                   </div>
                   <div>
                     <p className="text-sm font-medium text-fg-primary">john@workspace.com</p>
-                    <p className="text-xs text-fg-muted">My Drive · 45.2 GB free</p>
+                    <p className="text-xs text-fg-muted">My Drive, 45.2 GB free</p>
                   </div>
                 </div>
                 <span className="text-xs text-fg-muted px-3 py-1.5 rounded-lg bg-white/5">
@@ -157,7 +145,6 @@ export function Hero() {
                 </span>
               </div>
 
-              {/* Drop zone */}
               <div className="rounded-xl p-12 mb-5 text-center border-2 border-dashed border-accent-border-strong bg-accent-subtle">
                 <div className="w-12 h-12 rounded-xl bg-accent/15 border border-accent-border flex items-center justify-center mx-auto mb-4">
                   <Upload size={22} className="text-accent" />
@@ -166,7 +153,6 @@ export function Hero() {
                 <p className="text-xs text-fg-muted">or click to browse</p>
               </div>
 
-              {/* Queue */}
               <div className="space-y-3">
                 {uploadItems.map((item) => (
                   <div key={item.name} className="glass-card rounded-xl px-5 py-4">
@@ -198,7 +184,6 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Scroll hint */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -206,7 +191,7 @@ export function Hero() {
             className="mt-12 flex flex-col items-center gap-2"
             aria-hidden="true"
           >
-            <span className="text-xs text-fg-muted tracking-wide uppercase">Scroll to explore</span>
+            <span className="text-xs text-fg-muted tracking-wide uppercase">Scroll</span>
             <motion.div
               animate={shouldReduce ? {} : { y: [0, 5, 0] }}
               transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}

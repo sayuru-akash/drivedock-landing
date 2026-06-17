@@ -15,27 +15,27 @@ interface PrivacyPoint {
 const privacyPoints: PrivacyPoint[] = [
   {
     icon: <Lock size={22} />,
-    title: "Keychain-only credentials",
+    title: "Tokens stay in the Keychain",
     description:
-      "OAuth tokens live exclusively in the macOS Keychain—the same secure store Safari uses. DriveDock never writes credentials to disk.",
+      "Your Google sign-in is stored in the macOS Keychain, same place Safari keeps your passwords. DriveDock never writes it to a file.",
   },
   {
     icon: <Eye size={22} />,
-    title: "Absolute zero telemetry",
+    title: "No analytics, anywhere",
     description:
-      "No analytics, no crash reports to third parties, no usage tracking—not even anonymous data. Your file activity is yours alone.",
+      "No usage tracking, no crash reports to third parties, no anonymous metrics. There is literally no telemetry code in the app.",
   },
   {
     icon: <Shield size={22} />,
-    title: "Minimal OAuth scope",
+    title: "Only the drive.file scope",
     description:
-      "Only the drive.file scope is requested, meaning DriveDock can only access files it personally uploads. Your existing Drive content is untouchable.",
+      "DriveDock can only touch files it uploaded itself. Your existing Drive is off limits, and that&apos;s enforced by Google&apos;s API.",
   },
   {
     icon: <Code2 size={22} />,
-    title: "Fully auditable source",
+    title: "Read the source yourself",
     description:
-      "Every line is public on GitHub under the MIT license. Verify exactly what runs on your machine—no trust required.",
+      "Every line of code is on GitHub under the MIT license. If you want to know what runs on your Mac, you can check.",
   },
 ]
 
@@ -54,23 +54,23 @@ export function PrivacyHighlight() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <FadeIn direction="right" className="order-2 lg:order-1">
             <span className="text-sm font-medium tracking-widest uppercase mb-5 block text-green">
-              Privacy First
+              Privacy
             </span>
             <h2 className="mb-6">
-              Your files never leave{" "}
-              <span className="gradient-text-green">your hands</span>
+              Your files stay{" "}
+              <span className="gradient-text-green">yours</span>
             </h2>
             <p className="text-lg leading-relaxed mb-6 text-fg-secondary">
-              DriveDock was designed with privacy as a hard constraint. Credentials stay in your Keychain, OAuth access is minimal by design, and there is no telemetry infrastructure—because there shouldn&apos;t be.
+              We made DriveDock because we got tired of upload tools that wanted our email address, our usage stats, and a permission slip for our entire Drive. So we built one that asks for none of that.
             </p>
             <p className="text-base leading-relaxed mb-8 text-fg-secondary">
-              Every aspect of how DriveDock handles your data is documented in the Privacy Policy and verifiable in the open-source code.
+              The full policy is short and spells out exactly what gets stored on your Mac and what doesn&apos;t.
             </p>
             <Link
               href="/privacy"
               className="inline-flex items-center gap-2 text-sm font-semibold text-green hover:text-green-hover underline underline-offset-4 transition-colors focus-ring rounded"
             >
-              Read the full Privacy Policy →
+              Read the privacy policy
             </Link>
           </FadeIn>
 

@@ -14,7 +14,7 @@ const inter = Inter({
 
 const siteUrl = "https://drivedock.app"
 const siteName = "DriveDock"
-const siteTitle = "DriveDock — Native macOS Google Drive Upload Client"
+const siteTitle = "DriveDock: Native macOS Google Drive Upload Client"
 const siteDescription =
   "The cleanest way to upload files to Google Drive on macOS. Native Swift app with drag-and-drop, parallel uploads, folder preservation, and complete privacy. Free & open source."
 const siteKeywords = [
