@@ -3,12 +3,14 @@
 import { CheckCircle2 } from "lucide-react"
 import { Container } from "@/components/ui/container"
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/motion"
+import { cn } from "@/lib/utils"
 
 const sections = [
   {
     category: "Architecture",
-    color: "#4285F4",
-    borderColor: "rgba(66,133,244,0.25)",
+    color: "text-accent",
+    borderColor: "border-accent-border",
+    bgColor: "bg-accent-subtle",
     items: [
       "Built with Swift and SwiftUI",
       "Native macOS 14+ (Sonoma+)",
@@ -18,8 +20,9 @@ const sections = [
   },
   {
     category: "Security",
-    color: "#10B981",
-    borderColor: "rgba(16,185,129,0.25)",
+    color: "text-green",
+    borderColor: "border-green-border",
+    bgColor: "bg-green-subtle",
     items: [
       "OAuth 2.0 authentication",
       "Keychain-only credential store",
@@ -29,8 +32,9 @@ const sections = [
   },
   {
     category: "Reliability",
-    color: "#F59E0B",
-    borderColor: "rgba(245,158,11,0.25)",
+    color: "text-yellow",
+    borderColor: "border-yellow-500/25",
+    bgColor: "bg-yellow-subtle",
     items: [
       "Resumable upload protocol",
       "Adaptive concurrency",
@@ -40,8 +44,9 @@ const sections = [
   },
   {
     category: "License & Requirements",
-    color: "#A78BFA",
-    borderColor: "rgba(167,139,250,0.25)",
+    color: "text-purple",
+    borderColor: "border-purple-400/25",
+    bgColor: "bg-purple-500/10",
     items: [
       "MIT License—free forever",
       "Open source on GitHub",
@@ -64,13 +69,13 @@ export function Technical() {
 
       <Container>
         <FadeIn className="text-center mb-20">
-          <span className="text-sm font-medium tracking-widest uppercase mb-5 block" style={{ color: "#4285F4" }}>
+          <span className="text-sm font-medium tracking-widest uppercase mb-5 block text-accent">
             Technical Details
           </span>
           <h2 className="mb-6">
             Built the right way
           </h2>
-          <p className="text-lg max-w-2xl mx-auto leading-relaxed" style={{ color: "var(--color-fg-secondary)" }}>
+          <p className="text-lg max-w-2xl mx-auto leading-relaxed text-fg-secondary">
             No Electron. No web views. Pure Swift, proper macOS APIs, and engineering decisions that respect your trust.
           </p>
         </FadeIn>
@@ -78,28 +83,21 @@ export function Technical() {
         <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {sections.map((s) => (
             <StaggerItem key={s.category}>
-              <article
-                className="glass-card rounded-2xl p-7 h-full"
-                style={{ borderColor: s.borderColor }}
-              >
-                <h3
-                  className="text-xs font-semibold tracking-widest uppercase mb-5 pb-4"
-                  style={{
-                    color: s.color,
-                    borderBottom: `1px solid ${s.borderColor}`,
-                  }}
+              <article className={cn("glass-card rounded-2xl p-7 h-full", s.borderColor)}>
+                <p
+                  className={cn(
+                    "text-xs font-semibold tracking-widest uppercase mb-5 pb-4 border-b",
+                    s.color,
+                    s.borderColor
+                  )}
                 >
                   {s.category}
-                </h3>
+                </p>
                 <ul className="space-y-3">
                   {s.items.map((item) => (
                     <li key={item} className="flex items-start gap-3">
-                      <CheckCircle2
-                        size={16}
-                        className="mt-0.5 shrink-0"
-                        style={{ color: s.color }}
-                      />
-                      <span className="text-sm leading-relaxed" style={{ color: "var(--color-fg-secondary)" }}>
+                      <CheckCircle2 size={16} className={cn("mt-0.5 shrink-0", s.color)} />
+                      <span className="text-sm leading-relaxed text-fg-secondary">
                         {item}
                       </span>
                     </li>
@@ -113,3 +111,4 @@ export function Technical() {
     </section>
   )
 }
+

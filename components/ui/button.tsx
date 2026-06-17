@@ -26,13 +26,13 @@ type ButtonProps = ButtonAsButton | ButtonAsLink
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-[#4285F4] text-white hover:bg-[#5B96FF] shadow-lg hover:shadow-[0_0_24px_rgba(66,133,244,0.4)] transition-all duration-200",
+    "bg-accent text-white hover:bg-accent-hover shadow-lg shadow-accent/20 hover:shadow-accent/35 transition-colors duration-200",
   secondary:
-    "bg-transparent border border-[rgba(255,255,255,0.16)] text-[var(--color-fg-primary)] hover:bg-[var(--color-bg-elevated)] hover:border-[rgba(255,255,255,0.24)] transition-all duration-200",
+    "bg-transparent border border-border-strong text-fg-primary hover:bg-bg-elevated hover:border-white/20 transition-colors duration-200",
   ghost:
-    "bg-transparent text-[var(--color-fg-secondary)] hover:text-[var(--color-fg-primary)] hover:bg-[var(--color-bg-elevated)] transition-all duration-200",
+    "bg-transparent text-fg-secondary hover:text-fg-primary hover:bg-bg-elevated transition-colors duration-200",
   outline:
-    "bg-transparent border border-[rgba(66,133,244,0.5)] text-[#4285F4] hover:bg-[rgba(66,133,244,0.1)] hover:border-[#4285F4] transition-all duration-200",
+    "bg-transparent border border-accent/50 text-accent hover:bg-accent-subtle hover:border-accent transition-colors duration-200",
 }
 
 const sizeStyles: Record<ButtonSize, string> = {
@@ -51,7 +51,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   const base =
-    "inline-flex items-center justify-center font-medium tracking-[-0.01em] focus-ring disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer select-none"
+    "inline-flex items-center justify-center font-medium tracking-tight focus-ring disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer select-none"
   const combined = cn(base, variantStyles[variant], sizeStyles[size], className)
 
   const content = (
@@ -83,11 +83,7 @@ export function Button({
   }
 
   return (
-    <button
-      className={combined}
-      style={{ cursor: "pointer" }}
-      {...(props as ButtonHTMLAttributes<HTMLButtonElement>)}
-    >
+    <button className={combined} {...(props as ButtonHTMLAttributes<HTMLButtonElement>)}>
       {content}
     </button>
   )

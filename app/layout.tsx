@@ -36,8 +36,6 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "DriveDock Contributors", url: siteUrl }],
   creator: "DriveDock Contributors",
-  publisher: "DriveDock",
-  category: "software",
   applicationName: "DriveDock",
   alternates: {
     canonical: siteUrl,
@@ -48,15 +46,6 @@ export const metadata: Metadata = {
       "The cleanest way to upload files to Google Drive on macOS. Drag-and-drop, parallel uploads, folder preservation, zero telemetry. Free & open source.",
     url: siteUrl,
     siteName: "DriveDock",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "DriveDock — Native macOS Google Drive Upload Client",
-        type: "image/png",
-      },
-    ],
     locale: "en_US",
     type: "website",
   },
@@ -65,7 +54,6 @@ export const metadata: Metadata = {
     title: "DriveDock — Native macOS Google Drive Upload Client",
     description:
       "The cleanest way to upload files to Google Drive on macOS. Native Swift, drag-and-drop, parallel uploads. Free & open source.",
-    images: ["/og-image.png"],
     creator: "@drivedockapp",
   },
   robots: {

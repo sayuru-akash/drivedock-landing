@@ -10,11 +10,9 @@
 */
 
 import { motion, useInView, useReducedMotion } from "framer-motion"
-import { useRef, type ReactNode } from "react"
+import { useRef, type ReactNode, useMemo } from "react"
 
-// Easing: ease-out for entering (cubic approximation)
 const EASE_ENTER: [number, number, number, number] = [0.0, 0.0, 0.2, 1.0]
-// Easing: ease-in-out for combined moves
 const EASE_SMOOTH: [number, number, number, number] = [0.4, 0.0, 0.2, 1.0]
 
 interface FadeInProps {
@@ -30,7 +28,7 @@ interface FadeInProps {
 export function FadeIn({
   children,
   delay = 0,
-  duration = 0.45,
+  duration = 0.4,
   direction = "up",
   className,
   once = true,
@@ -38,7 +36,7 @@ export function FadeIn({
 }: FadeInProps) {
   const ref = useRef<HTMLDivElement>(null)
   const shouldReduce = useReducedMotion()
-  const isInView = useInView(ref, { once, margin: "-40px", amount })
+  const isInView = useInView(ref, { once, amount })
 
   const offsets: Record<NonNullable<FadeInProps["direction"]>, { x: number; y: number }> = {
     up:    { y: 22, x: 0 },
@@ -67,7 +65,6 @@ export function FadeIn({
   )
 }
 
-/* StaggerContainer + StaggerItem: stagger 40ms per child */
 interface StaggerContainerProps {
   children: ReactNode
   className?: string
@@ -80,16 +77,21 @@ export function StaggerContainer({
   staggerDelay = 0.04,
 }: StaggerContainerProps) {
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: "-40px" })
+  const isInView = useInView(ref, { once: true, amount: 0.1 })
   const shouldReduce = useReducedMotion()
+
+  const variants = useMemo(
+    () => ({
+      hidden: {},
+      show: { transition: { staggerChildren: shouldReduce ? 0 : staggerDelay } },
+    }),
+    [shouldReduce, staggerDelay]
+  )
 
   return (
     <motion.div
       ref={ref}
-      variants={{
-        hidden: {},
-        show:   { transition: { staggerChildren: shouldReduce ? 0 : staggerDelay } },
-      }}
+      variants={variants}
       initial="hidden"
       animate={isInView ? "show" : "hidden"}
       className={className}
@@ -104,17 +106,21 @@ interface StaggerItemProps {
   className?: string
 }
 
-// Defined outside StaggerContainer — rule: rerender-no-inline-components
 export function StaggerItem({ children, className }: StaggerItemProps) {
   const shouldReduce = useReducedMotion()
 
+  const variants = useMemo(
+    () => ({
+      hidden: { opacity: 0, y: shouldReduce ? 0 : 18 },
+      show: { opacity: 1, y: 0 },
+    }),
+    [shouldReduce]
+  )
+
   return (
     <motion.div
-      variants={{
-        hidden: { opacity: 0, y: shouldReduce ? 0 : 18 },
-        show:   { opacity: 1, y: 0 },
-      }}
-      transition={{ duration: shouldReduce ? 0.01 : 0.4, ease: EASE_ENTER }}
+      variants={variants}
+      transition={{ duration: shouldReduce ? 0.01 : 0.35, ease: EASE_ENTER }}
       className={className}
     >
       {children}
@@ -122,7 +128,6 @@ export function StaggerItem({ children, className }: StaggerItemProps) {
   )
 }
 
-/* ScaleIn: for cards that pop in */
 interface ScaleInProps {
   children: ReactNode
   delay?: number
@@ -132,7 +137,7 @@ interface ScaleInProps {
 export function ScaleIn({ children, delay = 0, className }: ScaleInProps) {
   const ref = useRef<HTMLDivElement>(null)
   const shouldReduce = useReducedMotion()
-  const isInView = useInView(ref, { once: true, margin: "-40px" })
+  const isInView = useInView(ref, { once: true, amount: 0.1 })
 
   return (
     <motion.div
@@ -140,7 +145,7 @@ export function ScaleIn({ children, delay = 0, className }: ScaleInProps) {
       initial={{ opacity: 0, scale: shouldReduce ? 1 : 0.95 }}
       animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: shouldReduce ? 1 : 0.95 }}
       transition={{
-        duration: shouldReduce ? 0.01 : 0.5,
+        duration: shouldReduce ? 0.01 : 0.4,
         delay: shouldReduce ? 0 : delay,
         ease: EASE_SMOOTH,
       }}

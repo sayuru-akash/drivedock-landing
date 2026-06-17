@@ -12,6 +12,7 @@ import {
 } from "lucide-react"
 import { Container } from "@/components/ui/container"
 import { StaggerContainer, StaggerItem, FadeIn } from "@/components/ui/motion"
+import { cn } from "@/lib/utils"
 import type { ReactNode } from "react"
 
 interface FeatureData {
@@ -79,33 +80,27 @@ const features: FeatureData[] = [
 function FeatureCard({ icon, title, description, highlighted }: Omit<FeatureData, "id">) {
   return (
     <article
-      className="group relative rounded-2xl p-7 h-full transition-all duration-300 hover:scale-[1.02]"
-      style={{
-        background: highlighted
-          ? "linear-gradient(135deg, rgba(66,133,244,0.1) 0%, rgba(27,35,54,0.95) 100%)"
-          : "rgba(27, 35, 54, 0.7)",
-        border: highlighted
-          ? "1px solid rgba(66,133,244,0.28)"
-          : "1px solid rgba(255,255,255,0.07)",
-        backdropFilter: "blur(12px)",
-        boxShadow: "0 4px 8px -2px rgba(0, 0, 0, 0.3)",
-      }}
+      className={cn(
+        "group relative rounded-2xl p-7 h-full border backdrop-blur-xl transition-transform duration-300 hover:scale-[1.02]",
+        highlighted
+          ? "bg-accent-subtle border-accent-border"
+          : "bg-bg-card/70 border-border hover:border-border-strong"
+      )}
     >
       <div
-        className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 shrink-0"
-        style={{
-          background: highlighted ? "rgba(66,133,244,0.18)" : "rgba(255,255,255,0.05)",
-          border: highlighted ? "1px solid rgba(66,133,244,0.3)" : "1px solid rgba(255,255,255,0.08)",
-        }}
+        className={cn(
+          "w-12 h-12 rounded-xl flex items-center justify-center mb-5 shrink-0 border",
+          highlighted
+            ? "bg-accent/15 border-accent-border text-accent"
+            : "bg-white/5 border-white/[0.08] text-fg-secondary"
+        )}
       >
-        <span className={highlighted ? "text-[#4285F4]" : "text-[var(--color-fg-secondary)]"}>
-          {icon}
-        </span>
+        {icon}
       </div>
-      <h3 className="text-base font-semibold text-[var(--color-fg-primary)] mb-3 leading-snug">
+      <h3 className="text-lg font-semibold text-fg-primary mb-3 leading-snug">
         {title}
       </h3>
-      <p className="text-sm text-[var(--color-fg-secondary)] leading-relaxed">
+      <p className="text-sm text-fg-secondary leading-relaxed">
         {description}
       </p>
     </article>
@@ -125,14 +120,14 @@ export function Features() {
 
       <Container>
         <FadeIn className="text-center mb-20">
-          <span className="text-sm font-medium text-[#4285F4] tracking-widest uppercase mb-5 block">
+          <span className="text-sm font-medium text-accent tracking-widest uppercase mb-5 block">
             Features
           </span>
           <h2 className="mb-6">
             Everything you need,{" "}
-            <span className="gradient-text-blue">nothing you don't</span>
+            <span className="gradient-text-blue">nothing you don&apos;t</span>
           </h2>
-          <p className="text-lg text-[var(--color-fg-secondary)] max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg text-fg-secondary max-w-2xl mx-auto leading-relaxed">
             DriveDock is purpose-built for one job: getting your files from your Mac into Google Drive as fast and reliably as possible.
           </p>
         </FadeIn>
@@ -153,3 +148,4 @@ export function Features() {
     </section>
   )
 }
+

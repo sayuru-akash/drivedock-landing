@@ -3,7 +3,7 @@ import Link from "next/link"
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 import { Container } from "@/components/ui/container"
-import { ArrowLeft, ShieldCheck } from "lucide-react"
+import { ArrowLeft, ShieldCheck, Check } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -39,14 +39,7 @@ export default function PrivacyPage() {
 
           {/* Header */}
           <div className="mb-12">
-            <div
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-5"
-              style={{
-                background: "rgba(34,197,94,0.1)",
-                border: "1px solid rgba(34,197,94,0.25)",
-                color: "#86EFAC",
-              }}
-            >
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-5 bg-green-subtle border border-green-border text-green-light">
               <ShieldCheck size={13} aria-hidden="true" />
               Privacy Policy
             </div>
@@ -59,36 +52,30 @@ export default function PrivacyPage() {
           </div>
 
           {/* Summary card */}
-          <div
-            className="rounded-2xl p-6 mb-12"
-            style={{
-              background: "rgba(34,197,94,0.06)",
-              border: "1px solid rgba(34,197,94,0.2)",
-            }}
-          >
+          <div className="rounded-2xl p-6 mb-12 bg-green-subtle/60 border border-green-border">
             <h2 className="text-base font-semibold text-fg-primary mb-3 flex items-center gap-2">
               <ShieldCheck size={16} className="text-green" aria-hidden="true" />
               The short version
             </h2>
             <ul className="space-y-2 text-sm text-fg-secondary" role="list">
               <li className="flex items-start gap-2">
-                <span className="text-green mt-0.5 shrink-0">✓</span>
+                <Check size={16} className="text-green mt-0.5 shrink-0" aria-hidden="true" />
                 DriveDock collects <strong className="text-fg-primary">no personal data</strong> and sends
                 no telemetry to any server.
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-green mt-0.5 shrink-0">✓</span>
+                <Check size={16} className="text-green mt-0.5 shrink-0" aria-hidden="true" />
                 Google OAuth tokens are stored exclusively in the{" "}
                 <strong className="text-fg-primary">macOS Keychain</strong>.
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-green mt-0.5 shrink-0">✓</span>
+                <Check size={16} className="text-green mt-0.5 shrink-0" aria-hidden="true" />
                 DriveDock requests only the{" "}
                 <strong className="text-fg-primary">drive.file</strong> OAuth scope — it cannot read,
                 modify, or delete any file it did not upload.
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-green mt-0.5 shrink-0">✓</span>
+                <Check size={16} className="text-green mt-0.5 shrink-0" aria-hidden="true" />
                 All source code is publicly auditable on{" "}
                 <a
                   href="https://github.com/sayuru-akash/drivedock"
@@ -321,10 +308,7 @@ export default function PrivacyPage() {
           </div>
 
           {/* Footer nav */}
-          <div
-            className="mt-14 pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
-            style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
-          >
+          <div className="mt-14 pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-t border-border-subtle">
             <Link
               href="/"
               className="inline-flex items-center gap-2 text-sm text-fg-secondary hover:text-fg-primary transition-colors focus-ring rounded"
