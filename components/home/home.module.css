@@ -10,7 +10,7 @@
   position: relative;
   z-index: 2;
   min-height: 100dvh;
-  overflow: clip;
+  overflow-x: clip;
   background: #fff;
   color: var(--home-text);
   font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -97,7 +97,7 @@
 .desktopNav a {
   position: relative;
   color: #303238;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 520;
   text-decoration: none;
 }
@@ -137,7 +137,7 @@
   border: 1px solid var(--home-black);
   border-radius: 6px;
   padding: 0 22px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 580;
   line-height: 1;
   text-decoration: none;
@@ -172,7 +172,7 @@
 .compactButton {
   min-height: 39px;
   padding-inline: 18px;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .hero {
@@ -216,8 +216,8 @@
   max-width: 700px;
   margin: 24px auto 0;
   color: #4c515a;
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: clamp(15px, 1.15vw, 17px);
+  line-height: 1.65;
   letter-spacing: -0.012em;
 }
 
@@ -287,7 +287,7 @@
   position: relative;
   z-index: 2;
   width: min(880px, calc(100% - 48px));
-  height: 405px;
+  height: 325px;
   margin: 56px auto 0;
 }
 
@@ -479,7 +479,7 @@
 .faqCopy > span {
   display: block;
   margin-bottom: 13px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 530;
   letter-spacing: -0.015em;
 }
@@ -497,7 +497,8 @@
 .sectionHeading p {
   margin-top: 12px;
   color: var(--home-muted);
-  font-size: 13px;
+  font-size: 15px;
+  line-height: 1.6;
   letter-spacing: -0.01em;
 }
 
@@ -518,10 +519,11 @@
   overflow: hidden;
   border: 1px solid #edf0f5;
   background: var(--home-card);
+  transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
 }
 
 .featureCard h3 {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 660;
   line-height: 1.25;
 }
@@ -530,24 +532,24 @@
   max-width: 95%;
   margin-top: 11px;
   color: #5b6069;
-  font-size: 11px;
-  line-height: 1.55;
+  font-size: 15px;
+  line-height: 1.6;
   letter-spacing: -0.008em;
 }
 
 .dragFeature {
   grid-row: 1 / 4;
-  min-height: 492px;
+  min-height: 600px;
   padding: 38px 38px 0;
 }
 
 .parallelFeature {
-  min-height: 259px;
+  min-height: 290px;
   padding: 38px 38px 25px;
 }
 
 .smallFeature {
-  min-height: 107px;
+  min-height: 145px;
   padding: 24px 38px;
 }
 
@@ -803,7 +805,7 @@
 }
 
 .workflowSteps strong {
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 630;
 }
 
@@ -815,8 +817,8 @@
 .workflowSteps p {
   margin-top: 8px;
   color: #686e78;
-  font-size: 11px;
-  line-height: 1.5;
+  font-size: 14px;
+  line-height: 1.6;
   letter-spacing: -0.005em;
 }
 
@@ -898,8 +900,8 @@
   max-width: 370px;
   margin-top: 18px;
   color: #59606a;
-  font-size: 13px;
-  line-height: 1.58;
+  font-size: 15px;
+  line-height: 1.65;
   letter-spacing: -0.005em;
 }
 
@@ -912,7 +914,7 @@
 .privacyCopy > a {
   margin-top: auto;
   color: var(--home-black);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 560;
 }
 
@@ -934,15 +936,15 @@
 }
 
 .privacyCards h3 {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 640;
 }
 
 .privacyCards p {
   margin-top: 10px;
   color: #626873;
-  font-size: 11px;
-  line-height: 1.5;
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 .testimonialsSection {
@@ -976,7 +978,9 @@
   border: 1px solid #dce0e6;
   padding: 31px 32px;
   background: #fff;
+  scroll-margin-inline: 24px;
   scroll-snap-align: center;
+  transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
 }
 
 .testimonialFeatured {
@@ -992,8 +996,8 @@
   flex: 1;
   margin: 23px 0 28px;
   color: #31353b;
-  font-size: 12px;
-  line-height: 1.66;
+  font-size: 15px;
+  line-height: 1.7;
   letter-spacing: -0.008em;
 }
 
@@ -1009,13 +1013,13 @@
 }
 
 .testimonialAuthor strong {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 640;
 }
 
 .testimonialAuthor small {
   color: #616872;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .avatar {
@@ -1077,7 +1081,8 @@
 .faqCopy p {
   margin-top: 16px;
   color: #666c75;
-  font-size: 12px;
+  font-size: 14px;
+  line-height: 1.6;
   letter-spacing: 0;
 }
 
@@ -1089,7 +1094,7 @@
 
 .faqCopy .allFaqsLink {
   margin-top: auto;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .faqList {
@@ -1103,7 +1108,7 @@
 .faqItem summary {
   display: flex;
   width: 100%;
-  min-height: 55px;
+  min-height: 64px;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
@@ -1112,10 +1117,11 @@
   background: transparent;
   color: var(--home-text);
   cursor: pointer;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 540;
   list-style: none;
   text-align: left;
+  transition: background-color 180ms ease, padding 180ms ease;
 }
 
 .faqItem summary::-webkit-details-marker {
@@ -1138,8 +1144,8 @@
 .faqAnswer p {
   max-width: 680px;
   color: #5d636d;
-  font-size: 12px;
-  line-height: 1.65;
+  font-size: 15px;
+  line-height: 1.7;
   letter-spacing: 0;
 }
 
@@ -1172,8 +1178,8 @@
 .downloadContent > p {
   margin-top: 16px;
   color: #5d646e;
-  font-size: 13px;
-  line-height: 1.55;
+  font-size: 16px;
+  line-height: 1.65;
   letter-spacing: -0.006em;
 }
 
@@ -1181,7 +1187,7 @@
   display: block;
   margin-top: 22px;
   color: #686f78;
-  font-size: 10px;
+  font-size: 13px;
 }
 
 .footer {
@@ -1201,8 +1207,8 @@
   max-width: 295px;
   margin-top: 21px;
   color: #a2a2a2;
-  font-size: 11px;
-  line-height: 1.55;
+  font-size: 13px;
+  line-height: 1.65;
   letter-spacing: 0;
 }
 
@@ -1211,6 +1217,10 @@
   gap: 21px;
   margin-top: 43px;
   color: #c9c9c9;
+}
+
+.socialIcons svg {
+  transition: color 180ms ease, transform 180ms ease;
 }
 
 .footerColumns {
@@ -1228,7 +1238,7 @@
 .footerColumns h2 {
   margin-bottom: 18px;
   color: #fff;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 650;
   letter-spacing: 0.015em;
   text-transform: uppercase;
@@ -1237,7 +1247,7 @@
 .footerColumns a {
   margin-bottom: 10px;
   color: #a8a8a8;
-  font-size: 10px;
+  font-size: 13px;
   text-decoration: none;
 }
 
@@ -1250,7 +1260,7 @@
   right: 0;
   bottom: 67px;
   color: #a6a6a6;
-  font-size: 9px;
+  font-size: 12px;
   letter-spacing: 0;
 }
 
@@ -1264,7 +1274,7 @@
 .footerBottom p,
 .footerBottom a {
   color: #aaa;
-  font-size: 9px;
+  font-size: 12px;
   letter-spacing: 0;
 }
 
@@ -1449,7 +1459,7 @@
   .heroCopy p {
     max-width: 410px;
     margin-top: 20px;
-    font-size: 13px;
+    font-size: 15px;
   }
 
   .desktopBreak {
@@ -1468,10 +1478,11 @@
   }
 
   .heroWindow {
-    width: min(520px, calc(100% + 88px));
-    height: 287px;
+    width: 100%;
+    height: 260px;
     margin-top: 43px;
-    transform: translateX(-44px);
+    border-radius: 15px 15px 0 0;
+    transform: none;
   }
 
   .windowBar {
@@ -1529,17 +1540,17 @@
   }
 
   .dragVisual {
-    height: 258px;
+    height: 272px;
   }
 
   .dragVisual .finderWindow {
-    width: 67%;
+    width: 64%;
     height: 202px;
   }
 
   .dragVisual .appWindowCompact {
-    right: -28px;
-    width: 58%;
+    right: 0;
+    width: 55%;
     height: 203px;
   }
 
@@ -1561,8 +1572,9 @@
 
   .workflowVisual {
     min-height: 315px;
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
     gap: 8px;
-    padding: 68px 13px 0;
+    padding: 68px 10px 0;
   }
 
   .workflowVisual .finderWindow,
@@ -1603,7 +1615,7 @@
 
   .faqItem summary {
     min-height: 62px;
-    font-size: 13px;
+    font-size: 15px;
   }
 
   .downloadSection {
@@ -1642,6 +1654,236 @@
 
   .affiliation {
     margin-top: 0;
+  }
+}
+
+@media (max-width: 360px) {
+  .pageContainer,
+  .headerInner,
+  .footerInner {
+    width: calc(100% - 24px);
+  }
+
+  .hero {
+    padding-inline: 12px;
+  }
+
+  .heroCopy h1 {
+    font-size: 34px;
+  }
+
+  .heroCopy p {
+    font-size: 14px;
+  }
+
+  .heroWindow {
+    height: 248px;
+  }
+
+  .dragFeature,
+  .parallelFeature,
+  .smallFeature {
+    padding-inline: 18px;
+  }
+
+  .dragFeature {
+    padding-bottom: 0;
+  }
+
+  .dragVisual {
+    height: 252px;
+  }
+
+  .dragVisual .finderWindow {
+    width: 62%;
+    height: 187px;
+  }
+
+  .dragVisual .appWindowCompact {
+    top: 52px;
+    width: 53%;
+    height: 188px;
+  }
+
+  .folderGrid {
+    gap: 17px 8px;
+    padding-inline: 10px;
+  }
+
+  .workflowVisual {
+    min-height: 520px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+    padding: 72px 12px 0;
+  }
+
+  .workflowVisual .finderWindow,
+  .workflowVisual .appWindowCompact {
+    width: 100%;
+    height: 210px;
+  }
+
+  .workflowVisual .dropZoneCompact {
+    min-height: 106px;
+  }
+
+  .footerColumns {
+    gap-inline: 18px;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .featureCard:hover,
+  .testimonialCard:hover {
+    border-color: #d7e1ef;
+    box-shadow: 0 18px 42px rgb(47 70 103 / 10%);
+    transform: translateY(-3px);
+  }
+
+  .faqItem summary:hover {
+    padding-inline: 10px;
+    background: rgb(255 255 255 / 38%);
+  }
+
+  .socialIcons svg:hover {
+    color: #fff;
+    transform: translateY(-2px);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .heroCopy p {
+    animation: hero-detail-in 480ms 70ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .hero .heroActions {
+    animation: hero-detail-in 480ms 130ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .heroWindow {
+    animation: hero-window-in 760ms 120ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .heroBadge {
+    animation: badge-in 360ms 160ms ease-out both;
+  }
+
+  .badgeSpeed,
+  .badgeTelemetry {
+    animation-delay: 220ms;
+  }
+
+  .uploadIcon svg {
+    animation: upload-breathe 2.8s 1.2s ease-in-out infinite;
+  }
+
+  .progressActive {
+    animation: progress-fill 900ms 450ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    transform-origin: left;
+  }
+
+  .dragCursor {
+    animation: cursor-float 2.4s ease-in-out infinite;
+  }
+
+  .mobileNavigation[open] .mobileMenu {
+    animation: menu-in 180ms ease-out both;
+  }
+
+  .faqItem[open] .faqAnswer {
+    animation: answer-in 180ms ease-out both;
+  }
+}
+
+@keyframes hero-detail-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-window-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes badge-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes upload-breathe {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes progress-fill {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes cursor-float {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(25deg);
+  }
+
+  50% {
+    transform: translate(-3px, -4px) rotate(25deg);
+  }
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes answer-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 

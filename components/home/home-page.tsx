@@ -104,7 +104,15 @@ function UploadRows({ compact = false }: { compact?: boolean }) {
   )
 }
 
-function AppWindow({ compact = false, className = "" }: { compact?: boolean; className?: string }) {
+function AppWindow({
+  compact = false,
+  className = "",
+  showUploads = true,
+}: {
+  compact?: boolean
+  className?: string
+  showUploads?: boolean
+}) {
   return (
     <div className={`${styles.appWindow} ${compact ? styles.appWindowCompact : ""} ${className}`}>
       <div className={styles.windowBar}>
@@ -118,7 +126,7 @@ function AppWindow({ compact = false, className = "" }: { compact?: boolean; cla
       <div className={styles.windowBody}>
         <AccountRow compact={compact} />
         <DropZone compact={compact} />
-        {compact ? null : <UploadRows />}
+        {!compact && showUploads ? <UploadRows /> : null}
       </div>
     </div>
   )
@@ -201,7 +209,7 @@ function Hero() {
         </div>
       </div>
 
-      <AppWindow className={styles.heroWindow} />
+      <AppWindow className={styles.heroWindow} showUploads={false} />
     </section>
   )
 }
@@ -259,7 +267,7 @@ function Features() {
 
 function Workflow() {
   return (
-    <section className={styles.workflowSection} aria-labelledby="workflow-title">
+    <section className={styles.workflowSection} id="workflow" aria-labelledby="workflow-title">
       <div className={styles.pageContainer}>
         <SectionHeading
           eyebrow="How It Works"
@@ -387,7 +395,7 @@ function DownloadSection() {
       <div className={styles.downloadDots} aria-hidden="true" />
       <div className={styles.downloadContent}>
         <h2 id="download-title">Grab it and try it</h2>
-        <p>Download the latest build from GitHub, drag it to Applications,<br />and you&apos;re set. It&apos;s a 12 MB binary that does one thing.</p>
+        <p>Download the latest build from GitHub, drag it to Applications,<br />and you&apos;re set.</p>
         <div className={styles.heroActions}>
           <DownloadLink />
           <SourceLink />

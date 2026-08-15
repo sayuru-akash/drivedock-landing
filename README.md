@@ -70,7 +70,6 @@ drivedock-landing/
 │   ├── globals.css              # Design system + base styles
 │   ├── not-found.tsx            # 404 page
 │   ├── error.tsx                # Error boundary
-│   ├── loading.tsx              # Loading state
 │   ├── opengraph-image.tsx      # Dynamic OG image
 │   ├── robots.ts                # robots.txt
 │   ├── sitemap.ts               # sitemap.xml
