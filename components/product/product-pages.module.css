@@ -133,7 +133,7 @@
 
 .heroBoardBar i:nth-child(2) { background: #f5bc4b; }
 .heroBoardBar i:nth-child(3) { background: #5dc351; }
-.heroBoardBar small { position: absolute; right: 17px; color: #7b818a; }
+.heroBoardBar small { position: absolute; right: 17px; color: #5f6873; }
 .heroBoardBody { padding: 18px; }
 
 .heroAccount,
@@ -196,7 +196,7 @@
 .heroTransfers > div > svg { color: #4e79b5; }
 .heroTransfers > div > span { display: flex; min-width: 0; flex-direction: column; }
 .heroTransfers strong { overflow: hidden; font-size: 9px; text-overflow: ellipsis; white-space: nowrap; }
-.heroTransfers small { color: #747a83; font-size: 8px; }
+.heroTransfers small { color: #676e78; font-size: 8px; }
 .heroTransfers b { color: #53606f; font-size: 8px; font-weight: 650; }
 .heroTransfers i { grid-column: 2 / -1; overflow: hidden; height: 4px; border-radius: 999px; background: #e8edf3; }
 .heroTransfers i span { display: block; height: 100%; border-radius: inherit; background: #4d86d9; transform-origin: left; }
@@ -350,7 +350,7 @@
   transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
 }
 
-.explorerTabs button > span { color: #8a929d; font-size: 10px; font-variant-numeric: tabular-nums; }
+.explorerTabs button > span { color: #626b77; font-size: 10px; font-variant-numeric: tabular-nums; }
 .explorerTabs button > svg { opacity: 0; transform: translateX(-4px); transition: opacity 180ms ease, transform 180ms ease; }
 .explorerTabs button:hover { background: #eef4fc; color: #1d2733; }
 .explorerTabs .explorerTabActive { background: #e6f0fd; color: #173d6d; }
@@ -395,7 +395,7 @@
 }
 
 .visualTitle svg { color: #477bbd; }
-.visualTitle span { margin-left: auto; color: #79828d; font-size: 9px; font-weight: 520; }
+.visualTitle span { margin-left: auto; color: #616a75; font-size: 9px; font-weight: 520; }
 
 .transferRow {
   display: grid;
@@ -412,7 +412,7 @@
 .transferRow > svg { color: #547db3; }
 .transferRow > div { display: flex; min-width: 0; flex-direction: column; }
 .transferRow strong { overflow: hidden; font-size: 9px; text-overflow: ellipsis; white-space: nowrap; }
-.transferRow div span { color: #737b85; font-size: 8px; }
+.transferRow div span { color: #676f79; font-size: 8px; }
 .transferRow b { color: #53606e; font-size: 8px; font-weight: 650; }
 .transferRow > i { grid-column: 2 / -1; overflow: hidden; height: 4px; border-radius: 999px; background: #e8ecf2; }
 .transferRow > i span { display: block; height: 100%; border-radius: inherit; background: #4f87d7; transform-origin: left; }
@@ -522,7 +522,7 @@
 .downloadFeatureRow article { position: relative; min-width: 0; border-right: 1px solid var(--product-line); padding: 33px; }
 .downloadFeatureRow article:last-child { border-right: 0; }
 .downloadFeatureRow article > svg { color: #356ba9; }
-.downloadFeatureRow article > span { position: absolute; top: 33px; right: 33px; color: #9aa1aa; font-size: 10px; font-variant-numeric: tabular-nums; }
+.downloadFeatureRow article > span { position: absolute; top: 33px; right: 33px; color: #626b76; font-size: 10px; font-variant-numeric: tabular-nums; }
 .downloadFeatureRow h3 { margin-top: 46px; font-size: 19px; }
 .downloadFeatureRow p { margin-top: 9px; color: var(--product-muted); font-size: 13px; line-height: 1.65; }
 
@@ -546,6 +546,7 @@
 
 .faqHero { min-height: 640px; padding: 154px 0 90px; }
 .faqHeroCopy { position: relative; z-index: 1; max-width: 800px; margin-inline: auto; text-align: center; }
+.faqHeroCopy h1 { margin-inline: auto; }
 .faqHeroCopy > p { max-width: 680px; margin-inline: auto; }
 .faqHeroCopy .heroActions { justify-content: center; }
 .faqHeroFacts { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(3, 1fr); width: min(700px, 100%); margin: 61px auto 0; border-block: 1px solid rgb(115 147 187 / 28%); }
@@ -563,13 +564,14 @@
 .searchField > svg { color: #687381; }
 .searchField input { width: 100%; min-width: 0; border: 0; outline: 0; background: transparent; color: #15191e; font-size: 14px; }
 .searchField input::placeholder { color: #8b939d; }
+.searchField input::-webkit-search-cancel-button { display: none; -webkit-appearance: none; appearance: none; }
 .searchField button { display: grid; width: 34px; height: 34px; place-items: center; border: 0; border-radius: 6px; background: transparent; color: #66717c; cursor: pointer; }
 .searchField button:hover { background: #edf3fa; color: #1e3e62; }
 .categoryFilters { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 35px; }
 .categoryFilters button { min-height: 39px; border: 1px solid #d8dee7; border-radius: 999px; padding: 0 16px; background: #fff; color: #59626d; font-size: 12px; font-weight: 610; cursor: pointer; transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease, transform 180ms ease; }
 .categoryFilters button:hover { border-color: #aebed2; background: #f5f8fc; color: #1e2833; transform: translateY(-1px); }
 .categoryFilters .categoryActive { border-color: #1f3859; background: #132b4d; color: #fff; }
-.resultCount { margin-top: 26px; color: #7a828c; font-size: 12px; font-variant-numeric: tabular-nums; }
+.resultCount { margin-top: 26px; color: #626b76; font-size: 12px; font-variant-numeric: tabular-nums; }
 .fullFaqList { margin-top: 7px; border-top: 1px solid #dce2ea; }
 .fullFaqList details { border-bottom: 1px solid #dce2ea; scroll-margin-top: 82px; }
 .fullFaqList summary { display: grid; grid-template-columns: minmax(0, 1fr) 34px; min-height: 78px; align-items: center; gap: 20px; padding: 0 5px; color: #1a1e24; font-size: 16px; font-weight: 630; list-style: none; cursor: pointer; transition: color 180ms ease, padding 180ms ease, background-color 180ms ease; }

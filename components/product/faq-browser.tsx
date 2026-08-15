@@ -126,7 +126,7 @@ export function FaqBrowser() {
               </summary>
               <div className={styles.fullFaqAnswer}>
                 <p>{faq.answer}</p>
-                <a aria-label={`Link to: ${faq.question}`} href={`#${faq.id}`}>Link to this answer</a>
+                <a aria-label={`Link to this answer: ${faq.question}`} href={`#${faq.id}`}>Link to this answer</a>
               </div>
             </details>
           ))}
