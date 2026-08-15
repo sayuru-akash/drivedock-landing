@@ -372,7 +372,7 @@
 }
 
 .accountDetails small {
-  color: #7a7e86;
+  color: #61666f;
   font-size: 9px;
 }
 
@@ -416,7 +416,7 @@
 
 .dropZone small {
   margin-top: 3px;
-  color: #7c828c;
+  color: #626872;
   font-size: 9px;
 }
 
@@ -1014,7 +1014,7 @@
 }
 
 .testimonialAuthor small {
-  color: #858a93;
+  color: #616872;
   font-size: 10px;
 }
 
@@ -1038,7 +1038,7 @@
   margin-top: 31px;
 }
 
-.carouselControls button {
+.carouselControls a {
   display: grid;
   width: 42px;
   height: 42px;
@@ -1048,10 +1048,11 @@
   background: #eaf2fe;
   color: #5d718d;
   cursor: pointer;
+  text-decoration: none;
   transition: background 180ms ease, color 180ms ease, transform 180ms ease;
 }
 
-.carouselControls button:hover {
+.carouselControls a:hover {
   background: #dbeaff;
   color: #1e385b;
   transform: translateY(-1px);
@@ -1099,12 +1100,7 @@
   border-bottom: 1px solid #bcc4cf;
 }
 
-.faqItem h3 {
-  margin: 0;
-  font-size: 14px;
-}
-
-.faqItem button {
+.faqItem summary {
   display: flex;
   width: 100%;
   min-height: 55px;
@@ -1116,9 +1112,14 @@
   background: transparent;
   color: var(--home-text);
   cursor: pointer;
-  font: inherit;
+  font-size: 14px;
   font-weight: 540;
+  list-style: none;
   text-align: left;
+}
+
+.faqItem summary::-webkit-details-marker {
+  display: none;
 }
 
 .faqItem svg {
@@ -1126,7 +1127,7 @@
   transition: transform 180ms ease;
 }
 
-.faqItem .chevronOpen {
+.faqItem[open] svg {
   transform: rotate(180deg);
 }
 
@@ -1280,6 +1281,12 @@
   border-radius: 7px;
   background: rgb(255 255 255 / 76%);
   color: var(--home-black);
+  cursor: pointer;
+  list-style: none;
+}
+
+.menuButton::-webkit-details-marker {
+  display: none;
 }
 
 .mobileMenu {
@@ -1594,7 +1601,7 @@
     flex-basis: min(84vw, 335px);
   }
 
-  .faqItem button {
+  .faqItem summary {
     min-height: 62px;
     font-size: 13px;
   }

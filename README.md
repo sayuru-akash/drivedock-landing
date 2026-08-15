@@ -20,19 +20,19 @@ The marketing website for **DriveDock** — a native macOS app for uploading fil
 
 This is the official marketing website for [DriveDock](https://github.com/sayuru-akash/drivedock) — a native macOS Google Drive upload client built with Swift and SwiftUI. The landing page showcases features, privacy guarantees, technical architecture, and a download CTA.
 
-The site is a **static-first, performance-obsessed** Next.js 16 application built with the App Router, React Server Components, and a custom Tailwind v4 design system.
+The site is a **static-first, performance-focused** Next.js 16 application built with the App Router, React Server Components, a route-scoped homepage design system, and Tailwind v4 utilities for the remaining routes.
 
 ---
 
 ## Highlights
 
 - **Modern stack** — Next.js 16, React 19, TypeScript 5, Tailwind v4 (CSS-first config)
-- **Performance** — RSC by default, code-split by route, optimized fonts, no client JS for static content
+- **Performance** — RSC by default, code-split by route, optimized fonts, and native HTML interactions on the homepage
 - **Accessibility** — WCAG 2.2 AA, semantic HTML, skip link, focus rings, reduced motion
 - **SEO** — Comprehensive JSON-LD structured data (Organization, WebSite, SoftwareApplication, FAQPage), OG, Twitter Cards, sitemap, robots.txt
 - **PWA-ready** — Web app manifest, apple-touch-icon, theme color
-- **Design system** — Token-based theming with `@theme`, semantic color classes, custom CSS utilities (`.glass-card`, `.gradient-text-blue`, etc.)
-- **Animation** — Framer Motion with `prefers-reduced-motion` respect, transform-only transitions
+- **Design system** — A Figma-matched CSS Module for the homepage plus shared Tailwind tokens for the remaining routes
+- **Responsive** — Purpose-built desktop, tablet, and mobile layouts with reduced-motion support
 - **Zero analytics** — No tracking, no telemetry, fully privacy-respecting (matching the app's promise)
 
 ---
@@ -77,25 +77,17 @@ drivedock-landing/
 │   └── privacy/                 # Privacy policy
 │       └── page.tsx
 ├── components/
+│   ├── home/
+│   │   ├── home-page.tsx        # Server-rendered homepage composition
+│   │   ├── home-data.ts         # Homepage content and external URLs
+│   │   └── home.module.css      # Route-scoped responsive design system
 │   ├── layout/
-│   │   ├── navbar.tsx           # Sticky nav with mobile menu
-│   │   └── footer.tsx           # Site footer
-│   ├── sections/
-│   │   ├── hero.tsx             # Hero with app mockup
-│   │   ├── features.tsx         # 8-feature grid
-│   │   ├── privacy-highlight.tsx
-│   │   ├── social-proof.tsx
-│   │   ├── technical.tsx
-│   │   ├── faq.tsx              # FAQ accordion
-│   │   └── download.tsx
+│   │   ├── navbar.tsx           # Shared navigation for secondary routes
+│   │   └── footer.tsx           # Shared footer for secondary routes
 │   ├── ui/
 │   │   ├── button.tsx           # Polymorphic button/link
-│   │   ├── card.tsx
 │   │   ├── container.tsx        # Responsive container
-│   │   └── motion.tsx           # FadeIn, StaggerContainer, etc.
-│   └── providers.tsx            # ThemeProvider
-├── content/
-│   └── landing.ts               # Centralized content
+│   │   └── ...
 ├── lib/
 │   └── utils.ts                 # cn() helper
 ├── public/                      # Static assets
@@ -105,8 +97,6 @@ drivedock-landing/
 │   ├── apple-touch-icon.png
 │   ├── favicon.ico
 │   └── site.webmanifest
-├── types/
-│   └── content.ts               # Content type definitions
 ├── next.config.ts
 ├── tailwind v4 (via @import)
 └── tsconfig.json
@@ -115,6 +105,10 @@ drivedock-landing/
 ---
 
 ## Design System
+
+The homepage styles are intentionally isolated in `components/home/home.module.css`. This keeps the new light visual system from changing the privacy page while that route awaits its own redesign. Homepage tokens cover its palette, spacing, typography, surfaces, responsive behavior, and reduced-motion rules.
+
+The remaining routes continue to use the shared Tailwind tokens in `app/globals.css`:
 
 Colors, spacing, and typography are defined as **CSS custom properties** in `app/globals.css` under `@theme`. This makes them available as Tailwind utility classes:
 
@@ -128,7 +122,7 @@ Colors, spacing, and typography are defined as **CSS custom properties** in `app
 }
 ```
 
-Use them as: `bg-bg-base`, `text-accent`, `border-green-border`, etc.
+Use shared tokens as `bg-bg-base`, `text-accent`, `border-green-border`, etc. Do not use those dark-route tokens inside the homepage unless the homepage design system explicitly maps them.
 
 Custom CSS utilities:
 - `.glass-card` — Frosted glass card

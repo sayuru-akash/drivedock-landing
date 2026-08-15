@@ -1,24 +1,28 @@
 import Image from "next/image"
 import Link from "next/link"
 import {
+  ArrowLeft,
+  ArrowRight,
+  ChevronDown,
   Download,
   Facebook,
   Github,
   Instagram,
+  Menu,
   Music2,
+  Quote,
   Upload,
   X,
 } from "lucide-react"
-import { FaqAccordion } from "./faq-accordion"
 import {
+  faqs,
   githubUrl,
   issuesUrl,
   privacyPoints,
   releasesUrl,
+  testimonials,
   workflowSteps,
 } from "./home-data"
-import { MobileNavigation } from "./mobile-navigation"
-import { TestimonialsCarousel } from "./testimonials-carousel"
 import styles from "./home.module.css"
 
 function Brand({ inverse = false }: { inverse?: boolean }) {
@@ -157,7 +161,20 @@ function Header() {
         <div className={styles.desktopDownload}>
           <DownloadLink compact />
         </div>
-        <MobileNavigation />
+        <details className={styles.mobileNavigation}>
+          <summary className={styles.menuButton} aria-label="Toggle navigation">
+            <Menu aria-hidden="true" size={20} />
+          </summary>
+          <nav className={styles.mobileMenu} aria-label="Mobile navigation">
+            <a href="#top">Home</a>
+            <a href="#features">Features</a>
+            <a href="#faq">FAQ</a>
+            <a className={styles.mobileDownload} href={releasesUrl}>
+              <Download aria-hidden="true" size={15} />
+              Download
+            </a>
+          </nav>
+        </details>
       </div>
     </header>
   )
@@ -300,7 +317,38 @@ function Testimonials() {
         title={<span id="testimonials-title">What folks are saying</span>}
         description="A few notes from the GitHub issues and our inbox. We didn't pay for any of these."
       />
-      <TestimonialsCarousel />
+      <div className={styles.testimonialRail}>
+        {testimonials.map((testimonial, index) => (
+          <article
+            className={`${styles.testimonialCard} ${index === 2 ? styles.testimonialFeatured : ""}`}
+            id={`testimonial-${index}`}
+            key={testimonial.author}
+          >
+            <Quote aria-hidden="true" className={styles.quoteIcon} size={26} fill="currentColor" />
+            <blockquote>{testimonial.quote}</blockquote>
+            <footer className={styles.testimonialAuthor}>
+              <span className={styles.avatar} aria-hidden="true">
+                {testimonial.author
+                  .split(" ")
+                  .map((part) => part[0])
+                  .join("")}
+              </span>
+              <span>
+                <strong>{testimonial.author}</strong>
+                <small>{testimonial.role}</small>
+              </span>
+            </footer>
+          </article>
+        ))}
+      </div>
+      <nav className={styles.carouselControls} aria-label="Testimonial controls">
+        <a href="#testimonial-1" aria-label="Previous testimonials">
+          <ArrowLeft aria-hidden="true" size={17} />
+        </a>
+        <a href="#testimonial-3" aria-label="Next testimonials">
+          <ArrowRight aria-hidden="true" size={17} />
+        </a>
+      </nav>
     </section>
   )
 }
@@ -315,7 +363,19 @@ function FAQ() {
           <p>If you have any questions or issues, <a href={issuesUrl}>open an issue.</a></p>
           <a className={styles.allFaqsLink} href={issuesUrl}>View All FAQs</a>
         </div>
-        <FaqAccordion />
+        <div className={styles.faqList}>
+          {faqs.map((faq, index) => (
+            <details className={styles.faqItem} key={faq.question} open={index === 1}>
+              <summary>
+                <span>{faq.question}</span>
+                <ChevronDown aria-hidden="true" size={18} />
+              </summary>
+              <div className={styles.faqAnswer}>
+                <p>{faq.answer}</p>
+              </div>
+            </details>
+          ))}
+        </div>
       </div>
     </section>
   )
@@ -371,7 +431,7 @@ function Footer() {
         <div className={styles.footerBrand}>
           <Brand inverse />
           <p>A small macOS app for getting files into Google Drive. Built with Swift, ships with zero telemetry.</p>
-          <div className={styles.socialIcons} aria-label="DriveDock social channels">
+          <div className={styles.socialIcons} role="group" aria-label="DriveDock social channels">
             <Facebook aria-hidden="true" size={16} />
             <Instagram aria-hidden="true" size={16} />
             <X aria-hidden="true" size={16} />
@@ -414,4 +474,3 @@ export function HomePage() {
     </div>
   )
 }
-
