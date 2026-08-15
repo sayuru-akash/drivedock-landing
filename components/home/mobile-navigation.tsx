@@ -41,9 +41,9 @@ export function MobileNavigation() {
         <Menu aria-hidden="true" size={20} />
       </summary>
       <nav className={styles.mobileMenu} aria-label="Mobile navigation">
-        <Link href="/#top" onClick={closeMenu}>Home</Link>
-        <Link href="/#features" onClick={closeMenu}>Features</Link>
-        <Link href="/#faq" onClick={closeMenu}>FAQ</Link>
+        <Link href="/" onClick={closeMenu}>Home</Link>
+        <Link href="/features" onClick={closeMenu}>Features</Link>
+        <Link href="/faq" onClick={closeMenu}>FAQ</Link>
         <a className={styles.mobileDownload} href={latestReleaseUrl} onClick={closeMenu}>
           <Download aria-hidden="true" size={15} />
           Download for macOS

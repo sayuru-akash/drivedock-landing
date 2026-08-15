@@ -46,9 +46,9 @@ export function SiteHeader() {
       <div className={styles.headerInner}>
         <Brand />
         <nav className={styles.desktopNav} aria-label="Main navigation">
-          <Link href="/#top">Home</Link>
-          <Link href="/#features">Features</Link>
-          <Link href="/#faq">FAQ</Link>
+          <Link href="/">Home</Link>
+          <Link href="/features">Features</Link>
+          <Link href="/faq">FAQ</Link>
         </nav>
         <div className={styles.desktopDownload}>
           <DownloadLink compact />
@@ -63,7 +63,8 @@ const footerColumns = [
   {
     title: "Product",
     links: [
-      ["Features", "/#features"],
+      ["Features", "/features"],
+      ["FAQ", "/faq"],
       ["Releases", releasesUrl],
     ],
   },

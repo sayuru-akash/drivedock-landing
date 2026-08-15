@@ -25,6 +25,8 @@ npm audit
 ## Routes
 
 - `/`: product homepage
+- `/features`: complete shipped feature overview
+- `/faq`: searchable app FAQ and support guidance
 - `/privacy`: privacy policy
 - `/_not-found`: generated 404 surface for unmatched URLs
 - `/robots.txt`: crawler policy
@@ -39,6 +41,8 @@ Runtime and root-layout errors are handled by `app/error.tsx` and `app/global-er
 app/
   layout.tsx                 global metadata and structured data
   page.tsx                   homepage route
+  features/page.tsx          features route
+  faq/page.tsx               FAQ route and FAQ structured data
   privacy/page.tsx           privacy route
   not-found.tsx              404 UI
   error.tsx                  route error UI
@@ -55,6 +59,13 @@ components/home/
   testimonials-carousel.tsx  verified capability carousel
   home.module.css            homepage and shared shell styles
   secondary.module.css       Privacy, 404, and error styles
+components/product/
+  features-page.tsx          complete feature page composition
+  feature-explorer.tsx       URL-linked interactive feature explorer
+  faq-page.tsx               FAQ page composition and support routes
+  faq-browser.tsx            searchable, URL-linked FAQ browser
+  product-data.ts            shared factual feature and FAQ content
+  product-pages.module.css   responsive product page visual system
 public/                      icons and web app manifest
 ```
 
@@ -62,7 +73,7 @@ public/                      icons and web app manifest
 
 - Next.js App Router and React Server Components by default
 - CSS Modules with one shared responsive visual system
-- Small client islands only for the workflow, carousel, and mobile menu
+- Small client islands only for workflow, carousel, navigation, feature switching, and FAQ filtering
 - Static prerendering for all public routes
 - Semantic HTML, visible focus states, reduced-motion support, and a skip link
 - Canonical metadata, Open Graph and Twitter cards, JSON-LD, sitemap, robots policy, manifest, and a no-index 404

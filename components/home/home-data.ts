@@ -97,45 +97,4 @@ export const productHighlights = [
   },
 ] as const
 
-export const faqs = [
-  {
-    question: "What does DriveDock actually do?",
-    answer:
-      "It uploads files and folders from your Mac to Google Drive. Drop files on the app, menu bar icon, or Dock and DriveDock handles parallel uploads while preserving your folder structure.",
-  },
-  {
-    question: "Is it really free?",
-    answer:
-      "Yes. DriveDock is released under the MIT License. The source code and current release downloads are available from the public GitHub repository.",
-  },
-  {
-    question: "Does DriveDock replace Google Drive for desktop?",
-    answer:
-      "No. DriveDock is an upload utility, not a two-way sync client. It is designed for sending selected files and folders to Drive without creating a local sync folder.",
-  },
-  {
-    question: "What happens if an upload is interrupted?",
-    answer:
-      "Large files use Google Drive's resumable upload protocol. DriveDock can continue eligible transfers after a connection loss, Mac sleep, or an app restart.",
-  },
-  {
-    question: "Which Macs can run DriveDock?",
-    answer:
-      "DriveDock requires macOS 14 Sonoma or later. Current downloads are provided as a DMG and zip archive on GitHub Releases.",
-  },
-  {
-    question: "Which Google Drive permissions are required?",
-    answer:
-      "DriveDock uses drive.file to create and upload files, plus drive.readonly to browse existing Drive items and choose a destination. OAuth credentials stay in macOS Keychain.",
-  },
-  {
-    question: "How do I report a security issue?",
-    answer:
-      "Use the repository Security tab to report a vulnerability privately. Use GitHub Issues for non-sensitive bugs and feature requests.",
-  },
-  {
-    question: "Do you collect any data at all?",
-    answer:
-      "No. There is no analytics SDK, third-party crash reporting, or anonymous usage tracking in DriveDock.",
-  },
-] as const
+export { homepageFaqs as faqs } from "../product/product-data"

@@ -5,7 +5,6 @@ import {
 } from "lucide-react"
 import {
   faqs,
-  githubUrl,
   issuesUrl,
   privacyPoints,
 } from "./home-data"
@@ -241,7 +240,7 @@ function FAQ() {
           <span>FAQ</span>
           <h2 id="faq-title">Frequently Asked<br />Questions</h2>
           <p>If you have any questions or issues, <a href={issuesUrl}>open an issue.</a></p>
-          <a className={styles.allFaqsLink} href={`${githubUrl}#faq`}>Read the app FAQ</a>
+          <Link className={styles.allFaqsLink} href="/faq">Read the app FAQ</Link>
         </div>
         <div className={styles.faqList}>
           {faqs.map((faq, index) => (

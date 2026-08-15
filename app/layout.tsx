@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
-import { faqs } from "@/components/home/home-data"
 import "./globals.css"
 
 const inter = Inter({
@@ -167,6 +166,9 @@ const jsonLd = {
         "Shared Drive support",
         "Menu bar helper",
         "Upload history",
+        "Parallel downloads",
+        "Persistent download queue",
+        "CSV, JSON, and text reports",
         "Keychain-only credential storage",
         "Zero telemetry",
         "Open source",
@@ -174,14 +176,6 @@ const jsonLd = {
       ],
       softwareRequirements: "macOS 14 Sonoma or later",
       permissions: "Google Drive drive.file and drive.readonly OAuth scopes",
-    },
-    {
-      "@type": "FAQPage",
-      mainEntity: faqs.map((faq) => ({
-        "@type": "Question",
-        name: faq.question,
-        acceptedAnswer: { "@type": "Answer", text: faq.answer },
-      })),
     },
   ],
 }

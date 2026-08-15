@@ -16,6 +16,8 @@ describe("shared site chrome", () => {
 
     const productNav = screen.getByRole("navigation", { name: "Product" })
     expect(within(productNav).queryByRole("link", { name: "Download" })).toBeNull()
+    expect(within(productNav).getByRole("link", { name: "Features" }).getAttribute("href")).toBe("/features")
+    expect(within(productNav).getByRole("link", { name: "FAQ" }).getAttribute("href")).toBe("/faq")
     expect(within(productNav).getByRole("link", { name: "Releases" })).toBeDefined()
   })
 })
