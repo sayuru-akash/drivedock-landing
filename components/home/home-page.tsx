@@ -1,56 +1,18 @@
-import Image from "next/image"
 import Link from "next/link"
 import {
-  ArrowLeft,
-  ArrowRight,
   ChevronDown,
-  Download,
-  Facebook,
-  Github,
-  Instagram,
-  Menu,
-  Music2,
-  Quote,
   Upload,
-  X,
 } from "lucide-react"
 import {
   faqs,
   githubUrl,
   issuesUrl,
   privacyPoints,
-  releasesUrl,
-  testimonials,
-  workflowSteps,
 } from "./home-data"
+import { ProductHighlightsCarousel } from "./testimonials-carousel"
+import { DownloadLink, SiteFooter, SiteHeader, SourceLink } from "./site-chrome"
+import { WorkflowShowcase } from "./workflow-showcase"
 import styles from "./home.module.css"
-
-function Brand({ inverse = false }: { inverse?: boolean }) {
-  return (
-    <Link className={`${styles.brand} ${inverse ? styles.brandInverse : ""}`} href="/" aria-label="DriveDock home">
-      <Image src="/icon.svg" width={26} height={26} alt="" priority />
-      <span>DriveDock</span>
-    </Link>
-  )
-}
-
-function DownloadLink({ compact = false }: { compact?: boolean }) {
-  return (
-    <a className={`${styles.primaryButton} ${compact ? styles.compactButton : ""}`} href={releasesUrl}>
-      <Download aria-hidden="true" size={compact ? 14 : 17} />
-      {compact ? "Download" : "Download for macOS"}
-    </a>
-  )
-}
-
-function SourceLink() {
-  return (
-    <a className={styles.secondaryButton} href={githubUrl}>
-      <Github aria-hidden="true" size={17} />
-      See The Source
-    </a>
-  )
-}
 
 function AccountRow({ compact = false }: { compact?: boolean }) {
   return (
@@ -156,52 +118,20 @@ function FinderWindow() {
   )
 }
 
-function Header() {
-  return (
-    <header className={styles.siteHeader}>
-      <div className={styles.headerInner}>
-        <Brand />
-        <nav className={styles.desktopNav} aria-label="Main navigation">
-          <a href="#top">Home</a>
-          <a href="#features">Features</a>
-          <a href="#faq">FAQ</a>
-        </nav>
-        <div className={styles.desktopDownload}>
-          <DownloadLink compact />
-        </div>
-        <details className={styles.mobileNavigation}>
-          <summary className={styles.menuButton} aria-label="Toggle navigation">
-            <Menu aria-hidden="true" size={20} />
-          </summary>
-          <nav className={styles.mobileMenu} aria-label="Mobile navigation">
-            <a href="#top">Home</a>
-            <a href="#features">Features</a>
-            <a href="#faq">FAQ</a>
-            <a className={styles.mobileDownload} href={releasesUrl}>
-              <Download aria-hidden="true" size={15} />
-              Download
-            </a>
-          </nav>
-        </details>
-      </div>
-    </header>
-  )
-}
-
 function Hero() {
   return (
     <section className={styles.hero} id="top" aria-labelledby="home-title">
       <div className={styles.dotField} aria-hidden="true" />
       <span className={`${styles.heroBadge} ${styles.badgeMac}`}>macOS 14+ Sonoma</span>
-      <span className={`${styles.heroBadge} ${styles.badgeSpeed}`}>Fast Uploads</span>
+      <span className={`${styles.heroBadge} ${styles.badgeSpeed}`}>Resumable uploads</span>
       <span className={`${styles.heroBadge} ${styles.badgeLicense}`}>MIT license</span>
       <span className={`${styles.heroBadge} ${styles.badgeTelemetry}`}>Zero telemetry</span>
 
       <div className={styles.heroCopy}>
         <h1 id="home-title">A better way to upload<br />to Google Drive</h1>
         <p>
-          DriveDock is a native macOS app for getting files into Google Drive. Drag, drop, done.
-          <br className={styles.desktopBreak} /> No browser tabs, no upload limits you can&apos;t see, no telemetry.
+          DriveDock is a native macOS app for uploading files and folders to Google Drive.
+          <br className={styles.desktopBreak} /> It supports resumable transfers, parallel uploads, folder preservation, and per-file progress.
         </p>
         <div className={styles.heroActions}>
           <DownloadLink />
@@ -230,14 +160,14 @@ function Features() {
       <div className={styles.pageContainer}>
         <div className={styles.sectionHeading}>
           <span>Features</span>
-          <h2 id="features-title">Unlock Premium Benefits With<br />Our Advanced Features.</h2>
-          <p>Get files from your Mac into Google Drive. That&apos;s it.</p>
+          <h2 id="features-title">Upload to Drive without<br />setting up a sync folder.</h2>
+          <p>Select files or folders, choose a Drive destination, and track each transfer.</p>
         </div>
 
         <div className={styles.featureGrid}>
           <article className={`${styles.featureCard} ${styles.dragFeature}`}>
             <h3>Drag and drop</h3>
-            <p>Drop a file on the window, the menu bar, or the Dock icon. It starts uploading before you can lift your finger.</p>
+            <p>Add files or folders from the main window, menu bar helper, Dock icon, or clipboard.</p>
             <div className={styles.dragVisual}>
               <FinderWindow />
               <AppWindow compact />
@@ -246,18 +176,18 @@ function Features() {
 
           <article className={`${styles.featureCard} ${styles.parallelFeature}`}>
             <h3>Uploads in parallel</h3>
-            <p>Multiple files at once, with the concurrency adjusted to whatever your network can actually handle.</p>
+            <p>Upload multiple files at once. Concurrency adapts to network quality, errors, battery state, and Drive rate limits.</p>
             <UploadRows compact />
           </article>
 
           <article className={`${styles.featureCard} ${styles.smallFeature} ${styles.blueFeature}`}>
             <h3>Multiple Google accounts</h3>
-            <p>Sign in to your personal, work, and shared drive accounts. Switch between them from the menu bar.</p>
+            <p>Connect multiple accounts and choose the Google account used for each upload batch.</p>
           </article>
 
           <article className={`${styles.featureCard} ${styles.smallFeature}`}>
             <h3>Works with Shared Drives</h3>
-            <p>Browse and upload to any Shared Drive you have access to, with the right permissions respected.</p>
+            <p>Browse My Drive and Shared Drives, then upload to folders where the connected account has write access.</p>
           </article>
         </div>
       </div>
@@ -274,21 +204,7 @@ function Workflow() {
           title={<>Built Around a Workflow<br />You&apos;ll Already Know.</>}
           description="Just drag, drop, and let DriveDock do the rest."
         />
-        <div className={styles.workflowGrid}>
-          <ol className={styles.workflowSteps}>
-            {workflowSteps.map((step, index) => (
-              <li className={index === 0 ? styles.activeStep : undefined} key={step.title}>
-                <strong><span>{step.number}</span> {step.title}</strong>
-                <p>{step.description}</p>
-              </li>
-            ))}
-          </ol>
-          <div className={styles.workflowVisual}>
-            <span className={styles.menuBubble}>S</span>
-            <FinderWindow />
-            <AppWindow compact />
-          </div>
-        </div>
+        <WorkflowShowcase />
       </div>
     </section>
   )
@@ -301,7 +217,7 @@ function Privacy() {
         <div className={styles.privacyCopy}>
           <span>Privacy</span>
           <h2 id="privacy-title">Your files stay yours</h2>
-          <p>We built DriveDock to make uploading to Google Drive simple, fast, and private, without unnecessary permissions or tracking.</p>
+          <p>OAuth tokens stay in macOS Keychain, telemetry is disabled, and the source code is available for review.</p>
           <Link href="/privacy">Read the privacy policy</Link>
         </div>
         <div className={styles.privacyCards}>
@@ -317,50 +233,6 @@ function Privacy() {
   )
 }
 
-function Testimonials() {
-  return (
-    <section className={styles.testimonialsSection} aria-labelledby="testimonials-title">
-      <SectionHeading
-        eyebrow="From people who use it"
-        title={<span id="testimonials-title">What folks are saying</span>}
-        description="A few notes from the GitHub issues and our inbox. We didn't pay for any of these."
-      />
-      <div className={styles.testimonialRail}>
-        {testimonials.map((testimonial, index) => (
-          <article
-            className={`${styles.testimonialCard} ${index === 2 ? styles.testimonialFeatured : ""}`}
-            id={`testimonial-${index}`}
-            key={testimonial.author}
-          >
-            <Quote aria-hidden="true" className={styles.quoteIcon} size={26} fill="currentColor" />
-            <blockquote>{testimonial.quote}</blockquote>
-            <footer className={styles.testimonialAuthor}>
-              <span className={styles.avatar} aria-hidden="true">
-                {testimonial.author
-                  .split(" ")
-                  .map((part) => part[0])
-                  .join("")}
-              </span>
-              <span>
-                <strong>{testimonial.author}</strong>
-                <small>{testimonial.role}</small>
-              </span>
-            </footer>
-          </article>
-        ))}
-      </div>
-      <nav className={styles.carouselControls} aria-label="Testimonial controls">
-        <a href="#testimonial-1" aria-label="Previous testimonials">
-          <ArrowLeft aria-hidden="true" size={17} />
-        </a>
-        <a href="#testimonial-3" aria-label="Next testimonials">
-          <ArrowRight aria-hidden="true" size={17} />
-        </a>
-      </nav>
-    </section>
-  )
-}
-
 function FAQ() {
   return (
     <section className={styles.faqSection} id="faq" aria-labelledby="faq-title">
@@ -369,7 +241,7 @@ function FAQ() {
           <span>FAQ</span>
           <h2 id="faq-title">Frequently Asked<br />Questions</h2>
           <p>If you have any questions or issues, <a href={issuesUrl}>open an issue.</a></p>
-          <a className={styles.allFaqsLink} href={issuesUrl}>View All FAQs</a>
+          <a className={styles.allFaqsLink} href={`${githubUrl}#faq`}>Read the app FAQ</a>
         </div>
         <div className={styles.faqList}>
           {faqs.map((faq, index) => (
@@ -394,91 +266,32 @@ function DownloadSection() {
     <section className={styles.downloadSection} id="download" aria-labelledby="download-title">
       <div className={styles.downloadDots} aria-hidden="true" />
       <div className={styles.downloadContent}>
-        <h2 id="download-title">Grab it and try it</h2>
-        <p>Download the latest build from GitHub, drag it to Applications,<br />and you&apos;re set.</p>
+        <h2 id="download-title">Download DriveDock for macOS</h2>
+        <p>The current DMG, zip archive, and SHA-256 checksums are available from GitHub Releases.</p>
         <div className={styles.heroActions}>
           <DownloadLink />
           <SourceLink />
         </div>
-        <small>Needs macOS 14 Sonoma or later, works on Apple Silicon and Intel</small>
+        <small>This release is unsigned or ad-hoc signed. Gatekeeper may require Control-click, then Open, on first launch.</small>
       </div>
     </section>
-  )
-}
-
-const footerColumns = [
-  {
-    title: "Product",
-    links: [
-      ["Features", "#features"],
-      ["Download", "#download"],
-      ["Releases", releasesUrl],
-    ],
-  },
-  {
-    title: "Open Source",
-    links: [
-      ["GitHub", githubUrl],
-      ["Issues", issuesUrl],
-      ["Contribute", `${githubUrl}/blob/main/CONTRIBUTING.md`],
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
-      ["Privacy Policy", "/privacy"],
-      ["MIT License", `${githubUrl}/blob/main/LICENSE`],
-    ],
-  },
-] as const
-
-function Footer() {
-  return (
-    <footer className={styles.footer}>
-      <div className={styles.footerInner}>
-        <div className={styles.footerBrand}>
-          <Brand inverse />
-          <p>A small macOS app for getting files into Google Drive. Built with Swift, ships with zero telemetry.</p>
-          <div className={styles.socialIcons} role="group" aria-label="DriveDock social channels">
-            <Facebook aria-hidden="true" size={16} />
-            <Instagram aria-hidden="true" size={16} />
-            <X aria-hidden="true" size={16} />
-            <Music2 aria-hidden="true" size={16} />
-          </div>
-        </div>
-        <div className={styles.footerColumns}>
-          {footerColumns.map((column) => (
-            <nav aria-label={column.title} key={column.title}>
-              <h2>{column.title}</h2>
-              {column.links.map(([label, href]) => (
-                <Link href={href} key={label}>{label}</Link>
-              ))}
-            </nav>
-          ))}
-        </div>
-        <p className={styles.affiliation}>Not affiliated with Google LLC.</p>
-        <div className={styles.footerBottom}>
-          <p>© 2026 DriveDock Contributors. Released under the <a href={`${githubUrl}/blob/main/LICENSE`}>MIT License.</a></p>
-        </div>
-      </div>
-    </footer>
   )
 }
 
 export function HomePage() {
   return (
     <div className={styles.homePage}>
-      <Header />
+      <SiteHeader />
       <main id="main-content">
         <Hero />
         <Features />
         <Workflow />
         <Privacy />
-        <Testimonials />
+        <ProductHighlightsCarousel />
         <FAQ />
         <DownloadSection />
       </main>
-      <Footer />
+      <SiteFooter />
     </div>
   )
 }

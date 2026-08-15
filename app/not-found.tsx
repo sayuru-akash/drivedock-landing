@@ -1,41 +1,33 @@
-import { Container } from "@/components/ui/container"
-import { Button } from "@/components/ui/button"
-import { Home, ArrowLeft } from "lucide-react"
+import type { Metadata } from "next"
+import Link from "next/link"
+import { ArrowRight, Home } from "lucide-react"
+import { SiteFooter, SiteHeader } from "@/components/home/site-chrome"
+import homeStyles from "@/components/home/home.module.css"
+import styles from "@/components/home/secondary.module.css"
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Page Not Found",
-  description: "The page you're looking for doesn't exist.",
+  description: "The requested DriveDock page could not be found.",
+  alternates: { canonical: null },
+  robots: { index: false, follow: false },
 }
 
 export default function NotFound() {
   return (
-    <main className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      <div className="grid-bg" aria-hidden="true" />
-      <Container className="relative z-10 text-center py-32">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium bg-accent-subtle border border-accent-border text-accent-light mb-8">
-          404 · Page Not Found
+    <div className={`${homeStyles.homePage} ${styles.secondaryPage}`}>
+      <SiteHeader />
+      <main id="main-content" className={styles.stateMain}>
+        <div className={styles.stateCard}>
+          <span className={styles.stateCode}>404 · Page Not Found</span>
+          <h1>This page is not on the dock.</h1>
+          <p>The address may be outdated or mistyped. Return to the homepage, or open the source repository if you were looking for app documentation.</p>
+          <div className={styles.stateActions}>
+            <Link className={styles.primaryAction} href="/"><Home aria-hidden="true" size={17} />Back to Home</Link>
+            <a className={styles.secondaryAction} href="https://github.com/sayuru-akash/drivedock">View the Source<ArrowRight aria-hidden="true" size={17} /></a>
+          </div>
         </div>
-        <h1 className="mb-6 max-w-3xl mx-auto">
-          This page took a wrong turn at{" "}
-          <span className="gradient-text-blue">the Dock</span>
-        </h1>
-        <p className="text-lg text-fg-secondary max-w-xl mx-auto mb-12 leading-relaxed">
-          The page you&apos;re looking for doesn&apos;t exist. It may have been moved, renamed, or never existed in the first place.
-        </p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Button href="/" size="lg" icon={<Home size={18} />}>
-            Back to Home
-          </Button>
-          <Button
-            href="https://github.com/sayuru-akash/drivedock"
-            variant="secondary"
-            size="lg"
-            icon={<ArrowLeft size={18} />}
-          >
-            Visit GitHub
-          </Button>
-        </div>
-      </Container>
-    </main>
+      </main>
+      <SiteFooter />
+    </div>
   )
 }

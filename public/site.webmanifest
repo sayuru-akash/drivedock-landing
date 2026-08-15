@@ -1,11 +1,11 @@
 {
   "name": "DriveDock",
   "short_name": "DriveDock",
-  "description": "The cleanest way to upload files to Google Drive on macOS. Native Swift app with drag-and-drop, parallel uploads, and complete privacy.",
+  "description": "Upload files and folders from macOS to Google Drive with resumable transfers, parallel uploads, and no telemetry.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0B0F1A",
-  "theme_color": "#0B0F1A",
+  "background_color": "#FFFFFF",
+  "theme_color": "#EEF4FF",
   "orientation": "portrait-primary",
   "icons": [
     {

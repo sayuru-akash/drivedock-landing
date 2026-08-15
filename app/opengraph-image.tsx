@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og"
 
-export const alt = "DriveDock: Native macOS Google Drive Upload Client"
+export const alt = "DriveDock: Google Drive Uploader for macOS"
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
@@ -15,8 +15,8 @@ export default function OpenGraphImage() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: "linear-gradient(135deg, #0B0F1A 0%, #141823 100%)",
-          color: "#FAFBFC",
+          background: "linear-gradient(135deg, #F4F8FF 0%, #DCEBFF 100%)",
+          color: "#08090B",
           fontFamily: "Inter, system-ui, sans-serif",
           padding: 80,
           textAlign: "center",
@@ -29,10 +29,10 @@ export default function OpenGraphImage() {
             justifyContent: "center",
             width: 96,
             height: 96,
-            borderRadius: 28,
-            background: "linear-gradient(135deg, #4285F4 0%, #10B981 100%)",
+            borderRadius: 48,
+            background: "#FFFFFF",
             marginBottom: 40,
-            boxShadow: "0 24px 64px rgba(66, 133, 244, 0.35)",
+            boxShadow: "0 24px 64px rgba(62, 101, 155, 0.18)",
           }}
         >
           <svg width="52" height="52" viewBox="0 0 24 24" fill="none">
@@ -47,10 +47,7 @@ export default function OpenGraphImage() {
             letterSpacing: "-0.04em",
             lineHeight: 1.05,
             marginBottom: 24,
-            background: "linear-gradient(135deg, #FFFFFF 0%, #7BAEFF 100%)",
-            backgroundClip: "text",
-            WebkitBackgroundClip: "text",
-            color: "transparent",
+            color: "#08090B",
           }}
         >
           DriveDock
@@ -58,12 +55,12 @@ export default function OpenGraphImage() {
         <p
           style={{
             fontSize: 32,
-            color: "#94A3B8",
+            color: "#4F5864",
             lineHeight: 1.4,
             maxWidth: 800,
           }}
         >
-          The cleanest way to upload files to Google Drive on macOS
+          Native macOS uploads to Google Drive
         </p>
         <div
           style={{
@@ -71,14 +68,14 @@ export default function OpenGraphImage() {
             gap: 16,
             marginTop: 48,
             fontSize: 20,
-            color: "#64748B",
+            color: "#617087",
           }}
         >
-          <span>Native Swift</span>
+          <span>Resumable uploads</span>
           <span>·</span>
-          <span>Zero Telemetry</span>
+          <span>Zero telemetry</span>
           <span>·</span>
-          <span>Open Source</span>
+          <span>Open source</span>
         </div>
       </div>
     ),

@@ -1,79 +1,99 @@
 export const githubUrl = "https://github.com/sayuru-akash/drivedock"
 export const releasesUrl = `${githubUrl}/releases`
+export const latestReleaseUrl = `${releasesUrl}/latest`
 export const issuesUrl = `${githubUrl}/issues`
+export const developer = {
+  name: "Sayuru Akash Amarasinghe",
+  website: "https://sayuru.dev",
+} as const
+
+export const socialLinks = [
+  { label: "Developer website", href: developer.website, icon: "website" },
+  { label: "GitHub", href: "https://github.com/sayuru-akash", icon: "github" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/sayuruakash", icon: "linkedin" },
+  { label: "X", href: "https://twitter.com/sayuru_akash", icon: "x" },
+  { label: "Instagram", href: "https://www.instagram.com/sayuru_akash", icon: "instagram" },
+  { label: "Facebook", href: "https://www.facebook.com/sayuru.me", icon: "facebook" },
+] as const
 
 export const workflowSteps = [
   {
     number: "01.",
     title: "Select Files",
-    description: "Choose the files or folders you want to upload. Drag them straight from Finder.",
+    description: "Choose files or folders in DriveDock, paste them from the clipboard, or start from Finder.",
   },
   {
     number: "02.",
     title: "Drag & Drop",
-    description: "Drop your files into DriveDock. No browser tabs or extra steps required.",
+    description: "Drop items on the main window, menu bar helper, or Dock icon, then choose the account and destination.",
   },
   {
     number: "03.",
     title: "Uploading",
-    description: "Track every upload with live progress. DriveDock handles everything in the background.",
+    description: "Track per-file progress, speed, ETA, and status while DriveDock processes the queue.",
   },
   {
     number: "04.",
     title: "All Done",
-    description: "Your files are safely in Google Drive, ready to access from anywhere.",
+    description: "Review the completion summary and open the uploaded files or destination folder in Drive.",
   },
 ] as const
 
 export const privacyPoints = [
   {
     title: "Tokens stay in the Keychain",
-    description: "Your Google account stays safe in the macOS Keychain.",
+    description: "OAuth access and refresh tokens are stored in macOS Keychain, not plain files.",
   },
   {
     title: "No analytics, anywhere",
     description: "No tracking, analytics, or third-party crash reporting.",
   },
   {
-    title: "Only the drive.file scope",
-    description: "Your existing Drive files stay private.",
+    title: "Limited Drive permissions",
+    description: "drive.file handles uploads; drive.readonly enables Drive browsing and destination selection.",
   },
   {
-    title: "Existing files stay private",
-    description: "The code is open source. You can view it on GitHub anytime.",
+    title: "Open source",
+    description: "The source, release history, and security policy are public on GitHub.",
   },
 ] as const
 
-export const testimonials = [
+export const productHighlights = [
   {
-    quote:
-      "The menu bar helper is the part I didn't know I wanted. I just drag a screenshot onto the icon and it shows up in Drive. No app to switch to, no windows to manage.",
-    author: "Dani Rivera",
-    role: "Design Lead",
+    category: "Reliability",
+    title: "Resumable large uploads",
+    description:
+      "Large files use Google Drive's resumable upload protocol in 8 MB chunks. Interrupted sessions can continue after network loss, sleep, or an app restart.",
   },
   {
-    quote:
-      "I push a 4GB project archive to Drive every night. With DriveDock it takes about 20 minutes and it survives my flaky home WiFi. The web client gave up after three tries.",
-    author: "Priya Patel",
-    role: "Indie Game Developer",
+    category: "Folders",
+    title: "Folder structure preservation",
+    description:
+      "DriveDock scans a selected folder, creates its destination folders in Drive, and uploads nested files without flattening the hierarchy.",
   },
   {
-    quote:
-      "I switched from the web uploader and never went back. Drop the folder, walk away, come back to a finished upload. The folder structure actually matches what I dragged in, which is more than I expected.",
-    author: "Marcus Chen",
-    role: "Backend Engineer",
+    category: "Performance",
+    title: "Adaptive parallel uploads",
+    description:
+      "Multiple files upload together. Concurrency adjusts for network quality, errors, battery state, and Google Drive rate limits.",
   },
   {
-    quote:
-      "I read the source before I installed it. drive.file scope, Keychain for tokens, no analytics calls anywhere. It does what the privacy page says it does.",
-    author: "Theo Morgan",
-    role: "Security Engineer",
+    category: "Accounts",
+    title: "Multiple Google accounts",
+    description:
+      "Connect more than one Google account, choose the account for each upload batch, and keep queued items tied to their selected account.",
   },
   {
-    quote:
-      "I set it going before lunch and came back to everything exactly where it should be. The progress view is simple and the uploads are reliable.",
-    author: "Maya Singh",
-    role: "Product Designer",
+    category: "Destinations",
+    title: "Shared Drive support",
+    description:
+      "Browse My Drive and Shared Drives, choose a destination folder, create folders, and upload where the connected account has permission.",
+  },
+  {
+    category: "Privacy",
+    title: "Local-first account storage",
+    description:
+      "OAuth tokens stay in macOS Keychain. The app includes no analytics or tracking and sends file data directly to Google Drive APIs.",
   },
 ] as const
 
@@ -86,12 +106,32 @@ export const faqs = [
   {
     question: "Is it really free?",
     answer:
-      "Yes. The whole app is MIT licensed. No paid tier, no Pro plan, no upsell. If you want to pay, you can buy us a coffee via the GitHub Sponsors link, but the app is the same for everyone.",
+      "Yes. DriveDock is released under the MIT License. The source code and current release downloads are available from the public GitHub repository.",
+  },
+  {
+    question: "Does DriveDock replace Google Drive for desktop?",
+    answer:
+      "No. DriveDock is an upload utility, not a two-way sync client. It is designed for sending selected files and folders to Drive without creating a local sync folder.",
+  },
+  {
+    question: "What happens if an upload is interrupted?",
+    answer:
+      "Large files use Google Drive's resumable upload protocol. DriveDock can continue eligible transfers after a connection loss, Mac sleep, or an app restart.",
+  },
+  {
+    question: "Which Macs can run DriveDock?",
+    answer:
+      "DriveDock requires macOS 14 Sonoma or later. Current downloads are provided as a DMG and zip archive on GitHub Releases.",
+  },
+  {
+    question: "Which Google Drive permissions are required?",
+    answer:
+      "DriveDock uses drive.file to create and upload files, plus drive.readonly to browse existing Drive items and choose a destination. OAuth credentials stay in macOS Keychain.",
   },
   {
     question: "How do I report a security issue?",
     answer:
-      "Open a private security advisory on GitHub so the issue can be reviewed responsibly before any public disclosure.",
+      "Use the repository Security tab to report a vulnerability privately. Use GitHub Issues for non-sensitive bugs and feature requests.",
   },
   {
     question: "Do you collect any data at all?",
@@ -99,4 +139,3 @@ export const faqs = [
       "No. There is no analytics SDK, third-party crash reporting, or anonymous usage tracking in DriveDock.",
   },
 ] as const
-

@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
+import { faqs } from "@/components/home/home-data"
 import "./globals.css"
 
 const inter = Inter({
@@ -12,25 +13,20 @@ const inter = Inter({
 
 const siteUrl = "https://drivedock.app"
 const siteName = "DriveDock"
-const siteTitle = "DriveDock: Native macOS Google Drive Upload Client"
+const siteTitle = "DriveDock: Google Drive Uploader for macOS"
 const siteDescription =
-  "The cleanest way to upload files to Google Drive on macOS. Native Swift app with drag-and-drop, parallel uploads, folder preservation, and complete privacy. Free & open source."
+  "Upload files and folders from macOS to Google Drive with resumable transfers, parallel uploads, folder preservation, multiple accounts, and no telemetry."
 const siteKeywords = [
   "Google Drive uploader macOS",
-  "native macOS Google Drive app",
-  "Google Drive desktop client",
-  "macOS file upload Google Drive",
-  "Swift SwiftUI Google Drive",
-  "drag and drop Google Drive mac",
+  "upload files to Google Drive Mac",
+  "Google Drive upload app for Mac",
+  "macOS Google Drive uploader",
+  "drag and drop Google Drive Mac",
   "parallel uploads Google Drive",
+  "resumable Google Drive uploads",
+  "upload folders to Google Drive Mac",
   "open source Google Drive client",
   "DriveDock",
-  "macOS Sonoma Google Drive",
-  "Google Drive menu bar app",
-  "resumable uploads macOS",
-  "macOS Sonoma app",
-  "Apple Silicon Google Drive",
-  "Intel Mac Google Drive",
 ]
 
 export const metadata: Metadata = {
@@ -41,8 +37,8 @@ export const metadata: Metadata = {
   },
   description: siteDescription,
   keywords: siteKeywords,
-  authors: [{ name: "DriveDock Contributors", url: siteUrl }],
-  creator: "DriveDock Contributors",
+  authors: [{ name: "Sayuru Akash Amarasinghe", url: "https://sayuru.dev" }],
+  creator: "Sayuru Akash Amarasinghe",
   publisher: siteName,
   applicationName: siteName,
   generator: "Next.js",
@@ -58,17 +54,13 @@ export const metadata: Metadata = {
     url: siteUrl,
     siteName,
     title: siteTitle,
-    description:
-      "The cleanest way to upload files to Google Drive on macOS. Drag-and-drop, parallel uploads, folder preservation, zero telemetry. Free & open source.",
-    countryName: "United States",
+    description: siteDescription,
   },
   twitter: {
     card: "summary_large_image",
     title: siteTitle,
-    description:
-      "Native macOS, drag-and-drop, parallel uploads, folder preservation, zero telemetry. Free & open source.",
-    creator: "@drivedockapp",
-    site: "@drivedockapp",
+    description: siteDescription,
+    creator: "@sayuru_akash",
   },
   robots: {
     index: true,
@@ -97,14 +89,14 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     title: siteName,
-    statusBarStyle: "black-translucent",
+    statusBarStyle: "default",
     startupImage: ["/icon-512.png"],
   },
   appLinks: {
     web: { url: siteUrl, should_fallback: true },
   },
   other: {
-    "msapplication-TileColor": "#0B0F1A",
+    "msapplication-TileColor": "#EEF4FF",
     "msapplication-TileImage": "/icon-512.png",
   },
 }
@@ -114,11 +106,8 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   userScalable: true,
-  themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#0B0F1A" },
-    { media: "(prefers-color-scheme: light)", color: "#0B0F1A" },
-  ],
-  colorScheme: "dark",
+  themeColor: "#EEF4FF",
+  colorScheme: "light",
   viewportFit: "cover",
 }
 
@@ -126,17 +115,14 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Organization",
-      "@id": `${siteUrl}#organization`,
-      name: "DriveDock Contributors",
-      url: siteUrl,
-      logo: {
-        "@type": "ImageObject",
-        url: `${siteUrl}/icon-512.png`,
-        width: 512,
-        height: 512,
-      },
+      "@type": "Person",
+      "@id": `${siteUrl}#developer`,
+      name: "Sayuru Akash Amarasinghe",
+      url: "https://sayuru.dev",
       sameAs: [
+        "https://github.com/sayuru-akash",
+        "https://www.linkedin.com/in/sayuruakash",
+        "https://x.com/sayuru_akash",
         "https://github.com/sayuru-akash/drivedock",
         "https://github.com/sayuru-akash/drivedock-landing",
       ],
@@ -147,13 +133,8 @@ const jsonLd = {
       url: siteUrl,
       name: siteName,
       description: siteDescription,
-      publisher: { "@id": `${siteUrl}#organization` },
+      publisher: { "@id": `${siteUrl}#developer` },
       inLanguage: "en-US",
-      potentialAction: {
-        "@type": "SearchAction",
-        target: `${siteUrl}#features`,
-        "query-input": "required name=search_term_string",
-      },
     },
     {
       "@type": "SoftwareApplication",
@@ -161,12 +142,11 @@ const jsonLd = {
       applicationCategory: "UtilitiesApplication",
       applicationSubCategory: "File Upload Manager",
       operatingSystem: "macOS 14.0 or later",
-      downloadUrl: "https://github.com/sayuru-akash/drivedock/releases",
-      softwareVersion: "latest",
-      datePublished: "2024-01-01",
-      dateModified: new Date().toISOString().split("T")[0],
-      author: { "@id": `${siteUrl}#organization` },
-      publisher: { "@id": `${siteUrl}#organization` },
+      downloadUrl: "https://github.com/sayuru-akash/drivedock/releases/latest",
+      datePublished: "2026-06-17",
+      dateModified: "2026-08-16",
+      author: { "@id": `${siteUrl}#developer` },
+      publisher: { "@id": `${siteUrl}#developer` },
       offers: {
         "@type": "Offer",
         price: "0",
@@ -193,54 +173,15 @@ const jsonLd = {
         "MIT License",
       ],
       softwareRequirements: "macOS 14 Sonoma or later",
-      memoryRequirements: "100MB",
-      storageRequirements: "50MB",
-      permissions: "Network access, Google Drive account",
+      permissions: "Google Drive drive.file and drive.readonly OAuth scopes",
     },
     {
       "@type": "FAQPage",
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: "What is DriveDock?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "DriveDock is a native macOS app for uploading files and folders to Google Drive with speed, clarity, and control. Built with Swift and SwiftUI.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Is DriveDock free?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Yes, DriveDock is completely free and open source under the MIT License. You can use, modify, and distribute it freely.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Does DriveDock collect my data?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "No. DriveDock collects zero personal data and sends no telemetry. OAuth tokens are stored exclusively in the macOS Keychain.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "What macOS versions are supported?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "DriveDock requires macOS 14 Sonoma or later, and supports both Apple Silicon and Intel Macs.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Is my Google account safe?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Yes. DriveDock only requests the drive.file OAuth scope, meaning it can only access files it personally uploads. Your existing Drive content is untouchable, and credentials are stored in the macOS Keychain.",
-          },
-        },
-      ],
+      mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: { "@type": "Answer", text: faq.answer },
+      })),
     },
   ],
 }
@@ -259,7 +200,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-dvh flex flex-col antialiased bg-bg-base text-fg-primary">
+      <body>
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>

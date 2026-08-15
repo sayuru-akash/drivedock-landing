@@ -767,41 +767,52 @@
 
 .workflowGrid {
   display: grid;
-  grid-template-columns: 0.78fr 1.42fr;
-  gap: 42px;
+  grid-template-columns: minmax(280px, 0.82fr) minmax(0, 1.48fr);
+  gap: 40px;
   margin-top: 55px;
 }
 
 .workflowSteps {
   display: grid;
   align-content: center;
-  gap: 0;
+  min-width: 0;
   margin: 0;
   padding: 0;
-  list-style: none;
 }
 
-.workflowSteps li {
+.workflowSteps button {
   position: relative;
-  min-height: 99px;
+  display: flex;
+  width: 100%;
+  min-height: 112px;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  border: 0;
   border-left: 2px solid #dce0e7;
-  padding: 12px 0 12px 17px;
+  padding: 16px 18px;
+  background: transparent;
+  color: var(--home-text);
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
 }
 
-.workflowSteps li::after {
+.workflowSteps button::after {
   position: absolute;
-  inset: auto 0 0 17px;
+  inset: auto 0 0 18px;
   height: 1px;
   background: #e4e7eb;
   content: "";
 }
 
-.workflowSteps li:last-child::after {
+.workflowSteps button:last-child::after {
   display: none;
 }
 
 .workflowSteps .activeStep {
   border-left-color: #5f91de;
+  background: linear-gradient(90deg, #f0f6ff, rgb(240 246 255 / 0%));
 }
 
 .workflowSteps strong {
@@ -814,7 +825,8 @@
   font-weight: 500;
 }
 
-.workflowSteps p {
+.workflowSteps button > span {
+  display: block;
   margin-top: 8px;
   color: #686e78;
   font-size: 14px;
@@ -822,51 +834,458 @@
   letter-spacing: -0.005em;
 }
 
+.workflowSteps button:focus-visible {
+  z-index: 1;
+  outline: 3px solid #1e65c1;
+  outline-offset: 3px;
+}
+
 .workflowVisual {
   position: relative;
-  display: grid;
-  min-height: 430px;
-  grid-template-columns: 1fr 0.98fr;
-  align-items: end;
-  gap: 18px;
+  min-width: 0;
+  min-height: 500px;
   overflow: hidden;
-  padding: 75px 36px 0;
+  border: 1px solid #e1e8f2;
+  padding: 28px;
   background:
     radial-gradient(circle, rgb(255 255 255 / 86%) 1px, transparent 1.2px),
     linear-gradient(135deg, #f2f7ff, #dfeeff);
   background-size: 18px 18px, auto;
 }
 
-.workflowVisual .finderWindow {
-  height: 300px;
-  border-radius: 11px 11px 0 0;
+.workflowStage {
+  min-height: 442px;
 }
 
-.workflowVisual .appWindowCompact {
-  height: 307px;
-  border-radius: 11px 11px 0 0;
-}
-
-.workflowVisual .dropZoneCompact {
-  min-height: 185px;
-}
-
-.menuBubble {
-  position: absolute;
-  top: 24px;
-  right: 32px;
-  z-index: 4;
+.workflowVisualBody {
+  position: relative;
   display: grid;
-  width: 55px;
-  height: 55px;
+  min-height: 442px;
   place-items: center;
-  border: 6px solid rgb(255 255 255 / 85%);
+}
+
+.workflowMockWindow {
+  width: min(550px, 96%);
+  min-height: 316px;
+  overflow: hidden;
+  border: 1px solid #cfd8e5;
+  border-radius: 14px;
+  background: #f8fafc;
+  box-shadow: 0 22px 48px rgb(50 76 111 / 18%), 0 2px 7px rgb(0 0 0 / 6%);
+}
+
+.workflowWindowBar {
+  position: relative;
+  display: flex;
+  height: 44px;
+  width: 100%;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #dce2ea;
+  background: #f1f4f7;
+}
+
+.workflowWindowBar > span {
+  position: absolute;
+  left: 15px;
+  display: flex;
+  gap: 5px;
+}
+
+.workflowWindowBar i {
+  display: block;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  background: #204b7d;
-  box-shadow: 0 7px 15px rgb(28 61 103 / 28%);
+  background: #ff6c62;
+}
+
+.workflowWindowBar i:nth-child(2) {
+  background: #f7be4f;
+}
+
+.workflowWindowBar i:nth-child(3) {
+  background: #61c554;
+}
+
+.workflowWindowBar > strong {
+  color: #626973;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.workflowFileGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding: 19px;
+}
+
+.workflowSelectedFile,
+.workflowMutedFile {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 11px;
+  border: 1px solid #d8e5f6;
+  border-radius: 10px;
+  padding: 13px;
+  background: #edf5ff;
+}
+
+.workflowSelectedFile > span {
+  display: grid;
+  grid-row: 1 / 3;
+  color: #397fce;
+  place-items: center;
+}
+
+.workflowSelectedFile strong {
+  overflow: hidden;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.workflowSelectedFile small {
+  color: #6f7782;
+  font-size: 10px;
+}
+
+.workflowSelectedFile > i {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  display: grid;
+  width: 18px;
+  height: 18px;
+  place-items: center;
+  border-radius: 50%;
+  background: #2f83dd;
   color: #fff;
-  font-size: 18px;
+}
+
+.workflowMutedFile {
+  align-items: center;
+  color: #929aa5;
+  grid-template-rows: auto;
+  opacity: 0.65;
+}
+
+.workflowMutedFile svg {
+  grid-row: 1;
+}
+
+.workflowMutedFile span {
+  overflow: hidden;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.workflowSelectionBadge {
+  position: absolute;
+  right: 2%;
+  bottom: 2px;
+  z-index: 2;
+  display: flex;
+  min-width: 158px;
+  flex-direction: column;
+  border: 1px solid #d7e1ed;
+  border-radius: 10px;
+  padding: 12px 15px;
+  background: #fff;
+  box-shadow: 0 12px 27px rgb(38 62 92 / 16%);
+}
+
+.workflowSelectionBadge strong {
+  font-size: 13px;
+}
+
+.workflowSelectionBadge span {
+  color: #6b737e;
+  font-size: 11px;
+}
+
+.workflowAppStage {
+  padding-bottom: 16px;
+}
+
+.workflowAccountBar {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 11px;
+  margin: 16px 18px 0;
+  border: 1px solid #dbe1e9;
+  border-radius: 9px;
+  padding: 11px 12px;
+  background: #fff;
+}
+
+.workflowAccountBar > span {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: #1f3b6e;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.workflowAccountBar > div {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+}
+
+.workflowAccountBar strong {
+  overflow: hidden;
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.workflowAccountBar small {
+  color: #717985;
+  font-size: 9px;
+}
+
+.workflowDropTarget {
+  display: flex;
+  min-height: 164px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 2px dashed #70a8ec;
+  border-radius: 11px;
+  margin: 14px 18px 0;
+  background: #eaf4ff;
+  text-align: center;
+}
+
+.workflowDropTarget > span:first-child {
+  display: grid;
+  width: 49px;
+  height: 49px;
+  place-items: center;
+  border-radius: 10px;
+  margin-bottom: 9px;
+  background: #24538c;
+  box-shadow: 0 7px 16px rgb(36 83 140 / 24%);
+  color: #fff;
+}
+
+.workflowDropTarget strong {
+  font-size: 14px;
+}
+
+.workflowDropTarget small {
+  margin-top: 2px;
+  color: #647183;
+  font-size: 11px;
+}
+
+.workflowDragPayload {
+  position: absolute;
+  top: 31%;
+  left: 3%;
+  z-index: 3;
+  display: flex;
+  width: 62px;
+  height: 49px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border: 1px solid #c9d8e8;
+  border-radius: 9px;
+  background: #fff;
+  box-shadow: 0 13px 28px rgb(39 65 98 / 22%);
+  color: #3d86d5;
+}
+
+.workflowDragPayload span {
+  display: grid;
+  width: 18px;
+  height: 18px;
+  place-items: center;
+  border-radius: 50%;
+  background: #1e3869;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.workflowUploadStage {
+  padding-bottom: 13px;
+}
+
+.workflowUploadHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px 10px;
+}
+
+.workflowUploadHeader > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.workflowUploadHeader strong {
+  font-size: 14px;
+}
+
+.workflowUploadHeader span {
+  color: #727a85;
+  font-size: 10px;
+}
+
+.workflowProgress {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  margin: 0 20px 15px;
+  background: #e3e8ef;
+}
+
+.workflowProgress > span {
+  display: block;
+  width: 68%;
+  height: 100%;
+  border-radius: inherit;
+  background: #4c88df;
+}
+
+.workflowUploadList {
+  display: grid;
+  gap: 9px;
+  padding-inline: 17px;
+}
+
+.workflowUploadList > div {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 11px;
+  border: 1px solid #dce2ea;
+  border-radius: 8px;
+  padding: 10px 11px;
+  background: #fff;
+}
+
+.workflowUploadList > div > span {
+  display: grid;
+  color: #4f86c8;
+}
+
+.workflowUploadList > div > div {
+  display: grid;
+  min-width: 0;
+  gap: 5px;
+}
+
+.workflowUploadList strong {
+  overflow: hidden;
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.workflowUploadList small {
+  color: #737b86;
+  font-size: 9px;
+  white-space: nowrap;
+}
+
+.workflowUploadList i,
+.workflowUploadList i span {
+  display: block;
+  height: 3px;
+  border-radius: 99px;
+}
+
+.workflowUploadList i {
+  overflow: hidden;
+  background: #e8edf3;
+}
+
+.workflowUploadList i span {
+  background: #5c92df;
+}
+
+.workflowCompleteStage {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 14px;
+}
+
+.workflowSuccessMark {
+  display: grid;
+  width: 72px;
+  height: 72px;
+  place-items: center;
+  border-radius: 50%;
+  margin-top: 32px;
+  background: #e4f6e9;
+  box-shadow: inset 0 0 0 1px #b9dfc3;
+  color: #2d9a4e;
+}
+
+.workflowComplete {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 11px;
+  text-align: center;
+}
+
+.workflowComplete strong {
+  font-size: 19px;
   font-weight: 620;
+}
+
+.workflowComplete span {
+  margin-top: 2px;
+  color: #65707d;
+  font-size: 12px;
+}
+
+.workflowCompleteFiles {
+  display: flex;
+  max-width: calc(100% - 24px);
+  justify-content: center;
+  gap: 6px;
+  margin-top: 15px;
+}
+
+.workflowCompleteFiles span {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid #dce5e0;
+  border-radius: 6px;
+  padding: 6px 8px;
+  background: #fff;
+  color: #52605a;
+  font-size: 9px;
+  white-space: nowrap;
+}
+
+.workflowCompleteFiles svg {
+  flex: 0 0 auto;
+  color: #36a45a;
 }
 
 .privacySection,
@@ -954,14 +1373,14 @@
 
 .testimonialRail {
   display: flex;
-  gap: 20px;
-  max-width: 100%;
-  margin-top: 65px;
+  width: min(var(--home-width), calc(100% - 48px));
+  gap: 22px;
+  margin: 54px auto 0;
   overflow-x: auto;
   overscroll-behavior-inline: contain;
-  padding: 0 max(24px, calc((100vw - var(--home-width)) / 2)) 16px;
+  padding: 12px 0 22px;
   scrollbar-width: none;
-  scroll-padding-inline: max(24px, calc((100vw - var(--home-width)) / 2));
+  scroll-padding-inline: 0;
   scroll-snap-type: x mandatory;
 }
 
@@ -971,95 +1390,168 @@
 
 .testimonialCard {
   display: flex;
-  width: 335px;
-  min-height: 280px;
-  flex: 0 0 335px;
+  width: calc((100% - 44px) / 3);
+  min-height: 304px;
+  flex: 0 0 calc((100% - 44px) / 3);
   flex-direction: column;
   border: 1px solid #dce0e6;
-  padding: 31px 32px;
+  border-radius: 18px;
+  padding: 30px;
   background: #fff;
+  box-shadow: 0 10px 30px rgb(34 57 86 / 5%);
   scroll-margin-inline: 24px;
-  scroll-snap-align: center;
-  transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+  scroll-snap-align: start;
+  transition: border-color 260ms ease, box-shadow 260ms ease, transform 260ms ease, background-color 260ms ease;
 }
 
-.testimonialFeatured {
-  border-color: transparent;
+.testimonialActive {
+  border-color: #b9d0ed;
   background: #f1f6ff;
+  box-shadow: 0 20px 48px rgb(41 76 120 / 13%);
+}
+
+.testimonialCardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
 }
 
 .quoteIcon {
-  color: #090a0b;
+  color: #3475c5;
 }
 
-.testimonialCard blockquote {
+.capabilityCategory {
+  border: 1px solid #cfdeef;
+  border-radius: 999px;
+  padding: 5px 9px;
+  background: #f6f9fd;
+  color: #44617f;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+}
+
+.testimonialCard h3 {
+  margin-top: 26px;
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.testimonialCard > p {
   flex: 1;
-  margin: 23px 0 28px;
-  color: #31353b;
+  margin-top: 15px;
+  color: #4f5762;
   font-size: 15px;
-  line-height: 1.7;
-  letter-spacing: -0.008em;
+  line-height: 1.65;
+  letter-spacing: -0.006em;
 }
 
-.testimonialAuthor {
-  display: flex;
-  align-items: center;
-  gap: 11px;
-}
-
-.testimonialAuthor > span:last-child {
-  display: flex;
-  flex-direction: column;
-}
-
-.testimonialAuthor strong {
-  font-size: 14px;
-  font-weight: 640;
-}
-
-.testimonialAuthor small {
-  color: #616872;
+.capabilityStatus {
+  margin-top: 24px;
+  color: #566273;
   font-size: 12px;
-}
-
-.avatar {
-  display: grid;
-  width: 36px;
-  height: 36px;
-  flex: 0 0 auto;
-  place-items: center;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #2b4c72, #a6c8e9);
-  color: #fff;
-  font-size: 9px;
-  font-weight: 700;
 }
 
 .carouselControls {
   display: flex;
+  width: min(100% - 48px, var(--home-width));
+  align-items: center;
   justify-content: center;
   gap: 9px;
-  margin-top: 31px;
+  margin: 22px auto 0;
 }
 
-.carouselControls a {
+.carouselControls > button {
   display: grid;
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   place-items: center;
-  border: 0;
+  border: 1px solid #d5e1f0;
   border-radius: 50%;
   background: #eaf2fe;
-  color: #5d718d;
+  color: #405b7d;
   cursor: pointer;
-  text-decoration: none;
-  transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+  transition: border-color 180ms ease, background 180ms ease, color 180ms ease, transform 180ms ease;
 }
 
-.carouselControls a:hover {
+.carouselControls > button:hover {
+  border-color: #bfd3eb;
   background: #dbeaff;
   color: #1e385b;
   transform: translateY(-1px);
+}
+
+.carouselControls > button:focus-visible,
+.testimonialDots button:focus-visible {
+  outline: 3px solid #1e65c1;
+  outline-offset: 3px;
+}
+
+.carouselControls .rotationControl {
+  margin-right: 7px;
+  background: #1d3658;
+  color: #fff;
+}
+
+.carouselControls .rotationControl:hover {
+  background: #274a78;
+  color: #fff;
+}
+
+.testimonialDots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 2px;
+}
+
+.testimonialDots button {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.testimonialDots button::before {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #c4cfdd;
+  content: "";
+  transition: width 220ms ease, background-color 220ms ease;
+}
+
+.testimonialDots button[aria-current="true"]::before {
+  width: 20px;
+  background: #3c78c5;
+}
+
+.highlightsSource {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  gap: 7px;
+  margin: 18px auto 0;
+  color: #315f98;
+  font-size: 13px;
+  font-weight: 620;
+  text-decoration: none;
+}
+
+.highlightsSource:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.highlightsSource:focus-visible {
+  outline: 3px solid #1e65c1;
+  outline-offset: 4px;
 }
 
 .faqSection {
@@ -1212,15 +1704,45 @@
   letter-spacing: 0;
 }
 
+.footerBrand .developerCredit {
+  margin-top: 13px;
+  color: #c2c2c2;
+}
+
+.developerCredit a {
+  color: #fff;
+  font-weight: 620;
+  text-decoration: none;
+}
+
+.developerCredit a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .socialIcons {
   display: flex;
-  gap: 21px;
-  margin-top: 43px;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 25px;
   color: #c9c9c9;
 }
 
-.socialIcons svg {
-  transition: color 180ms ease, transform 180ms ease;
+.socialIcons a {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border: 1px solid #3f3f3f;
+  border-radius: 50%;
+  color: #c9c9c9;
+  transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.socialIcons a:focus-visible,
+.developerCredit a:focus-visible {
+  outline: 3px solid #8ebcf2;
+  outline-offset: 3px;
 }
 
 .footerColumns {
@@ -1395,12 +1917,21 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .workflowSteps li {
-    min-height: 115px;
+  .workflowSteps button {
+    min-height: 126px;
   }
 
   .privacyGrid {
     gap: 45px;
+  }
+
+  .testimonialRail {
+    width: min(100% - 36px, 720px);
+  }
+
+  .testimonialCard {
+    width: calc((100% - 22px) / 2);
+    flex-basis: calc((100% - 22px) / 2);
   }
 
   .privacyCopy > a,
@@ -1563,34 +2094,56 @@
   }
 
   .workflowSteps {
-    grid-template-columns: 1fr;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+    padding: 2px 1px 10px;
   }
 
-  .workflowSteps li {
-    min-height: 92px;
+  .workflowSteps button {
+    min-width: 0;
+    min-height: 164px;
+    border: 1px solid #dfe5ed;
+    border-top: 3px solid #dce0e7;
+    border-radius: 10px;
+    padding: 15px;
+    background: #fff;
+  }
+
+  .workflowSteps button::after {
+    display: none;
+  }
+
+  .workflowSteps .activeStep {
+    border-color: #cbdcf2;
+    border-top-color: #5f91de;
+    background: #f2f7ff;
   }
 
   .workflowVisual {
-    min-height: 315px;
-    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
-    gap: 8px;
-    padding: 68px 10px 0;
+    min-height: 488px;
+    padding: 17px;
   }
 
-  .workflowVisual .finderWindow,
-  .workflowVisual .appWindowCompact {
-    height: 246px;
+  .workflowStage {
+    min-height: 452px;
   }
 
-  .workflowVisual .dropZoneCompact {
-    min-height: 130px;
+  .workflowVisualBody {
+    min-height: 452px;
   }
 
-  .menuBubble {
-    top: 18px;
-    right: 18px;
-    width: 48px;
-    height: 48px;
+  .workflowMockWindow {
+    width: 100%;
+  }
+
+  .workflowSelectionBadge {
+    right: -2px;
+  }
+
+  .workflowDragPayload {
+    top: 29%;
+    left: -7px;
   }
 
   .privacyCards {
@@ -1603,14 +2156,32 @@
   }
 
   .testimonialRail {
+    width: calc(100% - 32px);
     margin-top: 45px;
-    padding-inline: 16px;
-    scroll-padding-inline: 16px;
   }
 
   .testimonialCard {
-    width: min(84vw, 335px);
-    flex-basis: min(84vw, 335px);
+    width: 100%;
+    min-height: 320px;
+    flex-basis: 100%;
+    padding: 27px 25px;
+  }
+
+  .testimonialCard > p {
+    font-size: 15px;
+  }
+
+  .carouselControls {
+    width: calc(100% - 32px);
+    gap: 7px;
+  }
+
+  .carouselControls .rotationControl {
+    margin-right: 2px;
+  }
+
+  .testimonialDots {
+    padding-inline: 0;
   }
 
   .faqItem summary {
@@ -1654,6 +2225,24 @@
 
   .affiliation {
     margin-top: 0;
+  }
+}
+
+@media (max-width: 430px) {
+  .workflowFileGrid {
+    grid-template-columns: 1fr;
+    gap: 7px;
+    padding: 11px;
+  }
+
+  .workflowSelectedFile,
+  .workflowMutedFile {
+    padding: 9px 11px;
+  }
+
+  .workflowSelectedFile strong,
+  .workflowMutedFile span {
+    font-size: 11px;
   }
 }
 
@@ -1711,20 +2300,29 @@
   }
 
   .workflowVisual {
-    min-height: 520px;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 14px;
-    padding: 72px 12px 0;
+    min-height: 480px;
+    padding: 12px;
   }
 
-  .workflowVisual .finderWindow,
-  .workflowVisual .appWindowCompact {
-    width: 100%;
-    height: 210px;
+  .workflowStage {
+    min-height: 454px;
   }
 
-  .workflowVisual .dropZoneCompact {
-    min-height: 106px;
+  .workflowSelectionBadge {
+    bottom: -1px;
+  }
+
+  .workflowCompleteFiles span:last-child {
+    display: none;
+  }
+
+  .carouselControls {
+    flex-wrap: wrap;
+  }
+
+  .testimonialDots {
+    order: 1;
+    flex-basis: 100%;
   }
 
   .footerColumns {
@@ -1733,6 +2331,11 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
+  .workflowSteps button:hover {
+    background-color: #f5f8fd;
+    transform: translateX(2px);
+  }
+
   .featureCard:hover,
   .testimonialCard:hover {
     border-color: #d7e1ef;
@@ -1745,23 +2348,26 @@
     background: rgb(255 255 255 / 38%);
   }
 
-  .socialIcons svg:hover {
+  .socialIcons a:hover {
+    border-color: #6a6a6a;
+    background: #262626;
     color: #fff;
     transform: translateY(-2px);
   }
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .heroCopy p {
-    animation: hero-detail-in 480ms 70ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  .workflowStage {
+    animation: workflow-state-in 240ms ease-out both;
   }
 
-  .hero .heroActions {
-    animation: hero-detail-in 480ms 130ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  .workflowDragPayload {
+    animation: workflow-drag-float 1.8s ease-in-out infinite;
   }
 
-  .heroWindow {
-    animation: hero-window-in 760ms 120ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  .workflowProgress > span {
+    animation: workflow-progress-in 520ms ease-out both;
+    transform-origin: left;
   }
 
   .heroBadge {
@@ -1795,10 +2401,10 @@
   }
 }
 
-@keyframes hero-detail-in {
+@keyframes workflow-state-in {
   from {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(7px);
   }
 
   to {
@@ -1807,15 +2413,24 @@
   }
 }
 
-@keyframes hero-window-in {
+@keyframes workflow-drag-float {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(-4deg);
+  }
+
+  50% {
+    transform: translate(7px, -6px) rotate(2deg);
+  }
+}
+
+@keyframes workflow-progress-in {
   from {
-    opacity: 0;
-    transform: translateY(24px) scale(0.985);
+    transform: scaleX(0);
   }
 
   to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: scaleX(1);
   }
 }
 
