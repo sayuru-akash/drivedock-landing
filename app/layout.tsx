@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
-import { Providers } from "@/components/providers"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -108,9 +107,6 @@ export const metadata: Metadata = {
   other: {
     "msapplication-TileColor": "#0B0F1A",
     "msapplication-TileImage": "/icon-512.png",
-    "theme-color": "#0B0F1A",
-    "color-scheme": "dark",
-    "apple-itunes-app": "app-id=000000000",
   },
 }
 
@@ -256,24 +252,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={inter.variable} suppressHydrationWarning>
+    <html lang="en" className={inter.variable}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://github.com" />
-        <link rel="dns-prefetch" href="https://api.github.com" />
-        <meta name="application-name" content={siteName} />
-        <meta name="apple-mobile-web-app-title" content={siteName} />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="HandheldFriendly" content="true" />
-        <meta name="theme-color" content="#0B0F1A" />
-        <meta httpEquiv="x-ua-compatible" content="ie=edge" />
-        <meta name="rating" content="general" />
-        <meta name="distribution" content="global" />
-        <meta name="revisit-after" content="7 days" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -283,7 +264,7 @@ export default function RootLayout({
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>
-        <Providers>{children}</Providers>
+        {children}
       </body>
     </html>
   )
